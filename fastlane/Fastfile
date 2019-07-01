@@ -13,26 +13,39 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+# ================ Platform ================
+
 default_platform(:android)
 
+# ================ Lanes ================
+
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
+
+  before_all do
+    clean_reports()
   end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
+  desc "Detekt checks"
+  lane :detekt do
+    run_detekt()
   end
 
-  desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
+  desc "Runs all tests in all modules"
+  lane :test_all do
+    run_all_tests()
+  end
+
+# ================ Gradle tasks ================
+
+  def run_detekt
+    gradle(task: "detekt --continue")
+  end
+
+  def clean_reports
+    gradle(task: "removeReports")
+  end
+
+  def run_all_tests
+    gradle(task: "test --continue")
   end
 end
