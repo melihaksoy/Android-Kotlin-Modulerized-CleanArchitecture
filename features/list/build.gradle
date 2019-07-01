@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply from: "$rootProject.projectDir/scripts/feature_module.gradle"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation testLibraries.jUnitApi
+    testImplementation testLibraries.mockk
+    testImplementation testLibraries.kluent
+    testImplementation testLibraries.coroutinesTest
+}

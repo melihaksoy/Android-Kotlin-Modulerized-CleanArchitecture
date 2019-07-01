@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs"
+
+apply from: "$rootProject.projectDir/scripts/feature_module.gradle"
+
+android {
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/LICENSE-notice.md'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation testLibraries.jUnitApi
+    testImplementation testLibraries.mockk
+    testImplementation testLibraries.kluent
+    testImplementation testLibraries.coroutinesTest
+}

@@ -1,0 +1,13 @@
+apply from: "$rootProject.projectDir/scripts/default_dependencies.gradle"
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+}

@@ -1,0 +1,2 @@
+include ':app', ':repository', ':core', ':features:list', ':features:detail'
+rootProject.name = 'Rocket Science'

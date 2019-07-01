@@ -1,0 +1,32 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply from: "$rootProject.projectDir/scripts/default_android_config.gradle"
+apply from: "$rootProject.projectDir/scripts/sources.gradle"
+apply from: "$rootProject.projectDir/scripts/flavors.gradle"
+
+android {
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api project(":repository")
+
+    implementation libraries.fragment
+    implementation libraries.paging
+    implementation libraries.lifecycle
+    implementation libraries.navigation
+    implementation libraries.picasso
+
+    testImplementation testLibraries.jUnitApi
+    testImplementation testLibraries.mockk
+    testImplementation testLibraries.kluent
+    testImplementation testLibraries.coroutinesTest
+
+    compileOnly libraries.room
+}

@@ -1,0 +1,16 @@
+apply from: "$rootProject.projectDir/scripts/module.gradle"
+
+android {
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation project(':core')
+
+    implementation libraries.fragment
+    implementation libraries.lifecycle
+    implementation libraries.navigation
+    implementation libraries.constraintLayout
+}

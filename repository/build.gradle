@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply from: "$rootProject.projectDir/scripts/module.gradle"
+
+android {
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$rootProject.projectDir/reports/room".toString()]
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation libraries.coroutines
+    implementation libraries.retrofit
+    implementation libraries.room
+    implementation libraries.moshiKotlin
+    implementation libraries.okHttpLogger
+
+    kapt annotationProcessors.roomCompiler
+
+    testImplementation testLibraries.coroutinesCore
+    testImplementation testLibraries.coroutinesTest
+}

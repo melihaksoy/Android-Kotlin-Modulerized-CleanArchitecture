@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply from: "$rootProject.projectDir/scripts/default_android_config.gradle"
+apply from: "$rootProject.projectDir/scripts/sources.gradle"
+apply from: "$rootProject.projectDir/scripts/flavors.gradle"
+
+android {
+    defaultConfig {
+        applicationId "com.melih.rocketscience"
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':core')
+    implementation project(':features:list')
+    implementation project(':features:detail')
+
+    implementation libraries.coroutines
+    implementation libraries.navigation
+
+    debugImplementation libraries.leakCanary
+
+    androidTestImplementation testLibraries.espresso
+
+    // These libraries required by dagger to create dependency graph, but not by app
+    compileOnly libraries.retrofit
+    compileOnly libraries.room
+    compileOnly libraries.paging
+}

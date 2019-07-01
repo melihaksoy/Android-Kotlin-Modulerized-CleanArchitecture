@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_launches"
+    app:startDestination="@id/launchesFragment">
+
+    <fragment
+        android:id="@+id/launchesFragment"
+        android:name="com.melih.list.ui.LaunchesFragment"
+        android:label="LaunchesFragment"
+        tools:layout="@layout/fragment_launches" />
+</navigation>
