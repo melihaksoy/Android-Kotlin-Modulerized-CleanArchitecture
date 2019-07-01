@@ -19,13 +19,6 @@ jobs:
             gem install bundler
             bundle install
       - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-      - run:
           name: Detekt
           command: fastlane detekt
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/

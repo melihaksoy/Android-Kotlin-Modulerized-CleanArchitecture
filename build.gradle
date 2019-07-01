@@ -36,4 +36,10 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+task removeReports(type: Delete) {
+    delete fileTree(rootProject.projectDir.path + "/reports") {
+        include '**/*.*'
+    }
+}
+
 apply from: "scripts/dependencies.gradle"
