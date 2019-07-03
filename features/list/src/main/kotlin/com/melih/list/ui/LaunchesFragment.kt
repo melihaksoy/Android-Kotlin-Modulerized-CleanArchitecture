@@ -11,6 +11,7 @@ import com.melih.core.base.lifecycle.BaseDaggerFragment
 import com.melih.core.extensions.containsIgnoreCase
 import com.melih.core.extensions.createFor
 import com.melih.core.extensions.observe
+import com.melih.core.extensions.setOnQueryChangedListener
 import com.melih.list.R
 import com.melih.list.databinding.ListBinding
 import com.melih.repository.entities.LaunchEntity
@@ -44,22 +45,7 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_rocket_list, menu)
-
-        (menu.findItem(R.id.search).actionView as SearchView).apply {
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    clearFocus()
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    launchesAdapter.submitList(filterItemListBy(newText))
-                    return true
-                }
-            })
-        }
-
+        setSearchQueryListener((menu.findItem(R.id.search).actionView as SearchView))
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -87,6 +73,12 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
 
     private fun onItemSelected(item: LaunchEntity) {
         startActivity(Actions.openDetailFor(item.id))
+    }
+
+    private fun setSearchQueryListener(searchView: SearchView) {
+        searchView.setOnQueryChangedListener {
+            filterItemListBy(it)
+        }
     }
 
     private fun filterItemListBy(query: String?) =
