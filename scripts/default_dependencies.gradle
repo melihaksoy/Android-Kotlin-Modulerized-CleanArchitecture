@@ -1,3 +1,4 @@
+apply plugin: "de.mannodermaus.android-junit5"
 apply from: "$rootProject.projectDir/scripts/detekt.gradle"
 apply from: "$rootProject.projectDir/scripts/dokka.gradle"
 
@@ -13,4 +14,6 @@ dependencies {
     testImplementation testLibraries.jUnitApi
     testImplementation testLibraries.mockk
     testImplementation testLibraries.kluent
+
+    testRuntimeOnly testLibraries.jUnitEngine
 }

@@ -46,6 +46,6 @@ platform :android do
   end
 
   def run_all_tests
-    gradle(task: "test --continue")
+    gradle(task: "clean test --continue")
   end
 end

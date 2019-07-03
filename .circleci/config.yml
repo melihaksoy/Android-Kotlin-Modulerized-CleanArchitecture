@@ -14,15 +14,28 @@ jobs:
       #         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
       #         command: sudo chmod +x ./gradlew
       - run:
-          name: Install bundle
+          name: Setup
           command: |
             gem install bundler
             bundle install
+            mkdir ~/code/reports
+
+      # Detekt
       - run:
           name: Detekt
           command: fastlane detekt
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: reports/detekt
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: reports/tests
+          path: reports
+
+      # Tests
+      - run:
+          name: Tests
+          command: fastlane test_all
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: build/reports/tests
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: reports
+
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
