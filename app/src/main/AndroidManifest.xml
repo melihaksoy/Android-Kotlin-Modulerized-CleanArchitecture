@@ -13,24 +13,5 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-
-        <activity
-            android:name="com.melih.list.ui.LaunchesActivity"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.melih.detail.ui.DetailActivity"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="action.dashboard.open" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-    </application>
+        tools:ignore="GoogleAppIndexingWarning" />
 </manifest>
