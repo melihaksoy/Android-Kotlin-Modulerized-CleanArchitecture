@@ -35,20 +35,11 @@ class DetailFragment : BaseDaggerFragment<DetailBinding>() {
         viewModel.createParamsFor(args.launchId)
         viewModel.loadData()
 
-        // Observing state to show loading
-        observe(viewModel.stateData) {
-            // Loading can go here, skipping for now
-        }
-
         // Observing error to show toast with retry action
         observe(viewModel.errorData) {
             showSnackbarWithAction(it) {
                 viewModel.retry()
             }
-        }
-
-        observe(viewModel.successData) {
-            Timber.i("")
         }
     }
 
