@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.snackbar.Snackbar
 import com.melih.core.base.lifecycle.BaseDaggerFragment
 import com.melih.core.extensions.createFor
 import com.melih.core.extensions.observe
@@ -43,13 +42,9 @@ class DetailFragment : BaseDaggerFragment<DetailBinding>() {
 
         // Observing error to show toast with retry action
         observe(viewModel.errorData) {
-            Snackbar.make(
-                binding.root,
-                resources.getString(it.messageRes),
-                Snackbar.LENGTH_INDEFINITE
-            ).setAction(com.melih.core.R.string.retry) {
+            showSnackbarWithAction(it) {
                 viewModel.retry()
-            }.show()
+            }
         }
 
         observe(viewModel.successData) {

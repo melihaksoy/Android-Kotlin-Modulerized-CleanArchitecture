@@ -6,9 +6,9 @@ import android.view.MenuInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.android.material.snackbar.Snackbar
 import com.melih.core.actions.Actions
 import com.melih.core.base.lifecycle.BaseDaggerFragment
+import com.melih.core.extensions.containsIgnoreCase
 import com.melih.core.extensions.createFor
 import com.melih.core.extensions.observe
 import com.melih.list.R
@@ -16,7 +16,6 @@ import com.melih.list.databinding.ListBinding
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.base.Result
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import timber.log.Timber
 
 class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.OnRefreshListener {
 
@@ -40,32 +39,7 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
         binding.rocketList.adapter = launchesAdapter
         binding.swipeRefreshLayout.setOnRefreshListener(this)
 
-        // Observing state to show loading
-        observe(viewModel.stateData) {
-            binding.swipeRefreshLayout.isRefreshing = it is Result.State.Loading
-        }
-
-        // Observing error to show toast with retry action
-        observe(viewModel.errorData) {
-            Snackbar.make(
-                binding.root,
-                resources.getString(it.messageRes),
-                Snackbar.LENGTH_INDEFINITE
-            ).setAction(com.melih.core.R.string.retry) {
-                viewModel.retry()
-            }.show()
-        }
-
-        observe(viewModel.successData) {
-            itemList.addAll(it)
-            launchesAdapter.submitList(itemList)
-            binding.rocketList.scheduleLayoutAnimation()
-        }
-    }
-
-    private fun onItemSelected(item: LaunchEntity) {
-        Timber.i("${item.id}")
-        startActivity(Actions.openDetailFor(item.id))
+        observeDataChanges()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -80,22 +54,7 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    launchesAdapter.submitList(
-                        if (!newText.isNullOrBlank()) {
-                            itemList.filter {
-                                it.rocket.name.contains(
-                                    newText,
-                                    true
-                                ) || (it.missions.size > 0 && it.missions[0].description.contains(
-                                    newText,
-                                    true
-                                ))
-                            }
-                        } else {
-                            itemList
-                        }
-                    )
-
+                    launchesAdapter.submitList(filterItemListBy(newText))
                     return true
                 }
             })
@@ -103,6 +62,41 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
 
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+    @ExperimentalCoroutinesApi
+    private fun observeDataChanges() {
+
+        // Observing state to show loading
+        observe(viewModel.stateData) {
+            binding.swipeRefreshLayout.isRefreshing = it is Result.State.Loading
+        }
+
+        // Observing error to show toast with retry action
+        observe(viewModel.errorData) {
+            showSnackbarWithAction(it) {
+                viewModel.retry()
+            }
+        }
+
+        observe(viewModel.successData) {
+            itemList.addAll(it)
+            launchesAdapter.submitList(itemList)
+            binding.rocketList.scheduleLayoutAnimation()
+        }
+    }
+
+    private fun onItemSelected(item: LaunchEntity) {
+        startActivity(Actions.openDetailFor(item.id))
+    }
+
+    private fun filterItemListBy(query: String?) =
+        if (!query.isNullOrBlank()) {
+            itemList.filter {
+                it.rocket.name.containsIgnoreCase(query) || it.missions.any { it.description.containsIgnoreCase(query) }
+            }
+        } else {
+            itemList
+        }
 
     @ExperimentalCoroutinesApi
     override fun onRefresh() {
