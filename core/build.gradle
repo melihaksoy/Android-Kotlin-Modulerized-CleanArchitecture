@@ -20,6 +20,7 @@ dependencies {
     implementation libraries.fragment
     implementation libraries.paging
     implementation libraries.lifecycle
+    implementation libraries.liveDataKTX
     implementation libraries.navigation
     implementation libraries.picasso
 

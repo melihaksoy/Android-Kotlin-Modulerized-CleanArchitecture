@@ -18,6 +18,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation libraries.coroutines
+    implementation libraries.liveDataKTX
     implementation libraries.retrofit
     implementation libraries.room
     implementation libraries.moshiKotlin
