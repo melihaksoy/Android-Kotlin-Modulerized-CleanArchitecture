@@ -3,8 +3,10 @@ package com.melih.core.base.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.melih.repository.interactors.base.Reason
 import com.melih.repository.interactors.base.Result
+import kotlinx.coroutines.launch
 
 /**
  * Base [ViewModel] for view models that will process data.
@@ -15,8 +17,14 @@ abstract class BaseViewModel<T> : ViewModel() {
 
     // region Abstractions
 
-    abstract fun loadData()
+    abstract suspend fun loadData()
     // endregion
+
+    init {
+        viewModelScope.launch {
+            loadData()
+        }
+    }
 
     // region Properties
 
@@ -76,14 +84,18 @@ abstract class BaseViewModel<T> : ViewModel() {
      * Reload data
      */
     fun refresh() {
-        loadData()
+        viewModelScope.launch {
+            loadData()
+        }
     }
 
     /**
      * Retry loading data, incase there's difference between refresh and retry, should go here
      */
     fun retry() {
-        loadData()
+        viewModelScope.launch {
+            loadData()
+        }
     }
     // endregion
 }

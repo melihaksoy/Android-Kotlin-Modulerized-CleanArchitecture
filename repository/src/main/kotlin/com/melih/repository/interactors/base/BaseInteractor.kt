@@ -22,11 +22,11 @@ abstract class BaseInteractor<T, in P : InteractorParameters> {
 
     @ExperimentalCoroutinesApi
     operator fun invoke(params: P) =
-            flow<Result<T>> {
-                emit(Result.State.Loading())
-                run(this, params)
-                emit(Result.State.Loaded())
-            }.flowOn(Dispatchers.IO)
+        flow<Result<T>> {
+            emit(Result.State.Loading())
+            run(this, params)
+            emit(Result.State.Loaded())
+        }.flowOn(Dispatchers.IO)
     // endregion
 }
 
