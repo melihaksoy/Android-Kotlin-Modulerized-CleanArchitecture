@@ -23,7 +23,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':core')
-    implementation project(':features:list')
+    implementation project(':features:launches')
     implementation project(':features:detail')
 
     implementation libraries.coroutines
