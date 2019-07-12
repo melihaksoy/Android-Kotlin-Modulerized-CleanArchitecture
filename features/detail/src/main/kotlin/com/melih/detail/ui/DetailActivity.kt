@@ -19,8 +19,8 @@ class DetailActivity : BaseActivity<DetailActivityBinding>() {
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun getLayoutId(): Int = R.layout.activity_detail
