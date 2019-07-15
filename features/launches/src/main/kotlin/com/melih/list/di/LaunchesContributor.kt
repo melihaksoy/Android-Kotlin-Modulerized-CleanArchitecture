@@ -20,6 +20,6 @@ abstract class LaunchesContributor {
             LaunchesBinds::class
         ]
     )
-    abstract fun listFragment(): LaunchesFragment
+    abstract fun launchesFragment(): LaunchesFragment
     // endregion
 }
