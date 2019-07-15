@@ -10,7 +10,7 @@ import com.melih.repository.entities.LaunchEntity
  * DAO for list of [launches][LaunchEntity]
  */
 @Dao
-abstract class LaunchesDao {
+internal abstract class LaunchesDao {
 
     // region Queries
 

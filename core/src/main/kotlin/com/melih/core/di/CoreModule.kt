@@ -20,7 +20,7 @@ class CoreModule {
 
     @Provides
     @Singleton
-    fun provideLaunchesDatabase(app: Application) =
+    internal fun provideLaunchesDatabase(app: Application) =
         Room.databaseBuilder(app.applicationContext, LaunchesDatabase::class.java, DB_NAME)
             .build()
 }

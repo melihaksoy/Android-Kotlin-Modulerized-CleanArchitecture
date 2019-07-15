@@ -9,7 +9,7 @@ import javax.inject.Inject
 /**
  * Manages SST by using network & persistance sources
  */
-class SourceManager @Inject constructor(
+internal class SourceManager @Inject constructor(
     private val networkSource: NetworkSource,
     private val persistenceSource: PersistenceSource
 ) : Repository() {

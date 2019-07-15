@@ -9,7 +9,7 @@ import retrofit2.http.Path
 /**
  * Retrofit interface for networking
  */
-interface Api {
+internal interface Api {
 
     @GET("launch/next/{count}")
     suspend fun getNextLaunches(@Path("count") count: Int): Response<LaunchesEntity>

@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
 
-class ApiImpl @Inject constructor() : Api {
+internal class ApiImpl @Inject constructor() : Api {
 
     // region Properties
 
@@ -24,8 +24,9 @@ class ApiImpl @Inject constructor() : Api {
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(
-                        HttpLoggingInterceptor()
-                            .setLevel(HttpLoggingInterceptor.Level.BODY)
+                        HttpLoggingInterceptor().apply {
+                            level = HttpLoggingInterceptor.Level.BODY
+                        }
                     ).build()
             )
             .addConverterFactory(MoshiConverterFactory.create(moshi))

@@ -10,7 +10,7 @@ import javax.inject.Inject
 /**
  * Persistance source using Room database to save / read objects for SST - offline usage
  */
-class PersistenceSource @Inject constructor(
+internal class PersistenceSource @Inject constructor(
     private val launchesDatabase: LaunchesDatabase
 ) : Repository() {
     // region Functions

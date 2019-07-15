@@ -12,9 +12,10 @@ import javax.inject.Inject
 /**
  * Gets next given number of launches
  */
-class GetLaunchDetails @Inject constructor(
-    private val sourceManager: SourceManager
-) : BaseInteractor<LaunchEntity, GetLaunchDetails.Params>() {
+class GetLaunchDetails @Inject constructor() : BaseInteractor<LaunchEntity, GetLaunchDetails.Params>() {
+
+    @field:Inject
+    internal lateinit var sourceManager: SourceManager
 
     @ExperimentalCoroutinesApi
     override suspend fun run(collector: FlowCollector<Result<LaunchEntity>>, params: Params) {

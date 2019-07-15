@@ -26,5 +26,5 @@ const val DB_NAME = "LaunchesDB"
 )
 abstract class LaunchesDatabase : RoomDatabase() {
 
-    abstract val launchesDao: LaunchesDao
+    internal abstract val launchesDao: LaunchesDao
 }

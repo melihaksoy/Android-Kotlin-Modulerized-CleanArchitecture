@@ -16,7 +16,7 @@ import javax.inject.Provider
  * NetworkSource for fetching results using api and wrapping them as contracted in [repository][Repository],
  * returning either [failure][Result.Failure] with proper [reason][Reason] or [success][Result.Success] with data
  */
-class NetworkSource @Inject constructor(
+internal class NetworkSource @Inject constructor(
     private val apiImpl: ApiImpl,
     private val networkInfoProvider: Provider<NetworkInfo>
 ) : Repository() {
