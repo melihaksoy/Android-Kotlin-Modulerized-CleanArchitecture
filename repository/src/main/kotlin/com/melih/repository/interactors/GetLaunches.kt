@@ -4,7 +4,8 @@ import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.base.BaseInteractor
 import com.melih.repository.interactors.base.InteractorParameters
 import com.melih.repository.interactors.base.Result
-import com.melih.repository.sources.SourceManager
+import com.melih.repository.sources.NetworkSource
+import com.melih.repository.sources.PersistenceSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.FlowCollector
 import javax.inject.Inject
@@ -15,11 +16,29 @@ import javax.inject.Inject
 class GetLaunches @Inject constructor() : BaseInteractor<List<LaunchEntity>, GetLaunches.Params>() {
 
     @field:Inject
-    internal lateinit var sourceManager: SourceManager
+    internal lateinit var networkSource: NetworkSource
+
+    @field:Inject
+    internal lateinit var persistenceSource: PersistenceSource
 
     @ExperimentalCoroutinesApi
     override suspend fun run(collector: FlowCollector<Result<List<LaunchEntity>>>, params: Params) {
-        collector.emit(sourceManager.getNextLaunches(params.count))
+
+        // First return from persistence
+        collector.emit(persistenceSource.getNextLaunches(params.count))
+
+        // Start network fetch - note that we're not handling state here to ommit them
+        when (val result = networkSource.getNextLaunches(params.count)) {
+
+            // Save result and return again from persistence
+            is Result.Success -> {
+                persistenceSource.saveLaunches(result.successData)
+                collector.emit(persistenceSource.getNextLaunches(params.count))
+            }
+
+            // Redirect failure as it is
+            is Result.Failure -> collector.emit(result)
+        }
     }
 
     data class Params(

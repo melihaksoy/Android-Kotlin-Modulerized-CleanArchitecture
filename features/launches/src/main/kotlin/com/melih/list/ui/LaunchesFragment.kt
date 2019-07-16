@@ -65,8 +65,9 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
         }
 
         observe(viewModel.successData) {
+            itemList.clear()
             itemList.addAll(it)
-            launchesAdapter.submitList(itemList)
+            launchesAdapter.submitList(itemList.toList())
             binding.rocketList.scheduleLayoutAnimation()
         }
     }
