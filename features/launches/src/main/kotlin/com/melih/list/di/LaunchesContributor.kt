@@ -2,6 +2,7 @@ package com.melih.list.di
 
 import com.melih.list.di.modules.LaunchesBinds
 import com.melih.list.di.modules.LaunchesProvides
+import com.melih.list.di.scopes.LaunchesFragmentScope
 import com.melih.list.ui.LaunchesFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -20,6 +21,7 @@ abstract class LaunchesContributor {
             LaunchesBinds::class
         ]
     )
+    @LaunchesFragmentScope
     abstract fun launchesFragment(): LaunchesFragment
     // endregion
 }

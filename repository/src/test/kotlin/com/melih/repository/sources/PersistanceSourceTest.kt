@@ -31,7 +31,7 @@ class PersistanceSourceTest {
 
                 val result = source.getNextLaunches(10)
                 result shouldBeInstanceOf Result.Failure::class
-                result.handleFailure {
+                result.onFailure {
                     it shouldBeInstanceOf Reason.PersistenceEmpty::class
                 }
             }
@@ -45,7 +45,7 @@ class PersistanceSourceTest {
 
                 val result = source.getNextLaunches(10)
                 result shouldBeInstanceOf Result.Success::class
-                result.handleSuccess {
+                result.onSuccess {
                     it.isEmpty() shouldBe false
                     it.size shouldEqualTo 1
                     it[0].id shouldEqualTo 1013

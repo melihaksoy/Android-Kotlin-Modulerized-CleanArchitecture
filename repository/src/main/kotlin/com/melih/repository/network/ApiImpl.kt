@@ -36,8 +36,8 @@ internal class ApiImpl @Inject constructor() : Api {
     }
     // endregion
 
-    override suspend fun getNextLaunches(count: Int): Response<LaunchesEntity> =
-        service.getNextLaunches(count)
+    override suspend fun getNextLaunches(count: Int, offset: Int): Response<LaunchesEntity> =
+        service.getNextLaunches(count, offset)
 
     override suspend fun getLaunchById(id: Long): Response<LaunchEntity> =
         service.getLaunchById(id)

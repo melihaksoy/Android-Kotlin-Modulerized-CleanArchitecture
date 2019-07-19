@@ -1,5 +1,6 @@
 package com.melih.repository.sources
 
+import android.content.Context
 import com.melih.repository.Repository
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.base.Reason
@@ -11,14 +12,16 @@ import javax.inject.Inject
  * Persistance source using Room database to save / read objects for SST - offline usage
  */
 internal class PersistenceSource @Inject constructor(
-    private val launchesDatabase: LaunchesDatabase
+    ctx: Context
 ) : Repository() {
     // region Functions
 
-    override suspend fun getNextLaunches(count: Int): Result<List<LaunchEntity>> =
+    private val launchesDatabase = LaunchesDatabase.getInstance(ctx)
+
+    override suspend fun getNextLaunches(count: Int, page: Int): Result<List<LaunchEntity>> =
         launchesDatabase
             .launchesDao
-            .getLaunches(count)
+            .getLaunches(count, page)
             .takeIf { it.isNotEmpty() }
             ?.run {
                 Result.Success(this)

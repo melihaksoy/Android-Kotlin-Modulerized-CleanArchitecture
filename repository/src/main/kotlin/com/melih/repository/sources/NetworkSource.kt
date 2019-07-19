@@ -4,6 +4,7 @@ import android.net.NetworkInfo
 import com.melih.repository.DEFAULT_IMAGE_SIZE
 import com.melih.repository.Repository
 import com.melih.repository.entities.LaunchEntity
+import com.melih.repository.interactors.DEFAULT_LAUNCH_COUNT
 import com.melih.repository.interactors.base.Reason
 import com.melih.repository.interactors.base.Result
 import com.melih.repository.network.ApiImpl
@@ -31,8 +32,10 @@ internal class NetworkSource @Inject constructor(
 
     // region Functions
 
-    override suspend fun getNextLaunches(count: Int): Result<List<LaunchEntity>> =
-        safeExecute(apiImpl::getNextLaunches, count) { entity ->
+    override suspend fun getNextLaunches(count: Int, page: Int): Result<List<LaunchEntity>> =
+        safeExecute({
+            apiImpl.getNextLaunches(count, page * DEFAULT_LAUNCH_COUNT)
+        }) { entity ->
             entity.launches.map { launch ->
                 if (!launch.rocket.imageURL.isNotBlank()) {
                     launch.copy(
@@ -50,7 +53,9 @@ internal class NetworkSource @Inject constructor(
         }
 
     override suspend fun getLaunchById(id: Long): Result<LaunchEntity> =
-        safeExecute(apiImpl::getLaunchById, id) {
+        safeExecute({
+            apiImpl.getLaunchById(id)
+        }) {
             if (!it.rocket.imageURL.isNotBlank()) {
                 it.copy(
                     rocket = it.rocket.copy(
@@ -62,14 +67,13 @@ internal class NetworkSource @Inject constructor(
             }
         }
 
-    private suspend inline fun <T, P, R> safeExecute(
-        block: suspend (param: P) -> Response<T>,
-        param: P,
+    private suspend inline fun <T, R> safeExecute(
+        block: suspend () -> Response<T>,
         transform: (T) -> R
     ) =
         if (isNetworkConnected) {
             try {
-                block(param).extractResponseBody(transform)
+                block().extractResponseBody(transform)
             } catch (e: IOException) {
                 Result.Failure(Reason.TimeoutError())
             }

@@ -1,5 +1,6 @@
 package com.melih.list.di
 
+import com.melih.list.di.scopes.LaunchesScope
 import com.melih.list.ui.LaunchesActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -17,6 +18,7 @@ abstract class LaunchesModule {
             LaunchesContributor::class
         ]
     )
+    @LaunchesScope
     abstract fun launchesActivity(): LaunchesActivity
     // endregion
 }

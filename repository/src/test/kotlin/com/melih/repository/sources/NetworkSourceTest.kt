@@ -40,7 +40,7 @@ class NetworkSourceTest {
                 val result = source.getNextLaunches(1)
 
                 result shouldBeInstanceOf Result.Failure::class
-                result.handleFailure {
+                result.onFailure {
                     it shouldBeInstanceOf Reason.NetworkError::class
                 }
             }
@@ -56,7 +56,7 @@ class NetworkSourceTest {
                 val result = source.getNextLaunches(1)
 
                 result shouldBeInstanceOf Result.Failure::class
-                result.handleFailure {
+                result.onFailure {
                     it shouldBeInstanceOf Reason.ResponseError::class
                     (it as Reason.ResponseError).messageRes shouldEqualTo R.string.reason_response
                 }
@@ -74,7 +74,7 @@ class NetworkSourceTest {
                 val result = source.getNextLaunches(1)
 
                 result shouldBeInstanceOf Result.Failure::class
-                result.handleFailure {
+                result.onFailure {
                     it shouldBeInstanceOf Reason.EmptyResultError::class
                 }
             }
@@ -91,7 +91,7 @@ class NetworkSourceTest {
                 val result = source.getNextLaunches(1)
 
                 result shouldBeInstanceOf Result.Success::class
-                result.handleSuccess {
+                result.onSuccess {
                     it shouldBeInstanceOf List::class
                     it.size shouldEqualTo 1
                     it[0].id shouldEqualTo 1013

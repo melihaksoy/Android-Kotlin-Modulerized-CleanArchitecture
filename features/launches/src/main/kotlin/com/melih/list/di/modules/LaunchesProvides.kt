@@ -12,5 +12,5 @@ class LaunchesProvides {
      * Provides lauches, using default value of 10
      */
     @Provides
-    fun provideGetLaunchesParams() = GetLaunches.Params()
+    fun provideGetLaunchesParams() = GetLaunches.Params(page = 0)
 }

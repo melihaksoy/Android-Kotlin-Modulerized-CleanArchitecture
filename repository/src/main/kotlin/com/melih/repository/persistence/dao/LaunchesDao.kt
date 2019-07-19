@@ -14,8 +14,8 @@ internal abstract class LaunchesDao {
 
     // region Queries
 
-    @Query("SELECT * FROM Launches LIMIT :count")
-    abstract suspend fun getLaunches(count: Int): List<LaunchEntity>
+    @Query("SELECT * FROM Launches LIMIT :count OFFSET :page*:count")
+    abstract suspend fun getLaunches(count: Int, page: Int): List<LaunchEntity>
 
     @Query("SELECT * FROM Launches WHERE id=:id LIMIT 1")
     abstract suspend fun getLaunchById(id: Long): LaunchEntity?

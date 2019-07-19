@@ -8,6 +8,6 @@ import com.melih.repository.interactors.base.Result
  */
 abstract class Repository {
 
-    internal abstract suspend fun getNextLaunches(count: Int): Result<List<LaunchEntity>>
+    internal abstract suspend fun getNextLaunches(count: Int, page: Int): Result<List<LaunchEntity>>
     internal abstract suspend fun getLaunchById(id: Long): Result<LaunchEntity>
 }

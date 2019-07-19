@@ -27,19 +27,25 @@ sealed class Result<out T> {
         }
     }
 
-    inline fun handleSuccess(successBlock: (T) -> Unit) {
+    inline fun onSuccess(successBlock: (T) -> Unit): Result<T> {
         if (this is Success)
             successBlock(successData)
+
+        return this
     }
 
-    inline fun handleFailure(errorBlock: (Reason) -> Unit) {
+    inline fun onFailure(errorBlock: (Reason) -> Unit): Result<T> {
         if (this is Failure)
             errorBlock(errorData)
+
+        return this
     }
 
-    inline fun handleState(stateBlock: (State) -> Unit) {
+    inline fun onState(stateBlock: (State) -> Unit): Result<T> {
         if (this is State)
             stateBlock(this)
+
+        return this
     }
     // endregion
 }

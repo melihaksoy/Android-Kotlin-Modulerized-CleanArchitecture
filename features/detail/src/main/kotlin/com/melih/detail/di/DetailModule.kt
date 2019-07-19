@@ -1,6 +1,7 @@
 package com.melih.detail.di
 
 import com.melih.detail.ui.DetailActivity
+import com.melih.list.di.scopes.DetailScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -17,6 +18,7 @@ abstract class DetailModule {
             DetailContributor::class
         ]
     )
+    @DetailScope
     abstract fun detailActivity(): DetailActivity
     // endregion
 }
