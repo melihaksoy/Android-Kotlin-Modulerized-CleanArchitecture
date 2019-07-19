@@ -9,7 +9,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0-beta05'
+        classpath 'com.android.tools.build:gradle:3.5.0-rc01'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.18"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:1.5.0.0"
@@ -22,6 +22,7 @@ buildscript {
 plugins {
     id "io.gitlab.arturbosch.detekt" version "1.0.0-RC14"
     id "org.jetbrains.dokka" version "0.9.18"
+    id "jacoco"
 }
 
 allprojects {
@@ -157,6 +158,11 @@ task projectDependencyGraph {
 
         println("Project module dependency graph created at ${dot.absolutePath}.png")
     }
+}
+
+jacoco {
+    toolVersion = "0.8.4"
+    reportsDir = file("reports/jacoco")
 }
 
 apply from: "scripts/dependencies.gradle"

@@ -1,4 +1,5 @@
 apply plugin: "de.mannodermaus.android-junit5"
+
 apply from: "$rootProject.projectDir/scripts/detekt.gradle"
 apply from: "$rootProject.projectDir/scripts/dokka.gradle"
 
@@ -16,4 +17,58 @@ dependencies {
     testImplementation testLibraries.kluent
 
     testRuntimeOnly testLibraries.jUnitEngine
+}
+
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.1"
+    reportsDir = file("reports/jacoco")
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for Debug build"
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    // what to exclude from coverage report
+    // UI, "noise", generated classes, platform classes, etc.
+    def excludes = [
+            '**/R.class',
+            '**/R$*.class',
+            '**/*$ViewInjector*.*',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            '**/*Fragment.*',
+            '**/*Activity.*'
+    ]
+
+    // generated classes
+    getClassDirectories().setFrom(
+            fileTree(
+                    dir: "$buildDir/intermediates/classes/debug",
+                    excludes: excludes
+            ) + fileTree(
+                    dir: "$buildDir/tmp/kotlin-classes/debug",
+                    excludes: excludes
+            )
+    )
+
+    // sources
+    getSourceDirectories().setFrom(
+            files([
+                    android.sourceSets.main.java.srcDirs,
+                    "src/main/kotlin"
+            ])
+    )
+
+    getExecutionData().setFrom(
+            files("$buildDir/jacoco/testDebugUnitTest.exec")
+    )
 }

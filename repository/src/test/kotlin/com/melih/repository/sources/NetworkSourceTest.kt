@@ -37,7 +37,7 @@ class NetworkSourceTest {
             every { networkInfoProvider.get().isConnected } returns false
 
             runBlockingTest {
-                val result = source.getNextLaunches(1)
+                val result = source.getNextLaunches(1, 0)
 
                 result shouldBeInstanceOf Result.Failure::class
                 result.onFailure {
@@ -50,10 +50,10 @@ class NetworkSourceTest {
         @ExperimentalCoroutinesApi
         fun `should return response error when it is not successful`() {
             every { networkInfoProvider.get().isConnected } returns true
-            coEvery { apiImpl.getNextLaunches(any()).isSuccessful } returns false
+            coEvery { apiImpl.getNextLaunches(any(), any()).isSuccessful } returns false
 
             runBlockingTest {
-                val result = source.getNextLaunches(1)
+                val result = source.getNextLaunches(1, 0)
 
                 result shouldBeInstanceOf Result.Failure::class
                 result.onFailure {
@@ -67,11 +67,11 @@ class NetworkSourceTest {
         @ExperimentalCoroutinesApi
         fun `should return empty result error when body is null`() {
             every { networkInfoProvider.get().isConnected } returns true
-            coEvery { apiImpl.getNextLaunches(any()).isSuccessful } returns true
-            coEvery { apiImpl.getNextLaunches(any()).body() } returns null
+            coEvery { apiImpl.getNextLaunches(any(), any()).isSuccessful } returns true
+            coEvery { apiImpl.getNextLaunches(any(), any()).body() } returns null
 
             runBlockingTest {
-                val result = source.getNextLaunches(1)
+                val result = source.getNextLaunches(1, 0)
 
                 result shouldBeInstanceOf Result.Failure::class
                 result.onFailure {
@@ -84,11 +84,11 @@ class NetworkSourceTest {
         @ExperimentalCoroutinesApi
         fun `should return success with data if execution is successful`() {
             every { networkInfoProvider.get().isConnected } returns true
-            coEvery { apiImpl.getNextLaunches(any()).isSuccessful } returns true
-            coEvery { apiImpl.getNextLaunches(any()).body() } returns LaunchesEntity(launches = listOf(LaunchEntity(id = 1013)))
+            coEvery { apiImpl.getNextLaunches(any(), any()).isSuccessful } returns true
+            coEvery { apiImpl.getNextLaunches(any(), any()).body() } returns LaunchesEntity(launches = listOf(LaunchEntity(id = 1013)))
 
             runBlockingTest {
-                val result = source.getNextLaunches(1)
+                val result = source.getNextLaunches(1, 0)
 
                 result shouldBeInstanceOf Result.Success::class
                 result.onSuccess {
