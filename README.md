@@ -8,6 +8,8 @@ While there are many blogs about good practices, it's hard to come by a complete
 
 RocketScience takes popular approaches and libraries to create an example on how to actually bind these components with each other.
 
+I'll soon be writing small series about roadmap, challanges, alternatives and try - fails I've encountered during development in [Medium](https://medium.com/@aksoymelihcan).
+
 ## Tech Stack
 - **MVVM**
 - **Databinding**
