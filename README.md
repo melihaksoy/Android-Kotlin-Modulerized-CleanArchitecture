@@ -32,4 +32,4 @@ RocketScience takes popular approaches and libraries to create an example on how
 ## Dependency graph
 ![dependency hierarchy](https://github.com/melihaksoy/RocketScience/blob/master/docs/dependency_hierarchy.png)
 
-# ![LICENSE](https://github.com/melihaksoy/RocketScience/blob/master/LICENSE.md)
+# [LICENSE](https://github.com/melihaksoy/RocketScience/blob/master/LICENSE.md)
