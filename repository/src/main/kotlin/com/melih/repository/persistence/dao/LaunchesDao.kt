@@ -2,8 +2,8 @@ package com.melih.repository.persistence.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
 import com.melih.repository.entities.LaunchEntity
 
 /**
@@ -14,7 +14,7 @@ internal abstract class LaunchesDao {
 
     // region Queries
 
-    @Query("SELECT * FROM Launches LIMIT :count OFFSET :page*:count")
+    @Query("SELECT * FROM Launches ORDER BY launchStartTime DESC LIMIT :count OFFSET :page*:count")
     abstract suspend fun getLaunches(count: Int, page: Int): List<LaunchEntity>
 
     @Query("SELECT * FROM Launches WHERE id=:id LIMIT 1")
@@ -26,19 +26,10 @@ internal abstract class LaunchesDao {
 
     // region Insertion
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun saveLaunches(launches: List<LaunchEntity>)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun saveLaunch(launch: LaunchEntity)
-    // endregion
-
-    // region Transactions
-
-    @Transaction
-    open suspend fun updateLaunches(launches: List<LaunchEntity>) {
-        nukeLaunches()
-        saveLaunches(launches)
-    }
     // endregion
 }

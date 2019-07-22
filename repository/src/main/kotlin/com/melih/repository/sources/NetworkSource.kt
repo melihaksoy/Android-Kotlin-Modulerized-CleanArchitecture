@@ -5,8 +5,14 @@ import com.melih.repository.DEFAULT_IMAGE_SIZE
 import com.melih.repository.Repository
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.DEFAULT_LAUNCH_COUNT
+import com.melih.repository.interactors.base.EmptyResultError
+import com.melih.repository.interactors.base.Failure
+import com.melih.repository.interactors.base.NetworkError
 import com.melih.repository.interactors.base.Reason
+import com.melih.repository.interactors.base.ResponseError
 import com.melih.repository.interactors.base.Result
+import com.melih.repository.interactors.base.Success
+import com.melih.repository.interactors.base.TimeoutError
 import com.melih.repository.network.ApiImpl
 import retrofit2.Response
 import java.io.IOException
@@ -15,7 +21,7 @@ import javax.inject.Provider
 
 /**
  * NetworkSource for fetching results using api and wrapping them as contracted in [repository][Repository],
- * returning either [failure][Result.Failure] with proper [reason][Reason] or [success][Result.Success] with data
+ * returning either [failure][Failure] with proper [reason][Reason] or [success][Success] with data
  */
 internal class NetworkSource @Inject constructor(
     private val apiImpl: ApiImpl,
@@ -75,19 +81,19 @@ internal class NetworkSource @Inject constructor(
             try {
                 block().extractResponseBody(transform)
             } catch (e: IOException) {
-                Result.Failure(Reason.TimeoutError())
+                Failure(TimeoutError())
             }
         } else {
-            Result.Failure(Reason.NetworkError())
+            Failure(NetworkError())
         }
 
     private inline fun <T, R> Response<T>.extractResponseBody(transform: (T) -> R) =
         if (isSuccessful) {
             body()?.let {
-                Result.Success(transform(it))
-            } ?: Result.Failure(Reason.EmptyResultError())
+                Success(transform(it))
+            } ?: Failure(EmptyResultError())
         } else {
-            Result.Failure(Reason.ResponseError())
+            Failure(ResponseError())
         }
 
     private fun transformImageUrl(imageUrl: String, supportedSizes: IntArray) =

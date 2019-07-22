@@ -127,6 +127,7 @@ ext {
                     "com.google.dagger:dagger-compiler:${versions.daggerVersion}",
                     "com.google.dagger:dagger-android-processor:${versions.daggerVersion}"
             ],
+            moshi : "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshiVersion}"
     ]
 
     testLibraries = [

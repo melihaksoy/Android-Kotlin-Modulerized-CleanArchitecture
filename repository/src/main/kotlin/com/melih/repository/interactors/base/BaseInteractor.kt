@@ -1,3 +1,5 @@
+@file:UseExperimental(ExperimentalCoroutinesApi::class)
+
 package com.melih.repository.interactors.base
 
 import kotlinx.coroutines.Dispatchers
@@ -14,18 +16,16 @@ abstract class BaseInteractor<T, in P : InteractorParameters> {
 
     // region Abstractions
 
-    @ExperimentalCoroutinesApi
-    protected abstract suspend fun run(collector: FlowCollector<Result<T>>, params: P)
+    protected abstract suspend fun FlowCollector<Result<T>>.run(params: P)
     // endregion
 
     // region Functions
 
-    @ExperimentalCoroutinesApi
     operator fun invoke(params: P) =
         flow<Result<T>> {
-            emit(Result.State.Loading())
-            run(this, params)
-            emit(Result.State.Loaded())
+            emit(State.Loading())
+            run(params)
+            emit(State.Loaded())
         }.flowOn(Dispatchers.IO)
     // endregion
 }

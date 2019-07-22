@@ -23,7 +23,7 @@ apply plugin: 'jacoco'
 
 jacoco {
     toolVersion = "0.8.1"
-    reportsDir = file("reports/jacoco")
+    reportsDir = file("$rootProject.projectDir/reports/jacoco/$project.name")
 }
 
 task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {

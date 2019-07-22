@@ -4,9 +4,9 @@ import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.base.BaseInteractor
 import com.melih.repository.interactors.base.InteractorParameters
 import com.melih.repository.interactors.base.Result
+import com.melih.repository.interactors.base.Success
 import com.melih.repository.sources.NetworkSource
 import com.melih.repository.sources.PersistenceSource
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.FlowCollector
 import javax.inject.Inject
 
@@ -23,24 +23,27 @@ class GetLaunches @Inject constructor() : BaseInteractor<List<LaunchEntity>, Get
     @field:Inject
     internal lateinit var persistenceSource: PersistenceSource
 
-    @ExperimentalCoroutinesApi
-    override suspend fun run(collector: FlowCollector<Result<List<LaunchEntity>>>, params: Params) {
+    override suspend fun FlowCollector<Result<List<LaunchEntity>>>.run(params: Params) {
 
-        // First return from persistence
-        collector.emit(persistenceSource.getNextLaunches(params.count, params.page))
-
-        // Start network fetch - note that we're not handling state here to ommit them
-        when (val result = networkSource.getNextLaunches(params.count, params.page)) {
-
-            // Save result and return again from persistence
-            is Result.Success -> {
-                persistenceSource.saveLaunches(result.successData)
-                collector.emit(persistenceSource.getNextLaunches(params.count, params.page))
+        // First return from persistence, ignoring errors
+        persistenceSource.getNextLaunches(params.count, params.page)
+            .takeIf { it is Success }
+            ?.also {
+                emit(it)
             }
 
-            // Redirect failure as it is
-            is Result.Failure -> collector.emit(result)
-        }
+        // Start network fetch - note that we're not handling state here to ommit them
+        networkSource.getNextLaunches(params.count, params.page)
+            .also {
+                val data = if (it is Success) {
+                    persistenceSource.saveLaunches(it.successData)
+                    persistenceSource.getNextLaunches(params.count, params.page)
+                } else {
+                    it
+                }
+
+                emit(data)
+            }
     }
 
     data class Params(

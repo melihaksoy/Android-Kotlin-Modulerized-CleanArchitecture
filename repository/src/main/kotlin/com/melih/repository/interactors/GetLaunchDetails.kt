@@ -2,8 +2,10 @@ package com.melih.repository.interactors
 
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.base.BaseInteractor
+import com.melih.repository.interactors.base.Failure
 import com.melih.repository.interactors.base.InteractorParameters
 import com.melih.repository.interactors.base.Result
+import com.melih.repository.interactors.base.Success
 import com.melih.repository.sources.NetworkSource
 import com.melih.repository.sources.PersistenceSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,22 +24,22 @@ class GetLaunchDetails @Inject constructor() : BaseInteractor<LaunchEntity, GetL
     internal lateinit var persistenceSource: PersistenceSource
 
     @ExperimentalCoroutinesApi
-    override suspend fun run(collector: FlowCollector<Result<LaunchEntity>>, params: Params) {
+    override suspend fun FlowCollector<Result<LaunchEntity>>.run(params: Params) {
         val result = persistenceSource.getLaunchById(params.id)
 
-        if (result !is Result.Success) {
+        if (result !is Success) {
             when (val response = networkSource.getLaunchById(params.id)) {
                 // Save result and return again from persistence
-                is Result.Success -> {
+                is Success -> {
                     persistenceSource.saveLaunch(response.successData)
-                    collector.emit(persistenceSource.getLaunchById(params.id))
+                    emit(persistenceSource.getLaunchById(params.id))
                 }
 
                 // Redirect failure as it is
-                is Result.Failure -> collector.emit(response)
+                is Failure -> emit(response)
             }
         } else {
-            collector.emit(result)
+            emit(result)
         }
     }
 

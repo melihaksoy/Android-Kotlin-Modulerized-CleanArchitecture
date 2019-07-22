@@ -2,8 +2,12 @@ package com.melih.repository.sources
 
 import android.content.Context
 import com.melih.repository.entities.LaunchEntity
+import com.melih.repository.interactors.base.Failure
+import com.melih.repository.interactors.base.PersistenceEmpty
 import com.melih.repository.interactors.base.Reason
-import com.melih.repository.interactors.base.Result
+import com.melih.repository.interactors.base.Success
+import com.melih.repository.interactors.base.onFailure
+import com.melih.repository.interactors.base.onSuccess
 import com.melih.repository.persistence.LaunchesDatabase
 import io.mockk.coEvery
 import io.mockk.every
@@ -46,9 +50,9 @@ class PersistanceSourceTest {
             scope.launch {
                 val result = source.getNextLaunches(10, 0)
 
-                result shouldBeInstanceOf Result.Failure::class
+                result shouldBeInstanceOf Failure::class
                 result.onFailure {
-                    it shouldBeInstanceOf Reason.PersistenceEmpty::class
+                    it shouldBeInstanceOf PersistenceEmpty::class
                 }
             }
         }
@@ -61,7 +65,7 @@ class PersistanceSourceTest {
             scope.launch {
                 val result = source.getNextLaunches(10, 0)
 
-                result shouldBeInstanceOf Result.Success::class
+                result shouldBeInstanceOf Success::class
                 result.onSuccess {
                     it.isEmpty() shouldBe false
                     it.size shouldEqualTo 1

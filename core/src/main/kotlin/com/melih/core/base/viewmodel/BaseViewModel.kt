@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.melih.repository.interactors.base.Reason
-import com.melih.repository.interactors.base.Result
+import com.melih.repository.interactors.base.State
 import kotlinx.coroutines.launch
 
 /**
@@ -29,7 +29,7 @@ abstract class BaseViewModel<T> : ViewModel() {
     // region Properties
 
     private val _successData = MutableLiveData<T>()
-    private val _stateData = MutableLiveData<Result.State>()
+    private val _stateData = MutableLiveData<State>()
     private val _errorData = MutableLiveData<Reason>()
 
     /**
@@ -41,7 +41,7 @@ abstract class BaseViewModel<T> : ViewModel() {
     /**
      * Observe [stateData] to get notified of state of data
      */
-    val stateData: LiveData<Result.State>
+    val stateData: LiveData<State>
         get() = _stateData
 
     /**
@@ -67,7 +67,7 @@ abstract class BaseViewModel<T> : ViewModel() {
      *
      * @param state state of operation
      */
-    protected fun handleState(state: Result.State) {
+    protected fun handleState(state: State) {
         _stateData.value = state
     }
 

@@ -6,6 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.melih.repository.interactors.base.Reason
 import com.melih.repository.interactors.base.Result
+import com.melih.repository.interactors.base.State
+import com.melih.repository.interactors.base.onFailure
+import com.melih.repository.interactors.base.onState
+import com.melih.repository.interactors.base.onSuccess
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -39,14 +43,14 @@ abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
 
     // region Properties
 
-    private val _stateData = MutableLiveData<Result.State>()
+    private val _stateData = MutableLiveData<State>()
     private val _reasonData = MutableLiveData<Reason>()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     /**
      * Observe [stateData] to get notified of state of data
      */
-    val stateData: LiveData<Result.State>
+    val stateData: LiveData<State>
         get() = _stateData
 
     /**
@@ -111,7 +115,7 @@ abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
      * @param state state of operation
      */
     @CallSuper
-    protected fun handleState(state: Result.State) {
+    protected fun handleState(state: State) {
         _stateData.value = state
     }
 

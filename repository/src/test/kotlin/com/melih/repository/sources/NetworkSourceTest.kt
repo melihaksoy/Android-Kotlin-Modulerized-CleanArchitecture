@@ -4,8 +4,13 @@ import android.net.NetworkInfo
 import com.melih.repository.R
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.entities.LaunchesEntity
-import com.melih.repository.interactors.base.Reason
-import com.melih.repository.interactors.base.Result
+import com.melih.repository.interactors.base.EmptyResultError
+import com.melih.repository.interactors.base.Failure
+import com.melih.repository.interactors.base.NetworkError
+import com.melih.repository.interactors.base.ResponseError
+import com.melih.repository.interactors.base.Success
+import com.melih.repository.interactors.base.onFailure
+import com.melih.repository.interactors.base.onSuccess
 import com.melih.repository.network.ApiImpl
 import io.mockk.coEvery
 import io.mockk.every
@@ -39,9 +44,9 @@ class NetworkSourceTest {
             runBlockingTest {
                 val result = source.getNextLaunches(1, 0)
 
-                result shouldBeInstanceOf Result.Failure::class
+                result shouldBeInstanceOf Failure::class
                 result.onFailure {
-                    it shouldBeInstanceOf Reason.NetworkError::class
+                    it shouldBeInstanceOf NetworkError::class
                 }
             }
         }
@@ -55,10 +60,10 @@ class NetworkSourceTest {
             runBlockingTest {
                 val result = source.getNextLaunches(1, 0)
 
-                result shouldBeInstanceOf Result.Failure::class
+                result shouldBeInstanceOf Failure::class
                 result.onFailure {
-                    it shouldBeInstanceOf Reason.ResponseError::class
-                    (it as Reason.ResponseError).messageRes shouldEqualTo R.string.reason_response
+                    it shouldBeInstanceOf ResponseError::class
+                    (it as ResponseError).messageRes shouldEqualTo R.string.reason_response
                 }
             }
         }
@@ -73,9 +78,9 @@ class NetworkSourceTest {
             runBlockingTest {
                 val result = source.getNextLaunches(1, 0)
 
-                result shouldBeInstanceOf Result.Failure::class
+                result shouldBeInstanceOf Failure::class
                 result.onFailure {
-                    it shouldBeInstanceOf Reason.EmptyResultError::class
+                    it shouldBeInstanceOf EmptyResultError::class
                 }
             }
         }
@@ -90,7 +95,7 @@ class NetworkSourceTest {
             runBlockingTest {
                 val result = source.getNextLaunches(1, 0)
 
-                result shouldBeInstanceOf Result.Success::class
+                result shouldBeInstanceOf Success::class
                 result.onSuccess {
                     it shouldBeInstanceOf List::class
                     it.size shouldEqualTo 1

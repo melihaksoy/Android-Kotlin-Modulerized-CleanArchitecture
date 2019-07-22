@@ -25,6 +25,7 @@ dependencies {
     implementation libraries.okHttpLogger
 
     kapt annotationProcessors.roomCompiler
+    kapt annotationProcessors.moshi
 
     testImplementation testLibraries.coroutinesCore
     testImplementation testLibraries.coroutinesTest
