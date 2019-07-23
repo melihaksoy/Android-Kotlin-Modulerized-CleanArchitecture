@@ -1,3 +1,5 @@
+@file:UseExperimental(ExperimentalCoroutinesApi::class)
+
 package com.melih.repository.sources
 
 import android.net.NetworkInfo
@@ -37,7 +39,6 @@ class NetworkSourceTest {
     inner class GetNextLaunches {
 
         @Test
-        @ExperimentalCoroutinesApi
         fun `should return network error when internet is not connected`() {
             every { networkInfoProvider.get().isConnected } returns false
 
@@ -52,7 +53,6 @@ class NetworkSourceTest {
         }
 
         @Test
-        @ExperimentalCoroutinesApi
         fun `should return response error when it is not successful`() {
             every { networkInfoProvider.get().isConnected } returns true
             coEvery { apiImpl.getNextLaunches(any(), any()).isSuccessful } returns false
@@ -69,7 +69,6 @@ class NetworkSourceTest {
         }
 
         @Test
-        @ExperimentalCoroutinesApi
         fun `should return empty result error when body is null`() {
             every { networkInfoProvider.get().isConnected } returns true
             coEvery { apiImpl.getNextLaunches(any(), any()).isSuccessful } returns true
@@ -86,7 +85,6 @@ class NetworkSourceTest {
         }
 
         @Test
-        @ExperimentalCoroutinesApi
         fun `should return success with data if execution is successful`() {
             every { networkInfoProvider.get().isConnected } returns true
             coEvery { apiImpl.getNextLaunches(any(), any()).isSuccessful } returns true

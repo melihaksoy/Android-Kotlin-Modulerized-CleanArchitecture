@@ -1,3 +1,5 @@
+@file:UseExperimental(ExperimentalCoroutinesApi::class)
+
 package com.melih.repository.interactors.base
 
 import io.mockk.coVerify
@@ -12,14 +14,12 @@ import org.amshove.kluent.shouldEqualTo
 import org.junit.jupiter.api.Test
 import java.util.*
 
-
 class BaseInteractorTest {
 
     val testInteractor = spyk(TestInteractor())
     val testParams = TestParams()
 
     @Test
-    @ExperimentalCoroutinesApi
     fun `BaseInteractor should send states and items emmited by run`() {
         // Using run blocking due to threading problems in runBlockingTest
         // See https://github.com/Kotlin/kotlinx.coroutines/issues/1204
@@ -56,7 +56,7 @@ class BaseInteractorTest {
     }
 
     inner class TestInteractor : BaseInteractor<Int, TestParams>() {
-        @ExperimentalCoroutinesApi
+
         override suspend fun FlowCollector<Result<Int>>.run(params: TestParams) {
             emit(Success(params.testValue))
         }

@@ -1,3 +1,5 @@
+@file:UseExperimental(ExperimentalCoroutinesApi::class)
+
 package com.melih.core.base.paging
 
 import androidx.annotation.CallSuper
@@ -37,7 +39,6 @@ abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
 
     // region Abstractions
 
-    @ExperimentalCoroutinesApi
     abstract fun loadDataForPage(page: Int): Flow<Result<List<T>>> // Load next page(s)
     // endregion
 
@@ -62,7 +63,6 @@ abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
 
     // region Functions
 
-    @ExperimentalCoroutinesApi
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, T>) {
         // Looping through channel as we'll receive any state, error or data here
         loadDataForPage(INITIAL_PAGE)
@@ -81,7 +81,6 @@ abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
             .launchIn(coroutineScope)
     }
 
-    @ExperimentalCoroutinesApi
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
         // Key for which page to load is in params
         val page = params.key

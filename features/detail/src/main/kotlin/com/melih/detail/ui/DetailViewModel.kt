@@ -5,11 +5,9 @@ import com.melih.core.base.viewmodel.BaseViewModel
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.GetLaunchDetails
 import com.melih.repository.interactors.base.handle
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 class DetailViewModel @Inject constructor(
     private val getLaunchDetails: GetLaunchDetails,
     private val getLaunchDetailsParams: GetLaunchDetails.Params

@@ -1,3 +1,5 @@
+@file:UseExperimental(ExperimentalCoroutinesApi::class)
+
 package com.melih.repository.interactors
 
 import com.melih.repository.entities.LaunchEntity
@@ -7,6 +9,7 @@ import com.melih.repository.interactors.base.Result
 import com.melih.repository.interactors.base.Success
 import com.melih.repository.sources.NetworkSource
 import com.melih.repository.sources.PersistenceSource
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.FlowCollector
 import javax.inject.Inject
 

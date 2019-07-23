@@ -1,3 +1,5 @@
+@file:UseExperimental(ExperimentalCoroutinesApi::class)
+
 package com.melih.core
 
 import androidx.arch.core.executor.ArchTaskExecutor
@@ -15,11 +17,9 @@ import kotlin.coroutines.suspendCoroutine
 
 abstract class BaseTestWithMainThread {
 
-    @ExperimentalCoroutinesApi
     private val dispatcher = TestCoroutineDispatcher()
 
     @BeforeEach
-    @ExperimentalCoroutinesApi
     fun setUp() {
         Dispatchers.setMain(dispatcher)
         ArchTaskExecutor.getInstance()
@@ -33,7 +33,6 @@ abstract class BaseTestWithMainThread {
     }
 
     @AfterEach
-    @ExperimentalCoroutinesApi
     fun tearDown() {
         ArchTaskExecutor.getInstance()
             .setDelegate(null)

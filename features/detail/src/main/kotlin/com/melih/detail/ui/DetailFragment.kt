@@ -8,20 +8,17 @@ import com.melih.core.extensions.createFor
 import com.melih.core.extensions.observe
 import com.melih.detail.R
 import com.melih.detail.databinding.DetailBinding
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class DetailFragment : BaseDaggerFragment<DetailBinding>() {
 
     // region Properties
 
-    @ExperimentalCoroutinesApi
     private val viewModel: DetailViewModel
         get() = viewModelFactory.createFor(this)
     // endregion
 
     // region Functions
 
-    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

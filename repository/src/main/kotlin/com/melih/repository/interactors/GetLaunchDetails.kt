@@ -1,3 +1,5 @@
+@file:UseExperimental(ExperimentalCoroutinesApi::class)
+
 package com.melih.repository.interactors
 
 import com.melih.repository.entities.LaunchEntity
@@ -23,7 +25,6 @@ class GetLaunchDetails @Inject constructor() : BaseInteractor<LaunchEntity, GetL
     @field:Inject
     internal lateinit var persistenceSource: PersistenceSource
 
-    @ExperimentalCoroutinesApi
     override suspend fun FlowCollector<Result<LaunchEntity>>.run(params: Params) {
         val result = persistenceSource.getLaunchById(params.id)
 

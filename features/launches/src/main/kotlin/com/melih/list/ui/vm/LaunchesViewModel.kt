@@ -1,4 +1,4 @@
-package com.melih.list.ui
+package com.melih.list.ui.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -7,7 +7,6 @@ import com.melih.core.extensions.containsIgnoreCase
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.GetLaunches
 import com.melih.repository.interactors.base.handle
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
@@ -33,7 +32,6 @@ class LaunchesViewModel @Inject constructor(
     /**
      * Triggering interactor in view model scope
      */
-    @ExperimentalCoroutinesApi
     override suspend fun loadData() {
         getLaunches(getLaunchesParams).collect {
             it.handle(::handleState, ::handleFailure, ::handleSuccess)
@@ -41,17 +39,14 @@ class LaunchesViewModel @Inject constructor(
     }
 
     fun filterItemListBy(query: String?) {
-
-        if (!query.isNullOrBlank()) {
-            successData.value?.also {
-                _filteredItems.value = it.filter {
+        _filteredItems.value = if (!query.isNullOrBlank()) {
+            successData.value
+                ?.filter {
                     it.rocket.name.containsIgnoreCase(query) || it.missions.any { it.description.containsIgnoreCase(query) }
                 }
-            }
         } else {
-            _filteredItems.value = successData.value
+            successData.value
         }
-
     }
     // endregion
 }

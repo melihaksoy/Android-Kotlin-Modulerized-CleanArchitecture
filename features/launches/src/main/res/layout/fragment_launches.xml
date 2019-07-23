@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.melih.list.ui.LaunchesViewModel" />
+            type="com.melih.list.ui.vm.LaunchesViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

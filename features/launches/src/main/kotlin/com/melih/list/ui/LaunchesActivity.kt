@@ -5,13 +5,11 @@ import androidx.navigation.fragment.NavHostFragment
 import com.melih.core.base.lifecycle.BaseActivity
 import com.melih.list.R
 import com.melih.list.databinding.LaunchesActivityBinding
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class LaunchesActivity : BaseActivity<LaunchesActivityBinding>() {
 
     // region Functions
 
-    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -1,13 +1,12 @@
 package com.melih.list
 
-import com.melih.list.ui.LaunchesViewModel
+import com.melih.list.ui.vm.LaunchesViewModel
 import com.melih.repository.interactors.GetLaunches
 import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verify
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import org.junit.jupiter.api.Test
 
@@ -24,7 +23,6 @@ class LaunchesViewModelTest : BaseTestWithMainThread() {
     private val scope = CoroutineScope(Dispatchers.IO)
 
     @Test
-    @ExperimentalCoroutinesApi
     fun `loadData should invoke getLauches with provided params`() {
         scope.launch {
             spyk(LaunchesViewModel(getLaunches, getLaunchesParams))

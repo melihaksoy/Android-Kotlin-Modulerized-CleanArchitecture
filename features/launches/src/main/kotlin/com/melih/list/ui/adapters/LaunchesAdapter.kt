@@ -1,4 +1,4 @@
-package com.melih.list.ui
+package com.melih.list.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

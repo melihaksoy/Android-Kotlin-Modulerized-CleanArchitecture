@@ -1,7 +1,8 @@
+@file:UseExperimental(ExperimentalCoroutinesApi::class)
+
 package com.melih.detail
 
 import com.melih.detail.ui.DetailViewModel
-import com.melih.list.BaseTestWithMainThread
 import com.melih.repository.interactors.GetLaunchDetails
 import io.mockk.mockk
 import io.mockk.slot
@@ -22,11 +23,9 @@ class DetailViewModelTest : BaseTestWithMainThread() {
     private val getLaunchDetails: GetLaunchDetails = mockk(relaxed = true)
     private val getLaunchDetailsParams = GetLaunchDetails.Params(1013)
 
-    @ExperimentalCoroutinesApi
     private val viewModel = spyk(DetailViewModel(getLaunchDetails, getLaunchDetailsParams))
 
     @Test
-    @ExperimentalCoroutinesApi
     fun `loadData should invoke getLauchDetails with provided params`() {
         dispatcher.runBlockingTest {
 

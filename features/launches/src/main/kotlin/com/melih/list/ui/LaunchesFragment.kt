@@ -14,6 +14,8 @@ import com.melih.core.extensions.onExpandOrCollapse
 import com.melih.core.extensions.setOnQueryChangedListener
 import com.melih.list.R
 import com.melih.list.databinding.ListBinding
+import com.melih.list.ui.adapters.LaunchesAdapter
+import com.melih.list.ui.vm.LaunchesViewModel
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.base.State
 
