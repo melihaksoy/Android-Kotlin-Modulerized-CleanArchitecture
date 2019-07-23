@@ -1,5 +1,3 @@
-@file:UseExperimental(ExperimentalCoroutinesApi::class)
-
 package com.melih.repository.interactors
 
 import com.melih.repository.entities.LaunchEntity
@@ -13,11 +11,12 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.FlowCollector
 import javax.inject.Inject
 
-internal const val DEFAULT_LAUNCH_COUNT = 15
+const val DEFAULT_LAUNCHES_AMOUNT = 15
 
 /**
  * Gets next given number of launches
  */
+@UseExperimental(ExperimentalCoroutinesApi::class)
 class GetLaunches @Inject constructor() : BaseInteractor<List<LaunchEntity>, GetLaunches.Params>() {
 
     @field:Inject
@@ -28,29 +27,21 @@ class GetLaunches @Inject constructor() : BaseInteractor<List<LaunchEntity>, Get
 
     override suspend fun FlowCollector<Result<List<LaunchEntity>>>.run(params: Params) {
 
-        // First return from persistence, ignoring errors
-        persistenceSource.getNextLaunches(params.count, params.page)
-            .takeIf { it is Success }
-            ?.also {
-                emit(it)
-            }
-
-        // Start network fetch - note that we're not handling state here to ommit them
-        networkSource.getNextLaunches(params.count, params.page)
+        // Start network fetch - we're not handling state here to ommit them
+        networkSource
+            .getNextLaunches(params.count, params.page)
             .also {
-                val data = if (it is Success) {
+                if (it is Success) {
                     persistenceSource.saveLaunches(it.successData)
-                    persistenceSource.getNextLaunches(params.count, params.page)
+                    emit(persistenceSource.getNextLaunches(params.count, params.page))
                 } else {
-                    it
+                    emit(it)
                 }
-
-                emit(data)
             }
     }
 
     data class Params(
-        val count: Int = DEFAULT_LAUNCH_COUNT,
+        val count: Int = DEFAULT_LAUNCHES_AMOUNT,
         val page: Int
     ) : InteractorParameters
 }

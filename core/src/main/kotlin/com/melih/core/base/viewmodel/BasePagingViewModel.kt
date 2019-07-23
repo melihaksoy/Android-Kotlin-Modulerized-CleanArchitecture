@@ -3,8 +3,8 @@ package com.melih.core.base.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import com.melih.core.base.paging.BasePagingFactory
 import com.melih.repository.interactors.base.Reason
 import com.melih.repository.interactors.base.State
@@ -24,7 +24,6 @@ abstract class BasePagingViewModel<T> : ViewModel() {
 
     abstract val factory: BasePagingFactory<T>
     abstract val config: PagedList.Config
-    private lateinit var _pagedList: LiveData<PagedList<T>>
     // endregion
 
     // region Properties
@@ -51,12 +50,21 @@ abstract class BasePagingViewModel<T> : ViewModel() {
      * Observe [pagedList] to submit list it provides
      */
     val pagedList: LiveData<PagedList<T>> by lazy {
-        LivePagedListBuilder(factory, config)
-            .build()
+        factory.toLiveData(config)
     }
     // endregion
+
+    // region Functions
 
     fun refresh() {
         factory.currentSource.value?.invalidate()
     }
+
+    /**
+     * Retry loading data, incase there's difference between refresh and retry, should go here
+     */
+    fun retry() {
+        factory.currentSource.value?.invalidate()
+    }
+    // endregion
 }

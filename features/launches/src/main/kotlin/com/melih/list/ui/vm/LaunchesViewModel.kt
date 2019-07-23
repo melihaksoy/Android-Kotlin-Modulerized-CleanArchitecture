@@ -2,18 +2,24 @@ package com.melih.list.ui.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.melih.core.base.viewmodel.BaseViewModel
+import androidx.paging.PagedList
+import com.melih.core.base.paging.BasePagingFactory
+import com.melih.core.base.viewmodel.BasePagingViewModel
 import com.melih.core.extensions.containsIgnoreCase
+import com.melih.list.ui.paging.LaunchesPagingSourceFactory
 import com.melih.repository.entities.LaunchEntity
-import com.melih.repository.interactors.GetLaunches
-import com.melih.repository.interactors.base.handle
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 class LaunchesViewModel @Inject constructor(
-    private val getLaunches: GetLaunches,
-    private val getLaunchesParams: GetLaunches.Params
-) : BaseViewModel<List<LaunchEntity>>() {
+    private val launchesPagingSourceFactory: LaunchesPagingSourceFactory,
+    private val launchesPagingConfig: PagedList.Config
+) : BasePagingViewModel<LaunchEntity>() {
+
+    override val factory: BasePagingFactory<LaunchEntity>
+        get() = launchesPagingSourceFactory
+
+    override val config: PagedList.Config
+        get() = launchesPagingConfig
 
     // region Properties
 
@@ -24,28 +30,19 @@ class LaunchesViewModel @Inject constructor(
     // endregion
 
     init {
-        _filteredItems.addSource(successData, _filteredItems::setValue)
+        _filteredItems.addSource(pagedList, _filteredItems::setValue)
     }
 
     // region Functions
 
-    /**
-     * Triggering interactor in view model scope
-     */
-    override suspend fun loadData() {
-        getLaunches(getLaunchesParams).collect {
-            it.handle(::handleState, ::handleFailure, ::handleSuccess)
-        }
-    }
-
     fun filterItemListBy(query: String?) {
         _filteredItems.value = if (!query.isNullOrBlank()) {
-            successData.value
+            pagedList.value
                 ?.filter {
                     it.rocket.name.containsIgnoreCase(query) || it.missions.any { it.description.containsIgnoreCase(query) }
                 }
         } else {
-            successData.value
+            pagedList.value
         }
     }
     // endregion

@@ -9,7 +9,7 @@ import dagger.android.ContributesAndroidInjector
  * Contributes fragments & view models in this module
  */
 @Module
-abstract class LaunchesModule {
+abstract class LaunchesFeatureModule {
 
     // region Contributes
 

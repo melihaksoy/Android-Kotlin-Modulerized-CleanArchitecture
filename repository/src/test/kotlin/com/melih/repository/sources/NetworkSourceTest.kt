@@ -1,5 +1,3 @@
-@file:UseExperimental(ExperimentalCoroutinesApi::class)
-
 package com.melih.repository.sources
 
 import android.net.NetworkInfo
@@ -26,6 +24,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import javax.inject.Provider
 
+@UseExperimental(ExperimentalCoroutinesApi::class)
 class NetworkSourceTest {
 
     private val apiImpl = mockk<ApiImpl>(relaxed = true)

@@ -4,7 +4,7 @@ import android.net.NetworkInfo
 import com.melih.repository.DEFAULT_IMAGE_SIZE
 import com.melih.repository.Repository
 import com.melih.repository.entities.LaunchEntity
-import com.melih.repository.interactors.DEFAULT_LAUNCH_COUNT
+import com.melih.repository.interactors.DEFAULT_LAUNCHES_AMOUNT
 import com.melih.repository.interactors.base.EmptyResultError
 import com.melih.repository.interactors.base.Failure
 import com.melih.repository.interactors.base.NetworkError
@@ -40,7 +40,7 @@ internal class NetworkSource @Inject constructor(
 
     override suspend fun getNextLaunches(count: Int, page: Int): Result<List<LaunchEntity>> =
         safeExecute({
-            apiImpl.getNextLaunches(count, page * DEFAULT_LAUNCH_COUNT)
+            apiImpl.getNextLaunches(count, page * DEFAULT_LAUNCHES_AMOUNT)
         }) { entity ->
             entity.launches.map { launch ->
                 if (!launch.rocket.imageURL.isNotBlank()) {

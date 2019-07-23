@@ -7,8 +7,7 @@ apply from: "$rootProject.projectDir/scripts/feature_module.gradle"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testImplementation testLibraries.jUnitApi
-    testImplementation testLibraries.mockk
-    testImplementation testLibraries.kluent
+    implementation libraries.paging
+
     testImplementation testLibraries.coroutinesTest
 }

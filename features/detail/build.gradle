@@ -15,8 +15,5 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testImplementation testLibraries.jUnitApi
-    testImplementation testLibraries.mockk
-    testImplementation testLibraries.kluent
     testImplementation testLibraries.coroutinesTest
 }

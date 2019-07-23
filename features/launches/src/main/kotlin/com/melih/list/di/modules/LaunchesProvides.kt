@@ -1,5 +1,7 @@
 package com.melih.list.di.modules
 
+import androidx.paging.Config
+import com.melih.repository.interactors.DEFAULT_LAUNCHES_AMOUNT
 import com.melih.repository.interactors.GetLaunches
 import dagger.Module
 import dagger.Provides
@@ -12,4 +14,7 @@ class LaunchesProvides {
      */
     @Provides
     fun provideGetLaunchesParams() = GetLaunches.Params(page = 0)
+
+    @Provides
+    fun getPagingConfig() = Config(DEFAULT_LAUNCHES_AMOUNT)
 }

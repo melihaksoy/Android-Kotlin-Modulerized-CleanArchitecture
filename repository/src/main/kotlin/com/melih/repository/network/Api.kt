@@ -16,10 +16,10 @@ internal interface Api {
     suspend fun getNextLaunches(
         @Path("count") count: Int,
         @Query("offset") offset: Int
-        ): Response<LaunchesEntity>
+    ): Response<LaunchesEntity>
 
     @GET("launch/{id}")
     suspend fun getLaunchById(
         @Path("id") id: Long
-        ): Response<LaunchEntity>
+    ): Response<LaunchEntity>
 }

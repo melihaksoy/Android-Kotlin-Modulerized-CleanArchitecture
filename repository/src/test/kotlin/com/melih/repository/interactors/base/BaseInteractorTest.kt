@@ -1,5 +1,3 @@
-@file:UseExperimental(ExperimentalCoroutinesApi::class)
-
 package com.melih.repository.interactors.base
 
 import io.mockk.coVerify
@@ -14,6 +12,7 @@ import org.amshove.kluent.shouldEqualTo
 import org.junit.jupiter.api.Test
 import java.util.*
 
+@UseExperimental(ExperimentalCoroutinesApi::class)
 class BaseInteractorTest {
 
     val testInteractor = spyk(TestInteractor())

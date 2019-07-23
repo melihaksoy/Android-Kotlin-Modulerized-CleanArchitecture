@@ -3,8 +3,8 @@ package com.melih.core.base.recycler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class BaseListAdapter<T>(
     callback: DiffUtil.ItemCallback<T>,
     private val clickListener: (T) -> Unit
-) : ListAdapter<T, BaseViewHolder<T>>(callback) {
+) : PagedListAdapter<T, BaseViewHolder<T>>(callback) {
 
     private var itemClickListener: ((T) -> Unit)? = null
 
@@ -48,12 +48,13 @@ abstract class BaseListAdapter<T>(
     override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
         val item = getItem(position)
 
-        holder.itemView.setOnClickListener {
-            clickListener(item)
+        if (item != null) {
+            holder.itemView.setOnClickListener {
+                clickListener(item)
+            }
+
+            holder.bind(item)
         }
-
-        holder.bind(item)
-
     }
 }
 

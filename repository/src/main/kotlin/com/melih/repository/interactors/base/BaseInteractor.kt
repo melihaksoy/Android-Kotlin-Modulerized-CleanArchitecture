@@ -1,5 +1,3 @@
-@file:UseExperimental(ExperimentalCoroutinesApi::class)
-
 package com.melih.repository.interactors.base
 
 import kotlinx.coroutines.Dispatchers
@@ -12,6 +10,7 @@ import kotlinx.coroutines.flow.flowOn
 /**
  * Base use case that wraps [suspending][suspend] [run] function with [flow][Flow] and returns it for later usage.
  */
+@UseExperimental(ExperimentalCoroutinesApi::class)
 abstract class BaseInteractor<T, in P : InteractorParameters> {
 
     // region Abstractions

@@ -1,5 +1,3 @@
-@file:UseExperimental(ExperimentalCoroutinesApi::class)
-
 package com.melih.detail
 
 import com.melih.detail.ui.DetailViewModel
@@ -18,6 +16,7 @@ import org.junit.jupiter.api.Test
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+@UseExperimental(ExperimentalCoroutinesApi::class)
 class DetailViewModelTest : BaseTestWithMainThread() {
 
     private val getLaunchDetails: GetLaunchDetails = mockk(relaxed = true)

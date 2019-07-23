@@ -1,5 +1,3 @@
-@file:UseExperimental(ExperimentalCoroutinesApi::class)
-
 package com.melih.core.base.paging
 
 import androidx.annotation.CallSuper
@@ -35,6 +33,8 @@ const val INITIAL_PAGE = 0
  * This source has it's own [coroutineScope][CoroutineScope] that's backed up by a [SupervisorJob] to handle networking operations.
  * It's cancelled automatically when source factory [invalidates][invalidate] the source.
  */
+
+@UseExperimental(ExperimentalCoroutinesApi::class)
 abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
 
     // region Abstractions

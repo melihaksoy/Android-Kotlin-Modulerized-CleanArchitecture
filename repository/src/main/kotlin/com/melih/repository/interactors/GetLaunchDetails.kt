@@ -1,5 +1,3 @@
-@file:UseExperimental(ExperimentalCoroutinesApi::class)
-
 package com.melih.repository.interactors
 
 import com.melih.repository.entities.LaunchEntity
@@ -17,6 +15,7 @@ import javax.inject.Inject
 /**
  * Gets next given number of launches
  */
+@UseExperimental(ExperimentalCoroutinesApi::class)
 class GetLaunchDetails @Inject constructor() : BaseInteractor<LaunchEntity, GetLaunchDetails.Params>() {
 
     @field:Inject

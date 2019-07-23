@@ -66,13 +66,13 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
             }
         }
 
-        observe(viewModel.successData) {
+        observe(viewModel.pagedList) {
             launchesAdapter.submitList(it)
         }
 
-        observe(viewModel.filteredItems) {
-            launchesAdapter.submitList(it)
-        }
+        //observe(viewModel.filteredItems) {
+        //    launchesAdapter.submitList(it)
+        //}
     }
 
     private fun onItemSelected(item: LaunchEntity) {

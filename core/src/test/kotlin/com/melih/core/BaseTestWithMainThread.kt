@@ -1,5 +1,3 @@
-@file:UseExperimental(ExperimentalCoroutinesApi::class)
-
 package com.melih.core
 
 import androidx.arch.core.executor.ArchTaskExecutor
@@ -15,6 +13,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import kotlin.coroutines.suspendCoroutine
 
+@UseExperimental(ExperimentalCoroutinesApi::class)
 abstract class BaseTestWithMainThread {
 
     private val dispatcher = TestCoroutineDispatcher()
