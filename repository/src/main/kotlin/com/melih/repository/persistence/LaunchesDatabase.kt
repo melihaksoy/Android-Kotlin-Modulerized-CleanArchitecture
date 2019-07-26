@@ -30,9 +30,17 @@ internal abstract class LaunchesDatabase : RoomDatabase() {
 
     companion object {
 
-        fun getInstance(ctx: Context) =
-            Room.databaseBuilder(ctx, LaunchesDatabase::class.java, DB_NAME)
-                .build()
+        private lateinit var instance: LaunchesDatabase
+
+        fun getInstance(ctx: Context): LaunchesDatabase {
+            if (!::instance.isInitialized) {
+                instance = Room.databaseBuilder(ctx, LaunchesDatabase::class.java, DB_NAME)
+                    .build()
+            }
+
+            return instance
+        }
+
     }
 
     internal abstract val launchesDao: LaunchesDao

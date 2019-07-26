@@ -5,7 +5,6 @@ import com.melih.repository.Repository
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.base.Failure
 import com.melih.repository.interactors.base.PersistenceEmpty
-import com.melih.repository.interactors.base.Reason
 import com.melih.repository.interactors.base.Result
 import com.melih.repository.interactors.base.Success
 import com.melih.repository.persistence.LaunchesDatabase
