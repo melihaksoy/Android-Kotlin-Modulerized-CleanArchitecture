@@ -70,8 +70,8 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
         //}
     }
 
-    private fun onItemSelected(item: LaunchEntity?) {
-        startActivity(Actions.openDetailFor(item?.id ?: -1L))
+    private fun onItemSelected(item: LaunchEntity) {
+        startActivity(Actions.openDetailFor(item.id))
     }
 
     //private fun onSearchExpand() {

@@ -9,15 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Base adapter to reduce boilerplate on creating / binding view holders.
- *
- *
  */
 abstract class BasePagingListAdapter<T>(
     callback: DiffUtil.ItemCallback<T>,
-    private val clickListener: (T?) -> Unit
+    private val clickListener: (T) -> Unit
 ) : PagedListAdapter<T, BaseViewHolder<T>>(callback) {
-
-    private var itemClickListener: ((T) -> Unit)? = null
 
     /**
      * This method will be called to create view holder to obfuscate layout inflation creation / process
@@ -46,14 +42,14 @@ abstract class BasePagingListAdapter<T>(
      * Calls [bind][BaseViewHolder.bind] on view holders
      */
     override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
-        val item = getItem(position)
+        getItem(position)?.also { item ->
 
+            holder.itemView.setOnClickListener { view ->
+                clickListener(item)
+            }
 
-        holder.itemView.setOnClickListener {
-            clickListener(item)
+            holder.bind(item)
         }
-
-        holder.bind(item)
     }
 }
 
@@ -68,5 +64,5 @@ abstract class BaseViewHolder<T>(binding: ViewDataBinding) : RecyclerView.ViewHo
      * @param item entity
      * @param position position from adapter
      */
-    abstract fun bind(item: T?)
+    abstract fun bind(item: T)
 }
