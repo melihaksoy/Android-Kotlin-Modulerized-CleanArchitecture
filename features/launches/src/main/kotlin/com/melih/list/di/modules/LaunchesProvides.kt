@@ -16,5 +16,9 @@ class LaunchesProvides {
     fun provideGetLaunchesParams() = GetLaunches.Params(page = 0)
 
     @Provides
-    fun getPagingConfig() = Config(DEFAULT_LAUNCHES_AMOUNT)
+    fun getPagingConfig() = Config(
+        DEFAULT_LAUNCHES_AMOUNT,
+        prefetchDistance = 2,
+        enablePlaceholders = false
+    )
 }

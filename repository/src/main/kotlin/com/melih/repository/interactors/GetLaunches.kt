@@ -36,6 +36,7 @@ class GetLaunches @Inject constructor() : BaseInteractor<List<LaunchEntity>, Get
                     emit(persistenceSource.getNextLaunches(params.count, params.page))
                 } else {
                     emit(it)
+                    emit(persistenceSource.getNextLaunches(params.count, params.page))
                 }
             }
     }

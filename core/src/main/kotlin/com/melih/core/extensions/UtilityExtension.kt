@@ -9,8 +9,14 @@ import com.melih.core.utils.ClearFocusQueryTextListener
  */
 fun CharSequence.containsIgnoreCase(other: CharSequence) = contains(other, true)
 
+/**
+ * Adds [ClearFocusQueryTextListener] as [SearchView.OnQueryTextListener]
+ */
 fun SearchView.setOnQueryChangedListener(block: (String?) -> Unit) = setOnQueryTextListener(ClearFocusQueryTextListener(this, block))
 
+/**
+ * Shortening set menu item expands / collapses
+ */
 fun MenuItem.onExpandOrCollapse(onExpand: () -> Unit, onCollapse: () -> Unit) {
     setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
         override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {

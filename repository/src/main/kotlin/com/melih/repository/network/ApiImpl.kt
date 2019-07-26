@@ -9,7 +9,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+
+internal const val TIMEOUT_DURATION = 7L
 
 internal class ApiImpl @Inject constructor() : Api {
 
@@ -23,6 +26,8 @@ internal class ApiImpl @Inject constructor() : Api {
         Retrofit.Builder()
             .client(
                 OkHttpClient.Builder()
+                    .connectTimeout(TIMEOUT_DURATION, TimeUnit.SECONDS)
+                    .readTimeout(TIMEOUT_DURATION, TimeUnit.SECONDS)
                     .addInterceptor(
                         HttpLoggingInterceptor().apply {
                             level = HttpLoggingInterceptor.Level.BODY

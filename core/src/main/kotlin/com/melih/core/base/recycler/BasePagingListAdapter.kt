@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
  *
  *
  */
-abstract class BaseListAdapter<T>(
+abstract class BasePagingListAdapter<T>(
     callback: DiffUtil.ItemCallback<T>,
-    private val clickListener: (T) -> Unit
+    private val clickListener: (T?) -> Unit
 ) : PagedListAdapter<T, BaseViewHolder<T>>(callback) {
 
     private var itemClickListener: ((T) -> Unit)? = null
@@ -48,13 +48,12 @@ abstract class BaseListAdapter<T>(
     override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
         val item = getItem(position)
 
-        if (item != null) {
-            holder.itemView.setOnClickListener {
-                clickListener(item)
-            }
 
-            holder.bind(item)
+        holder.itemView.setOnClickListener {
+            clickListener(item)
         }
+
+        holder.bind(item)
     }
 }
 
@@ -69,5 +68,5 @@ abstract class BaseViewHolder<T>(binding: ViewDataBinding) : RecyclerView.ViewHo
      * @param item entity
      * @param position position from adapter
      */
-    abstract fun bind(item: T)
+    abstract fun bind(item: T?)
 }
