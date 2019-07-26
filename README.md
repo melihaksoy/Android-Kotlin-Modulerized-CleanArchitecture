@@ -27,6 +27,8 @@ I'll soon be writing small series about roadmap, challanges, alternatives and tr
 - **Mockk**
 - **Kluent**
 - **JaCoCo**
+- **CircleCI**
+- **Fastlane**
 
 ## Modularization Graph
 ![modularization graph](https://github.com/melihaksoy/RocketScience/blob/master/docs/module_graph.png)
