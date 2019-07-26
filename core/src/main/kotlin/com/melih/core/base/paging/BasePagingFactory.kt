@@ -35,7 +35,7 @@ abstract class BasePagingFactory<T> : DataSource.Factory<Int, T>() {
 
     /**
      * Invalidating the [currentSource]
-     * by calling [be.mediahuis.core.base.paging.BasePagingDataSource.invalidate]
+     * by calling [BasePagingDataSource.invalidate]
      */
     fun invalidateDataSource() = currentSource.value?.invalidate()
     // endregion

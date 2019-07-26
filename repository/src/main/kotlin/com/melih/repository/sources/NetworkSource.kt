@@ -102,10 +102,10 @@ internal class NetworkSource @Inject constructor(
             val url = urlSplit[0]
             val format = urlSplit[1].split(".")[1]
 
-            var requestedSize = DEFAULT_IMAGE_SIZE
-
-            if (!supportedSizes.contains(requestedSize)) {
-                requestedSize = supportedSizes.last { it < requestedSize }
+            val requestedSize = if (!supportedSizes.contains(DEFAULT_IMAGE_SIZE)) {
+                supportedSizes.last { it < DEFAULT_IMAGE_SIZE }
+            } else {
+                DEFAULT_IMAGE_SIZE
             }
 
             "${url}_$requestedSize.$format"
