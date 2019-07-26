@@ -4,7 +4,9 @@ import androidx.room.ColumnInfo
 import com.melih.repository.DEFAULT_NAME
 import com.melih.repository.EMPTY_STRING
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class RocketEntity(
     @ColumnInfo(name = "id_rocket") val id: Long = 0L,
     @ColumnInfo(name = "name_rocket") val name: String = DEFAULT_NAME,

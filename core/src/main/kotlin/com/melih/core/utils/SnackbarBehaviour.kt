@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 /**
  * Simple behaviour for pushing views when snackbar is animating so none of views will remain under snackbar
  */
+@Suppress("UNUSED_PARAMETER")
 class SnackbarBehaviour constructor(
     context: Context,
     attributeSet: AttributeSet

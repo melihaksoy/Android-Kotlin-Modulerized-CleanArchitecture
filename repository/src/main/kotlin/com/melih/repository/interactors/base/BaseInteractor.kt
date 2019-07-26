@@ -10,23 +10,22 @@ import kotlinx.coroutines.flow.flowOn
 /**
  * Base use case that wraps [suspending][suspend] [run] function with [flow][Flow] and returns it for later usage.
  */
+@UseExperimental(ExperimentalCoroutinesApi::class)
 abstract class BaseInteractor<T, in P : InteractorParameters> {
 
     // region Abstractions
 
-    @ExperimentalCoroutinesApi
-    protected abstract suspend fun run(collector: FlowCollector<Result<T>>, params: P)
+    protected abstract suspend fun FlowCollector<Result<T>>.run(params: P)
     // endregion
 
     // region Functions
 
-    @ExperimentalCoroutinesApi
     operator fun invoke(params: P) =
-            flow<Result<T>> {
-                emit(Result.State.Loading())
-                run(this, params)
-                emit(Result.State.Loaded())
-            }.flowOn(Dispatchers.IO)
+        flow<Result<T>> {
+            emit(State.Loading())
+            run(params)
+            emit(State.Loaded())
+        }.flowOn(Dispatchers.IO)
     // endregion
 }
 

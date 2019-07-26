@@ -6,7 +6,6 @@ import com.melih.core.actions.EXTRA_LAUNCH_ID
 import com.melih.core.base.lifecycle.BaseActivity
 import com.melih.detail.R
 import com.melih.detail.databinding.DetailActivityBinding
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 const val INVALID_LAUNCH_ID = -1L
 
@@ -14,13 +13,12 @@ class DetailActivity : BaseActivity<DetailActivityBinding>() {
 
     // region Functions
 
-    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun getLayoutId(): Int = R.layout.activity_detail

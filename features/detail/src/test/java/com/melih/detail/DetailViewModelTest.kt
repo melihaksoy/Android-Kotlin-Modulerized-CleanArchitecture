@@ -1,7 +1,6 @@
 package com.melih.detail
 
 import com.melih.detail.ui.DetailViewModel
-import com.melih.list.BaseTestWithMainThread
 import com.melih.repository.interactors.GetLaunchDetails
 import io.mockk.mockk
 import io.mockk.slot
@@ -17,21 +16,20 @@ import org.junit.jupiter.api.Test
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+@UseExperimental(ExperimentalCoroutinesApi::class)
 class DetailViewModelTest : BaseTestWithMainThread() {
 
     private val getLaunchDetails: GetLaunchDetails = mockk(relaxed = true)
+    private val getLaunchDetailsParams = GetLaunchDetails.Params(1013)
 
-    @ExperimentalCoroutinesApi
-    private val viewModel = spyk(DetailViewModel(getLaunchDetails))
+    private val viewModel = spyk(DetailViewModel(getLaunchDetails, getLaunchDetailsParams))
 
     @Test
-    @ExperimentalCoroutinesApi
     fun `loadData should invoke getLauchDetails with provided params`() {
         dispatcher.runBlockingTest {
 
             val paramsSlot = slot<GetLaunchDetails.Params>()
 
-            viewModel.createParamsFor(1013)
             viewModel.loadData()
 
             // init should have called it already due to creation above

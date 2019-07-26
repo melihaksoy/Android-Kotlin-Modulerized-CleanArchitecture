@@ -12,11 +12,11 @@ class ResultTest {
 
     private val number = 10
 
-    private val success = Result.Success(number)
-    private val failure = Result.Failure(Reason.GenericError())
-    private val state = Result.State.Loading()
+    private val success = Success(number)
+    private val failure = Failure(GenericError())
+    private val state = State.Loading()
 
-    private val emptyStateBlock = spyk({ _: Result.State -> })
+    private val emptyStateBlock = spyk({ _: State -> })
     private val emptyFailureBlock = spyk({ _: Reason -> })
     private val emptySuccessBlock = spyk({ _: Int -> })
 
@@ -37,8 +37,8 @@ class ResultTest {
     @Test
     fun `Failure should only invoke failureBlock with correct error`() {
         val actualFailureBlock = spyk({ reason: Reason ->
-            reason shouldBeInstanceOf Reason.GenericError::class
-            (reason as Reason.GenericError).messageRes shouldEqualTo R.string.reason_generic
+            reason shouldBeInstanceOf GenericError::class
+            (reason as GenericError).messageRes shouldEqualTo R.string.reason_generic
             Unit
         })
 
@@ -51,8 +51,8 @@ class ResultTest {
 
     @Test
     fun `State should only invoke stateBlock with correct state`() {
-        val actualSuccessBlock = spyk({ state: Result.State ->
-            state shouldBeInstanceOf Result.State.Loading::class
+        val actualSuccessBlock = spyk({ state: State ->
+            state shouldBeInstanceOf State.Loading::class
             Unit
         })
 

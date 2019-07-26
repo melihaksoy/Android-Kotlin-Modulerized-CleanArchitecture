@@ -1,4 +1,4 @@
-package com.melih.list
+package com.melih.detail
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -8,19 +8,17 @@ import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 
+@UseExperimental(ExperimentalCoroutinesApi::class)
 abstract class BaseTestWithMainThread {
 
-    @ExperimentalCoroutinesApi
     protected val dispatcher = TestCoroutineDispatcher()
 
     @BeforeEach
-    @ExperimentalCoroutinesApi
     fun setUp() {
         Dispatchers.setMain(dispatcher)
     }
 
     @AfterEach
-    @ExperimentalCoroutinesApi
     fun tearDown() {
         Dispatchers.resetMain()
         dispatcher.cleanupTestCoroutines()

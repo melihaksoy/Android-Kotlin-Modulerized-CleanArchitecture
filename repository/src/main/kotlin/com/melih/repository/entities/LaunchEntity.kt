@@ -4,8 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.melih.repository.DEFAULT_NAME
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 @Entity(tableName = "Launches")
+@JsonClass(generateAdapter = true)
 data class LaunchEntity(
     @PrimaryKey val id: Long = 0L,
     val name: String = DEFAULT_NAME,

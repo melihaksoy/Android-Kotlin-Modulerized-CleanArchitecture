@@ -1,6 +1,8 @@
 package com.melih.repository.persistence
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.melih.repository.entities.LaunchEntity
@@ -24,7 +26,14 @@ const val DB_NAME = "LaunchesDB"
     RocketConverter::class,
     MissionConverter::class
 )
-abstract class LaunchesDatabase : RoomDatabase() {
+internal abstract class LaunchesDatabase : RoomDatabase() {
 
-    abstract val launchesDao: LaunchesDao
+    companion object {
+
+        fun getInstance(ctx: Context) =
+            Room.databaseBuilder(ctx, LaunchesDatabase::class.java, DB_NAME)
+                .build()
+    }
+
+    internal abstract val launchesDao: LaunchesDao
 }

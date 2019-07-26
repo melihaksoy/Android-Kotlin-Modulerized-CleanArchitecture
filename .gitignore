@@ -6,6 +6,7 @@
 /build
 /captures
 .externalNativeBuild
+/projectFilesBackup
 
 # Project reports
 /reports

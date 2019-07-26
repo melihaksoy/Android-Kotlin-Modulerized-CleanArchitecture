@@ -11,6 +11,7 @@ dependencies {
 
     implementation libraries.fragment
     implementation libraries.lifecycle
+    implementation libraries.liveDataKTX
     implementation libraries.navigation
     implementation libraries.constraintLayout
 }

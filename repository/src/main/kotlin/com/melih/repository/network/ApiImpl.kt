@@ -9,9 +9,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class ApiImpl @Inject constructor() : Api {
+internal const val TIMEOUT_DURATION = 7L
+
+internal class ApiImpl @Inject constructor() : Api {
 
     // region Properties
 
@@ -23,9 +26,12 @@ class ApiImpl @Inject constructor() : Api {
         Retrofit.Builder()
             .client(
                 OkHttpClient.Builder()
+                    .connectTimeout(TIMEOUT_DURATION, TimeUnit.SECONDS)
+                    .readTimeout(TIMEOUT_DURATION, TimeUnit.SECONDS)
                     .addInterceptor(
-                        HttpLoggingInterceptor()
-                            .setLevel(HttpLoggingInterceptor.Level.BODY)
+                        HttpLoggingInterceptor().apply {
+                            level = HttpLoggingInterceptor.Level.BODY
+                        }
                     ).build()
             )
             .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -35,9 +41,14 @@ class ApiImpl @Inject constructor() : Api {
     }
     // endregion
 
-    override suspend fun getNextLaunches(count: Int): Response<LaunchesEntity> =
-        service.getNextLaunches(count)
+    override suspend fun getNextLaunches(
+        count: Int,
+        offset: Int
+    ): Response<LaunchesEntity> =
+        service.getNextLaunches(count, offset)
 
-    override suspend fun getLaunchById(id: Long): Response<LaunchEntity> =
+    override suspend fun getLaunchById(
+        id: Long
+    ): Response<LaunchEntity> =
         service.getLaunchById(id)
 }

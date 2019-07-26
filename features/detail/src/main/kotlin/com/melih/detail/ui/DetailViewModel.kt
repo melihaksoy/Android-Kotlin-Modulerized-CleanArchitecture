@@ -1,23 +1,19 @@
 package com.melih.detail.ui
 
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.viewModelScope
 import com.melih.core.base.viewmodel.BaseViewModel
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.GetLaunchDetails
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.melih.repository.interactors.base.handle
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 class DetailViewModel @Inject constructor(
-    private val getLaunchDetails: GetLaunchDetails
+    private val getLaunchDetails: GetLaunchDetails,
+    private val getLaunchDetailsParams: GetLaunchDetails.Params
 ) : BaseViewModel<LaunchEntity>() {
 
     // region Properties
-
-    private var params = GetLaunchDetails.Params(INVALID_LAUNCH_ID)
 
     val rocketName = Transformations.map(successData) {
         it.rocket.name
@@ -38,18 +34,12 @@ class DetailViewModel @Inject constructor(
 
     // region Functions
 
-    fun createParamsFor(id: Long) {
-        params = GetLaunchDetails.Params(id)
-    }
-
     /**
      * Triggering interactor in view model scope
      */
-    override fun loadData() {
-        viewModelScope.launch {
-            getLaunchDetails(params).collect {
-                it.handle(::handleState, ::handleFailure, ::handleSuccess)
-            }
+    override suspend fun loadData() {
+        getLaunchDetails(getLaunchDetailsParams).collect {
+            it.handle(::handleState, ::handleFailure, ::handleSuccess)
         }
     }
     // endregion

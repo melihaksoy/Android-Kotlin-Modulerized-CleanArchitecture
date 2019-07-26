@@ -8,7 +8,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 const val NAV_HOST_FRAGMENT_TAG = "nav_host_fragment_tag"
 
@@ -20,7 +19,6 @@ abstract class BaseActivity<T : ViewDataBinding> : DaggerAppCompatActivity() {
     protected lateinit var binding: T
     protected lateinit var navHostFragment: NavHostFragment
 
-    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

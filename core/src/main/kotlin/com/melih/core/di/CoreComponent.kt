@@ -1,8 +1,8 @@
 package com.melih.core.di
 
 import android.app.Application
+import android.content.Context
 import android.net.NetworkInfo
-import com.melih.repository.persistence.LaunchesDatabase
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -11,9 +11,9 @@ import javax.inject.Singleton
 @Component(modules = [CoreModule::class])
 interface CoreComponent {
 
-    fun getNetworkInfo(): NetworkInfo?
+    fun getAppContext(): Context
 
-    fun getLaunchesDatabase(): LaunchesDatabase
+    fun getNetworkInfo(): NetworkInfo?
 
     @Component.Factory
     interface Factory {

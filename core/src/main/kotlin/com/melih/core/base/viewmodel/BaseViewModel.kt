@@ -3,8 +3,10 @@ package com.melih.core.base.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.melih.repository.interactors.base.Reason
-import com.melih.repository.interactors.base.Result
+import com.melih.repository.interactors.base.State
+import kotlinx.coroutines.launch
 
 /**
  * Base [ViewModel] for view models that will process data.
@@ -15,13 +17,19 @@ abstract class BaseViewModel<T> : ViewModel() {
 
     // region Abstractions
 
-    abstract fun loadData()
+    abstract suspend fun loadData()
     // endregion
+
+    init {
+        viewModelScope.launch {
+            loadData()
+        }
+    }
 
     // region Properties
 
     private val _successData = MutableLiveData<T>()
-    private val _stateData = MutableLiveData<Result.State>()
+    private val _stateData = MutableLiveData<State>()
     private val _errorData = MutableLiveData<Reason>()
 
     /**
@@ -33,7 +41,7 @@ abstract class BaseViewModel<T> : ViewModel() {
     /**
      * Observe [stateData] to get notified of state of data
      */
-    val stateData: LiveData<Result.State>
+    val stateData: LiveData<State>
         get() = _stateData
 
     /**
@@ -59,7 +67,7 @@ abstract class BaseViewModel<T> : ViewModel() {
      *
      * @param state state of operation
      */
-    protected fun handleState(state: Result.State) {
+    protected fun handleState(state: State) {
         _stateData.value = state
     }
 
@@ -76,14 +84,18 @@ abstract class BaseViewModel<T> : ViewModel() {
      * Reload data
      */
     fun refresh() {
-        loadData()
+        viewModelScope.launch {
+            loadData()
+        }
     }
 
     /**
      * Retry loading data, incase there's difference between refresh and retry, should go here
      */
     fun retry() {
-        loadData()
+        viewModelScope.launch {
+            loadData()
+        }
     }
     // endregion
 }

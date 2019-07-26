@@ -1,37 +1,32 @@
 package com.melih.core.base
 
+import com.melih.core.BaseTestWithMainThread
 import com.melih.core.base.viewmodel.BaseViewModel
+import io.mockk.coVerify
 import io.mockk.spyk
-import io.mockk.verify
 import org.junit.jupiter.api.Test
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class BaseViewModelTest {
-
-    val baseVm = spyk(TestViewModel())
+class BaseViewModelTest : BaseTestWithMainThread() {
 
     @Test
     fun `refresh should invoke loadData`() {
+        val baseVm = spyk(TestViewModel())
         baseVm.refresh()
 
-        verify(exactly = 1) { baseVm.loadData() }
+        coVerify(exactly = 1) { baseVm.loadData() }
     }
 
     @Test
     fun `retry should invoke loadData`() {
+        val baseVm = spyk(TestViewModel())
         baseVm.retry()
 
-        verify(exactly = 1) { baseVm.loadData() }
+        coVerify(exactly = 1) { baseVm.loadData() }
     }
 }
 
-class TestViewModel : BaseViewModel<Int>() {
-    override public fun loadData() {
+class TestViewModel : BaseViewModel<Unit>() {
+    override suspend fun loadData() {
         // no - op
     }
-
 }

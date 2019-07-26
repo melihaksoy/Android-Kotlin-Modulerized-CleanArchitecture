@@ -6,7 +6,6 @@ import com.melih.detail.ui.DetailViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @Module
 abstract class DetailBinds {
@@ -16,7 +15,6 @@ abstract class DetailBinds {
     @Binds
     @IntoMap
     @ViewModelKey(DetailViewModel::class)
-    @ExperimentalCoroutinesApi
     abstract fun detailViewModel(detailViewModel: DetailViewModel): ViewModel
     // endregion
 }
