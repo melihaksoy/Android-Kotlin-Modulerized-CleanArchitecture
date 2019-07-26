@@ -2,21 +2,14 @@ package com.melih.list.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import com.melih.core.base.recycler.BasePagingListAdapter
 import com.melih.core.base.recycler.BaseViewHolder
+import com.melih.core.extensions.getDiffCallbackForType
 import com.melih.list.databinding.LaunchRowBinding
 import com.melih.repository.entities.LaunchEntity
 
 class LaunchesAdapter(itemClickListener: (LaunchEntity) -> Unit) : BasePagingListAdapter<LaunchEntity>(
-    object : DiffUtil.ItemCallback<LaunchEntity>() {
-        override fun areItemsTheSame(oldItem: LaunchEntity, newItem: LaunchEntity): Boolean =
-            oldItem.id == newItem.id
-
-        override fun areContentsTheSame(oldItem: LaunchEntity, newItem: LaunchEntity): Boolean =
-            oldItem.name == newItem.name
-
-    },
+    getDiffCallbackForType { oldItem, newItem -> oldItem.id == newItem.id },
     itemClickListener
 ) {
     override fun createViewHolder(

@@ -25,8 +25,4 @@ fun <T> Fragment.observe(data: LiveData<T>, block: (T) -> Unit) {
 inline fun <reified T : ViewModel> ViewModelProvider.Factory.createFor(
     fragment: Fragment,
     crossinline block: T.() -> Unit = {}
-): T {
-    val viewModel = ViewModelProviders.of(fragment, this)[T::class.java]
-    viewModel.apply(block)
-    return viewModel
-}
+): T = ViewModelProviders.of(fragment, this)[T::class.java].apply(block)
