@@ -1,7 +1,7 @@
 package com.melih.rocketscience.di
 
 import com.melih.core.di.CoreComponent
-import com.melih.detail.di.DetailModule
+import com.melih.detail.di.DetailFeatureModule
 import com.melih.list.di.LaunchesFeatureModule
 import com.melih.rocketscience.App
 import dagger.Component
@@ -12,7 +12,7 @@ import dagger.android.AndroidInjector
 @Component(
     modules = [AndroidInjectionModule::class,
         LaunchesFeatureModule::class,
-        DetailModule::class],
+        DetailFeatureModule::class],
 
     dependencies = [CoreComponent::class]
 )
