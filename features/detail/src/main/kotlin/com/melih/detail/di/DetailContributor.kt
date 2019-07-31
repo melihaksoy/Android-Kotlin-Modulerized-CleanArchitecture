@@ -1,7 +1,6 @@
 package com.melih.detail.di
 
-import com.melih.detail.di.modules.DetailBinds
-import com.melih.detail.di.modules.DetailProvides
+import com.melih.detail.di.modules.DetailFragmentModule
 import com.melih.detail.ui.DetailFragment
 import com.melih.list.di.scopes.DetailFragmentScope
 import dagger.Module
@@ -16,10 +15,7 @@ abstract class DetailContributor {
     // region Contributes
 
     @ContributesAndroidInjector(
-        modules = [
-            DetailBinds::class,
-            DetailProvides::class
-        ]
+        modules = [DetailFragmentModule::class]
     )
     @DetailFragmentScope
     abstract fun detailFragment(): DetailFragment

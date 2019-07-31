@@ -2,12 +2,11 @@ package com.melih.core.base.lifecycle
 
 import android.content.Context
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import com.melih.core.di.ViewModelFactory
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 
@@ -21,12 +20,12 @@ import javax.inject.Inject
  * in the project. It's injected by map of view models that this app is serving. Check [ViewModelFactory]
  * to see how it works.
  */
-abstract class BaseDaggerFragment<T : ViewDataBinding> : BaseFragment<T>(), HasSupportFragmentInjector {
+abstract class BaseDaggerFragment<T : ViewDataBinding> : BaseFragment<T>(), HasAndroidInjector {
 
     // region Properties
 
     @get:Inject
-    internal var childFragmentInjector: DispatchingAndroidInjector<Fragment>? = null
+    internal var androidInjector: DispatchingAndroidInjector<Any>? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -39,6 +38,6 @@ abstract class BaseDaggerFragment<T : ViewDataBinding> : BaseFragment<T>(), HasS
         super.onAttach(context)
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment>? = childFragmentInjector
+    override fun androidInjector(): AndroidInjector<Any>? = androidInjector
     // endregion
 }
