@@ -1,14 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.melih.detail">
-
-    <application>
-        <activity
-            android:name="com.melih.detail.ui.DetailActivity"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="action.dashboard.open" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-    </application>
-</manifest>
+<manifest package="com.melih.detail" />

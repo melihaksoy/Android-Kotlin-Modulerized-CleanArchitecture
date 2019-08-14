@@ -1,10 +1,8 @@
 package com.melih.detail.di.modules
 
 import androidx.lifecycle.ViewModel
-import androidx.navigation.fragment.navArgs
 import com.melih.core.di.keys.ViewModelKey
 import com.melih.detail.ui.DetailFragment
-import com.melih.detail.ui.DetailFragmentArgs
 import com.melih.detail.ui.DetailViewModel
 import com.melih.repository.interactors.GetLaunchDetails
 import dagger.Binds
@@ -32,8 +30,9 @@ abstract class DetailFragmentModule {
         @Provides
         @JvmStatic
         fun provideGetLaunchDetailParams(fragment: DetailFragment): GetLaunchDetails.Params {
-            val args: DetailFragmentArgs by fragment.navArgs()
-            return GetLaunchDetails.Params(args.launchId)
+            //val args: DetailFragmentArgs by fragment.navArgs()
+            //return GetLaunchDetails.Params(args.launchId)
+            return GetLaunchDetails.Params(10)
         }
     }
 }

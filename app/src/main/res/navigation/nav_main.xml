@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/launchesFragment">
+
+    <fragment
+        android:id="@+id/launchesFragment"
+        android:name="com.melih.list.ui.LaunchesFragment"
+        android:label="LaunchesFragment"
+        tools:layout="@layout/fragment_launches" >
+        <action
+            android:id="@+id/action_list_to_detail"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.melih.detail.ui.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="launchId"
+            android:defaultValue="-1L"
+            app:argType="long" />
+    </fragment>
+</navigation>
