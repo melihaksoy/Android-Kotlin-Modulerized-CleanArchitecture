@@ -66,22 +66,22 @@ platform :android do
   end
 
   def run_app_tests
-    gradle(task: "clean app:test --continue")
+    gradle(task: "app:test --continue")
   end
 
   def run_core_tests
-    gradle(task: "clean core:test --continue")
+    gradle(task: "core:test --continue")
   end
 
   def run_launches_tests
-    gradle(task: "clean features:launches:test --continue")
+    gradle(task: "features:launches:test --continue")
   end
 
   def run_detail_tests
-    gradle(task: "clean features:detail:test --continue")
+    gradle(task: "features:detail:test --continue")
   end
 
   def run_repository_tests
-    gradle(task: "clean repository:test --continue")
+    gradle(task: "repository:test --continue")
   end
 end
