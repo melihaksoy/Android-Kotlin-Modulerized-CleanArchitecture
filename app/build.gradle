@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs"
 
 apply from: "$rootProject.projectDir/scripts/default_android_config.gradle"
 apply from: "$rootProject.projectDir/scripts/sources.gradle"

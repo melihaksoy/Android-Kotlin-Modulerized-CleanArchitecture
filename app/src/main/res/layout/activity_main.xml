@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class="DetailActivityBinding" />
+    <data class="MainActivityBinding" />
 
     <LinearLayout
         android:layout_width="match_parent"

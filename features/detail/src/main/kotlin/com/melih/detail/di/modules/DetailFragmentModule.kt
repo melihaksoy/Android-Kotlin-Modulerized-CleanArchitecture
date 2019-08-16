@@ -30,9 +30,11 @@ abstract class DetailFragmentModule {
         @Provides
         @JvmStatic
         fun provideGetLaunchDetailParams(fragment: DetailFragment): GetLaunchDetails.Params {
-            //val args: DetailFragmentArgs by fragment.navArgs()
-            //return GetLaunchDetails.Params(args.launchId)
-            return GetLaunchDetails.Params(10)
+            val launchId =
+                fragment
+                    .requireArguments()
+                    .getLong("launchId", 0L)
+            return GetLaunchDetails.Params(launchId)
         }
     }
 }

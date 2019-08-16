@@ -71,7 +71,8 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
     }
 
     private fun onItemSelected(item: LaunchEntity) {
-        startActivity(Actions.openDetailFor(item.id))
+        broadcastManager.sendBroadcast(Actions.openDetailFor(item.id))
+
     }
 
     //private fun onSearchExpand() {
