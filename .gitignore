@@ -4,6 +4,8 @@
 /.idea
 .DS_Store
 /build
+/fastlane/README.md
+/fastlane/report.xml
 /captures
 .externalNativeBuild
 /projectFilesBackup
