@@ -30,9 +30,29 @@ platform :android do
     run_detekt()
   end
 
-  desc "Runs all tests in all modules"
-  lane :test_all do
-    run_all_tests()
+  desc "Runs tests in app module"
+  lane :test_app do
+    run_app_tests()
+  end
+
+  desc "Runs tests in core module"
+  lane :test_core do
+    run_core_tests()
+  end
+
+  desc "Runs tests in launches module"
+  lane :test_launches do
+    run_launches_tests()
+  end
+
+  desc "Runs tests in detail module"
+  lane :test_detail do
+    run_detail_tests()
+  end
+
+  desc "Runs tests in repository module"
+  lane :test_repository do
+    run_repository_tests()
   end
 
 # ================ Gradle tasks ================
@@ -45,7 +65,23 @@ platform :android do
     gradle(task: "removeReports")
   end
 
-  def run_all_tests
-    gradle(task: "clean test --continue")
+  def run_app_tests
+    gradle(task: "clean app:test --continue")
+  end
+
+  def run_core_tests
+    gradle(task: "clean core:test --continue")
+  end
+
+  def run_launches_tests
+    gradle(task: "clean features:launches:test --continue")
+  end
+
+  def run_detail_tests
+    gradle(task: "clean features:detail:test --continue")
+  end
+
+  def run_repository_tests
+    gradle(task: "clean repository:test --continue")
   end
 end
