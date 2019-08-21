@@ -13,3 +13,6 @@
 
 # Project reports
 /reports
+
+#jacoco.exec
+jacoco.exec
