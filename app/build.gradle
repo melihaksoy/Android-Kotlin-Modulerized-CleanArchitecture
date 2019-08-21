@@ -37,4 +37,7 @@ dependencies {
     compileOnly libraries.retrofit
     compileOnly libraries.room
     compileOnly libraries.paging
+
+    // Need for proper renders in xml previews
+    compileOnly libraries.constraintLayout
 }

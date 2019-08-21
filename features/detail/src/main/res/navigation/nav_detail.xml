@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_detail"
-    app:startDestination="@id/detailFragment">
+<navigation
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_detail"
+	app:startDestination="@id/detailFragment">
 
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.melih.detail.ui.DetailFragment"
-        android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail">
-        <argument
-            android:name="launchId"
-            android:defaultValue="-1L"
-            app:argType="long" />
-    </fragment>
+	<fragment
+		android:id="@+id/detailFragment"
+		android:name="com.melih.detail.ui.DetailFragment"
+		android:label="DetailFragment"
+		tools:layout="@layout/fragment_detail">
+		<argument
+			android:name="launch-id"
+			android:defaultValue="0L"
+			app:argType="long" />
+		<deepLink
+			android:id="@+id/detailDeepLink"
+			app:uri="@string/detail_deeplink" />
+	</fragment>
 </navigation>

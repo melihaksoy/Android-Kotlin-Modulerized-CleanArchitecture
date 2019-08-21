@@ -32,7 +32,7 @@ abstract class DetailFragmentModule {
         @Provides
         @JvmStatic
         fun provideGetLaunchDetailParams(fragment: DetailFragment): GetLaunchDetails.Params {
-            val args: DetailFragmentArgs by fragment.navArgs()
+            val args by fragment.navArgs<DetailFragmentArgs>()
             return GetLaunchDetails.Params(args.launchId)
         }
     }
