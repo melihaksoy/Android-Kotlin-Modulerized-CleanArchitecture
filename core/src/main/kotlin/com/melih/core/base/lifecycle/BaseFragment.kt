@@ -8,9 +8,6 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.Snackbar
 import com.melih.core.R
 import com.melih.repository.interactors.base.Reason
@@ -25,9 +22,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     // region Properties
 
-    protected lateinit var navController: NavController
     protected lateinit var binding: T
-    protected lateinit var broadcastManager: LocalBroadcastManager
     // endregion
 
     // region Functions
@@ -37,8 +32,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        broadcastManager = LocalBroadcastManager.getInstance(requireContext())
-        navController = NavHostFragment.findNavController(this)
         binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         binding.lifecycleOwner = this
         return binding.root

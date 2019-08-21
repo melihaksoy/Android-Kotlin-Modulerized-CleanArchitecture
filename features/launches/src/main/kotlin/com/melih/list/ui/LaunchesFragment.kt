@@ -3,7 +3,7 @@ package com.melih.list.ui
 import android.os.Bundle
 import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.melih.core.actions.Actions
+import com.melih.core.actions.openDetail
 import com.melih.core.base.lifecycle.BaseDaggerFragment
 import com.melih.core.extensions.createFor
 import com.melih.core.extensions.observe
@@ -36,17 +36,6 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
         observeDataChanges()
     }
 
-    //override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-    //    inflater.inflate(R.menu.menu_rocket_list, menu)
-    //
-    //    with(menu.findItem(R.id.search)) {
-    //        onExpandOrCollapse(::onSearchExpand, ::onSearchCollapse)
-    //        setSearchQueryListener(actionView as SearchView)
-    //    }
-    //
-    //    super.onCreateOptionsMenu(menu, inflater)
-    //}
-
     private fun observeDataChanges() {
 
         // Observing state to show loading
@@ -64,30 +53,11 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
         observe(viewModel.pagedList) {
             launchesAdapter.submitList(it)
         }
-
-        //observe(viewModel.filteredItems) {
-        //    launchesAdapter.submitList(it)
-        //}
     }
 
     private fun onItemSelected(item: LaunchEntity) {
-        broadcastManager.sendBroadcast(Actions.openDetailFor(item.id))
-
+        openDetail(item.id)
     }
-
-    //private fun onSearchExpand() {
-    //    binding.swipeRefreshLayout.isEnabled = false
-    //}
-
-    //private fun onSearchCollapse() {
-    //    binding.swipeRefreshLayout.isEnabled = true
-    //}
-
-    //private fun setSearchQueryListener(searchView: SearchView) {
-    //    searchView.setOnQueryChangedListener {
-    //        viewModel.filterItemListBy(it)
-    //    }
-    //}
 
     override fun onRefresh() {
         viewModel.refresh()

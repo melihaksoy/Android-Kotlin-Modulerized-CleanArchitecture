@@ -1,3 +1,4 @@
+apply plugin: "androidx.navigation.safeargs"
 apply from: "$rootProject.projectDir/scripts/module.gradle"
 
 android {
