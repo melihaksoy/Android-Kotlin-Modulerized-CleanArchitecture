@@ -1,6 +1,6 @@
 # Rocket Science
 
-[![codebeat badge](https://codebeat.co/badges/542fb08a-b3cc-4ff8-b1bb-35a66932f12f)](https://codebeat.co/projects/github-com-melihaksoy-rocketscience-master) [![codecov](https://codecov.io/gh/melihaksoy/RocketScience/branch/master/graph/badge.svg?token=pXPKpV5dz6)](https://codecov.io/gh/melihaksoy/RocketScience) [![CircleCI](https://circleci.com/gh/melihaksoy/RocketScience/tree/master.svg?style=svg&circle-token=705e399a0116be0a5bb10bddc72fc7ef19b568e3)](https://circleci.com/gh/melihaksoy/RocketScience/tree/master) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+[![codebeat badge](https://codebeat.co/badges/542fb08a-b3cc-4ff8-b1bb-35a66932f12f)](https://codebeat.co/projects/github-com-melihaksoy-rocketscience-master) [![codecov](https://codecov.io/gh/melihaksoy/RocketScience/branch/master/graph/badge.svg?token=pXPKpV5dz6)](https://codecov.io/gh/melihaksoy/RocketScience) [![CircleCI](https://circleci.com/gh/melihaksoy/Android-Kotlin-Modulerized-CleanArchitecture/tree/master.svg?style=svg)](https://circleci.com/gh/melihaksoy/Android-Kotlin-Modulerized-CleanArchitecture/tree/master) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
 RocketScience is a prototype application tries to serve an example for modularization & clean architecture in Android.
 
