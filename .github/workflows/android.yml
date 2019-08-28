@@ -1,0 +1,61 @@
+name: Android CI
+
+on: [push]
+
+jobs:
+  setup:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup
+      run: |
+        gem install bundler
+        bundle install
+        mkdir ~/code/reports
+            
+  code_quality:
+    
+    runs-on: ubuntu-latest
+    needs: setup
+    
+    steps:
+    - name: Code Quality ( Detekt )
+      run: fastlane detekt
+      
+  test:
+  
+    runs-on: ubuntu-latest
+    needs: setup
+    
+    steps:
+    - name: Test App
+      run: |
+        fastlane test_app
+        ./gradlew app:jacocoTestReport
+        bash <(curl -s https://codecov.io/bash)
+        
+    - name: Test Core
+      run: |
+        fastlane test_core
+        ./gradlew core:jacocoTestReport
+        bash <(curl -s https://codecov.io/bash)
+        
+    - name: Test Launches
+      run: |
+        fastlane test_launches
+        ./gradlew launches:jacocoTestReport
+        bash <(curl -s https://codecov.io/bash)
+
+    - name: Test Detail
+      run: |
+        fastlane test_detail
+        ./gradlew detail:jacocoTestReport
+        bash <(curl -s https://codecov.io/bash)
+        
+    - name: Test Repository
+      run: |
+        fastlane test_repository
+        ./gradlew repository:jacocoTestReport
+        bash <(curl -s https://codecov.io/bash)
