@@ -8,8 +8,10 @@ import dagger.android.AndroidInjector
 
 @AppScope
 @Component(
-    modules = [AndroidInjectionModule::class,
-        AppModule::class],
+    modules = [
+        AndroidInjectionModule::class,
+        AppModule::class
+    ],
 
     dependencies = [CoreComponent::class]
 )

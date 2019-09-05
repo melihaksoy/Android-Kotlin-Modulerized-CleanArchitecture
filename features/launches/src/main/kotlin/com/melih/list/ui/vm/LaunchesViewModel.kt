@@ -19,27 +19,5 @@ class LaunchesViewModel @Inject constructor(
 
     override val config: PagedList.Config
         get() = launchesPagingConfig
-
-    //private val _filteredItems = MediatorLiveData<PagedList<LaunchEntity>>()
-
-    //val filteredItems: LiveData<PagedList<LaunchEntity>>
-    //    get() = _filteredItems
-    // endregion
-
-    //init {
-    //    _filteredItems.addSource(pagedList, _filteredItems::setValue)
-    //}
-
-    // region Functions
-
-    //fun filterItemListBy(query: String?) {
-    //
-    //    _filteredItems.value = if (!query.isNullOrBlank()) {
-    //        pagedList.value
-    //            ?.snapshot() as PagedList<LaunchEntity>
-    //    } else {
-    //        pagedList.value
-    //    }
-    //}
     // endregion
 }

@@ -26,7 +26,6 @@ dependencies {
     implementation project(':features:launches')
     implementation project(':features:detail')
 
-    implementation libraries.coroutines
     implementation libraries.navigation
 
     debugImplementation libraries.leakCanary
@@ -37,6 +36,7 @@ dependencies {
     compileOnly libraries.retrofit
     compileOnly libraries.room
     compileOnly libraries.paging
+    compileOnly libraries.swipeRefreshLayout
 
     // Need for proper renders in xml previews
     compileOnly libraries.constraintLayout

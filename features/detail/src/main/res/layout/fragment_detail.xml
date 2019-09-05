@@ -1,75 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="DetailBinding">
+	<data class="DetailBinding">
 
-        <variable
-            name="viewModel"
-            type="com.melih.detail.ui.DetailViewModel" />
-    </data>
+		<variable
+			name="viewModel"
+			type="com.melih.detail.ui.DetailViewModel" />
+	</data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+		<ImageView
+			android:id="@+id/imgRocket"
+			imageUrl="@{viewModel.imageUrl}"
+			android:layout_width="0dp"
+			android:layout_height="220dp"
+			android:layout_marginStart="@dimen/padding_standard"
+			android:layout_marginLeft="@dimen/padding_standard"
+			android:layout_marginTop="@dimen/padding_standard"
+			android:layout_marginEnd="@dimen/padding_standard"
+			android:layout_marginRight="@dimen/padding_standard"
+			android:contentDescription="@string/cd_rocket_image"
+			android:scaleType="centerCrop"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:srcCompat="@tools:sample/avatars[14]" />
 
-            <ImageView
-                android:id="@+id/imgRocket"
-                imageUrl="@{viewModel.imageUrl}"
-                android:layout_width="0dp"
-                android:layout_height="220dp"
-                android:layout_marginStart="@dimen/padding_standard"
-                android:layout_marginLeft="@dimen/padding_standard"
-                android:layout_marginTop="@dimen/padding_standard"
-                android:layout_marginEnd="@dimen/padding_standard"
-                android:layout_marginRight="@dimen/padding_standard"
-                android:contentDescription="@string/cd_rocket_image"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars[14]" />
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/tvTitle"
+			style="@style/TitleTextStyle"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/padding_standard"
+			android:layout_marginLeft="@dimen/padding_standard"
+			android:layout_marginTop="@dimen/padding_standard"
+			android:layout_marginEnd="@dimen/padding_standard"
+			android:layout_marginRight="@dimen/padding_standard"
+			android:text="@{viewModel.rocketName}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/imgRocket"
+			tools:text="@sample/launches.json/launches/name" />
 
-            <TextView
-                android:id="@+id/tvTitle"
-                style="@style/TitleTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_standard"
-                android:layout_marginLeft="@dimen/padding_standard"
-                android:layout_marginTop="@dimen/padding_standard"
-                android:layout_marginEnd="@dimen/padding_standard"
-                android:layout_marginRight="@dimen/padding_standard"
-                android:text="@{viewModel.rocketName}"
-                android:textAppearance="@style/TitleTextAppearance"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgRocket"
-                tools:text="@sample/launches.json/launches/name" />
-
-            <TextView
-                android:id="@+id/tvDescription"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="@dimen/padding_standard"
-                android:layout_marginLeft="@dimen/padding_standard"
-                android:layout_marginTop="@dimen/padding_standard"
-                android:layout_marginEnd="@dimen/padding_standard"
-                android:layout_marginRight="@dimen/padding_standard"
-                android:layout_marginBottom="@dimen/padding_standard"
-                android:text="@{viewModel.description}"
-                android:textAppearance="@style/DescriptionTextAppearance"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-                tools:text="@sample/launches.json/launches/missions/description" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/tvDescription"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:layout_marginStart="@dimen/padding_standard"
+			android:layout_marginLeft="@dimen/padding_standard"
+			android:layout_marginTop="@dimen/padding_standard"
+			android:layout_marginEnd="@dimen/padding_standard"
+			android:layout_marginRight="@dimen/padding_standard"
+			android:layout_marginBottom="@dimen/padding_standard"
+			android:text="@{viewModel.description}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+			tools:text="@sample/launches.json/launches/missions/description" />
+	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

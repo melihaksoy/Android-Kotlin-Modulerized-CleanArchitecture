@@ -1,35 +1,34 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+	<!-- Base application theme. -->
+	<style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+		<item name="colorPrimary">@color/primaryColor</item>
+		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
+		<item name="colorSecondary">@color/secondaryColor</item>
+		<item name="colorAccent">@color/secondaryDarkColor</item>
 
-    <!--Styles-->
+		<item name="android:textColorPrimary">@color/primaryTextColor</item>
+		<item name="android:textColorSecondary">@color/secondaryTextColor</item>
 
-    <style name="TitleTextStyle">
-        <item name="android:singleLine">true</item>
-    </style>
+		<item name="toolbarStyle">@style/AppTheme.ToolbarStyle</item>
+	</style>
 
-    <style name="ShortDescriptionTextStyle">
-        <item name="android:ellipsize">end</item>
-        <item name="android:maxLines">@integer/common_max_lines</item>
-        <item name="android:gravity">center|left</item>
-    </style>
+	<style name="AppTheme.ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+		<item name="android:background">@color/primaryColor</item>
+	</style>
 
-    <style name="DescriptionTextStyle">
+	<!--Styles-->
 
-    </style>
+	<style name="TitleTextStyle" parent="Widget.MaterialComponents.TextView">
+		<item name="android:singleLine">true</item>
+	</style>
 
-    <!--Text appearances-->
+	<style name="ShortDescriptionTextStyle" parent="Widget.MaterialComponents.TextView">
+		<item name="android:ellipsize">end</item>
+		<item name="android:maxLines">@integer/common_max_lines</item>
+	</style>
 
-    <style name="TitleTextAppearance" parent="TextAppearance.AppCompat.Title" />
+	<style name="DescriptionTextStyle">
 
-    <style name="DescriptionTextAppearance" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:textColor">@color/lightGray</item>
-    </style>
-
+	</style>
 </resources>

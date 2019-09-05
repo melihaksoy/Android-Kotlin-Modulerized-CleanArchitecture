@@ -23,6 +23,7 @@ dependencies {
     implementation libraries.liveDataKTX
     implementation libraries.navigation
     implementation libraries.picasso
+    implementation libraries.material
 
     testImplementation testLibraries.jUnitApi
     testImplementation testLibraries.mockk

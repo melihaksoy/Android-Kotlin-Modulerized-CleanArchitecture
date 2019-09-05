@@ -8,6 +8,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation libraries.paging
+    implementation libraries.swipeRefreshLayout
 
     testImplementation testLibraries.coroutinesTest
 }
