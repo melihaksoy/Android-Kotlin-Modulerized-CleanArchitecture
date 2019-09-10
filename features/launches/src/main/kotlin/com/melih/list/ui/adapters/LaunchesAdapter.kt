@@ -19,6 +19,7 @@ class LaunchesAdapter(itemClickListener: (LaunchEntity) -> Unit) : BasePagingLis
     ): BaseViewHolder<LaunchEntity> =
         LaunchesViewHolder(LaunchRowBinding.inflate(inflater, parent, false))
 
+
 }
 
 class LaunchesViewHolder(private val binding: LaunchRowBinding) : BaseViewHolder<LaunchEntity>(binding) {

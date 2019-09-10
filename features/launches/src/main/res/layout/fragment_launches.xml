@@ -11,27 +11,26 @@
 			type="com.melih.list.ui.vm.LaunchesViewModel" />
 	</data>
 
-	<androidx.constraintlayout.widget.ConstraintLayout
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:background="@null">
 
 		<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 			android:id="@+id/swipeRefreshLayout"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			app:layout_behavior="com.melih.core.utils.SnackbarBehaviour"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent">
+			android:background="@null"
+			app:layout_behavior="com.melih.core.utils.SnackbarBehaviour">
 
 			<androidx.recyclerview.widget.RecyclerView
 				android:id="@+id/rocketList"
 				android:layout_width="0dp"
 				android:layout_height="0dp"
+				android:background="@null"
 				android:layoutAnimation="@anim/layout_item_enter"
 				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 				tools:listitem="@layout/row_launch" />
 		</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-	</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

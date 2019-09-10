@@ -2,10 +2,10 @@ package com.melih.list.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.melih.core.actions.openDetail
 import com.melih.core.base.lifecycle.BaseDaggerFragment
-import com.melih.core.extensions.createFor
 import com.melih.core.extensions.observe
 import com.melih.list.R
 import com.melih.list.databinding.ListBinding
@@ -18,8 +18,7 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
 
     // region Properties
 
-    private val viewModel: LaunchesViewModel
-        get() = viewModelFactory.createFor(this)
+    private val viewModel by viewModels<LaunchesViewModel> { viewModelFactory }
 
     private val launchesAdapter = LaunchesAdapter(::onItemSelected)
     // endregion

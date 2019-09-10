@@ -18,6 +18,7 @@
 		android:layout_marginLeft="@dimen/padding_standard"
 		android:layout_marginTop="@dimen/padding_standard"
 		android:layout_marginEnd="@dimen/padding_standard"
+		android:background="@null"
 		android:layout_marginRight="@dimen/padding_standard"
 		app:cardElevation="10dp">
 

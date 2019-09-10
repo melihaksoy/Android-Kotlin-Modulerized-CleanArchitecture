@@ -11,13 +11,18 @@
 		<item name="android:textColorSecondary">@color/secondaryTextColor</item>
 
 		<item name="toolbarStyle">@style/AppTheme.ToolbarStyle</item>
+		<item name="materialCardViewStyle">@style/AppTheme.CardViewStyle</item>
 	</style>
+
+	<!-- Widgets -->
 
 	<style name="AppTheme.ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
 		<item name="android:background">@color/primaryColor</item>
 	</style>
 
-	<!--Styles-->
+	<style name="AppTheme.CardViewStyle" parent="Widget.MaterialComponents.CardView">
+		<item name="android:background">@null</item>
+	</style>
 
 	<style name="TitleTextStyle" parent="Widget.MaterialComponents.TextView">
 		<item name="android:singleLine">true</item>
@@ -27,6 +32,8 @@
 		<item name="android:ellipsize">end</item>
 		<item name="android:maxLines">@integer/common_max_lines</item>
 	</style>
+
+	<!--Styles-->
 
 	<style name="DescriptionTextStyle">
 
