@@ -9,7 +9,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @UseExperimental(ExperimentalCoroutinesApi::class)
 sealed class Result<out T>
 
-// region Subclasses
+//region Subclasses
 
 class Success<out T>(val successData: T) : Result<T>()
 class Failure(val errorData: Reason) : Result<Nothing>()
@@ -18,9 +18,9 @@ sealed class State : Result<Nothing>() {
     class Loading : State()
     class Loaded : State()
 }
-// endregion
+//endregion
 
-// region Extensions
+//region Extensions
 
 inline fun <T> Result<T>.handle(stateBlock: (State) -> Unit, failureBlock: (Reason) -> Unit, successBlock: (T) -> Unit) {
     when (this) {
@@ -50,4 +50,4 @@ inline fun <T> Result<T>.onState(stateBlock: (State) -> Unit): Result<T> {
 
     return this
 }
-// endregion
+//endregion

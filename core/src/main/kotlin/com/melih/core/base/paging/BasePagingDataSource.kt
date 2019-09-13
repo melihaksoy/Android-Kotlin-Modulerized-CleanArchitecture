@@ -37,12 +37,12 @@ const val INITIAL_PAGE = 0
 @UseExperimental(ExperimentalCoroutinesApi::class)
 abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
 
-    // region Abstractions
+    //region Abstractions
 
     abstract fun loadDataForPage(page: Int): Flow<Result<List<T>>> // Load next page(s)
-    // endregion
+    //endregion
 
-    // region Properties
+    //region Properties
 
     private val _stateData = MutableLiveData<State>()
     private val _reasonData = MutableLiveData<Reason>()
@@ -59,9 +59,9 @@ abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
      */
     val reasonData: LiveData<Reason>
         get() = _reasonData
-    // endregion
+    //endregion
 
-    // region Functions
+    //region Functions
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, T>) {
         // Looping through channel as we'll receive any state, error or data here
@@ -136,5 +136,5 @@ abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
         coroutineScope.cancel()
         super.invalidate()
     }
-    // endregion
+    //endregion
 }

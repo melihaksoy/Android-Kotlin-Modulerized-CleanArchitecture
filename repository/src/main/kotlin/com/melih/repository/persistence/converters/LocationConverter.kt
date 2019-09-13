@@ -9,6 +9,7 @@ import com.squareup.moshi.Moshi
  * Converts [location][LocationEntity]
  */
 class LocationConverter : BaseConverter<LocationEntity>() {
+
     override fun getAdapter(moshi: Moshi): JsonAdapter<LocationEntity> =
         LocationEntityJsonAdapter(moshi)
 }

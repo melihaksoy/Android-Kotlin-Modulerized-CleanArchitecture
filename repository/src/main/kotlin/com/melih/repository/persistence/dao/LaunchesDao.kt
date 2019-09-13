@@ -12,7 +12,7 @@ import com.melih.repository.entities.LaunchEntity
 @Dao
 internal abstract class LaunchesDao {
 
-    // region Queries
+    //region Queries
 
     @Query("SELECT * FROM Launches ORDER BY launchStartTime DESC LIMIT :count OFFSET :page*:count")
     abstract suspend fun getLaunches(count: Int, page: Int): List<LaunchEntity>
@@ -22,14 +22,14 @@ internal abstract class LaunchesDao {
 
     @Query("DELETE FROM Launches")
     abstract suspend fun nukeLaunches()
-    // endregion
+    //endregion
 
-    // region Insertion
+    //region Insertion
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun saveLaunches(launches: List<LaunchEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun saveLaunch(launch: LaunchEntity)
-    // endregion
+    //endregion
 }

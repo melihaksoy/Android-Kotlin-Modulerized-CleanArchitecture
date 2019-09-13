@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="ListBinding">
+	<data class="ListBinding">
 
-        <variable
-            name="viewModel"
-            type="com.melih.list.ui.vm.LaunchesViewModel" />
-    </data>
+		<variable
+			name="viewModel"
+			type="com.melih.list.ui.vm.LaunchesViewModel" />
+	</data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@null">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="com.melih.core.utils.SnackbarBehaviour">
+		<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+			android:id="@+id/swipeRefreshLayout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@null"
+			app:layout_behavior="com.melih.core.utils.SnackbarBehaviour">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rocketList"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layoutAnimation="@anim/layout_item_enter"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/row_launch" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/rocketList"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:background="@null"
+				android:layoutAnimation="@anim/layout_item_enter"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				tools:listitem="@layout/row_launch" />
+		</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

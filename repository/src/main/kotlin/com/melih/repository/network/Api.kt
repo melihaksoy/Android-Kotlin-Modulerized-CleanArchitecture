@@ -12,6 +12,8 @@ import retrofit2.http.Query
  */
 internal interface Api {
 
+    //region Get
+
     @GET("launch/next/{count}")
     suspend fun getNextLaunches(
         @Path("count") count: Int,
@@ -22,4 +24,5 @@ internal interface Api {
     suspend fun getLaunchById(
         @Path("id") id: Long
     ): Response<LaunchEntity>
+    //endregion
 }

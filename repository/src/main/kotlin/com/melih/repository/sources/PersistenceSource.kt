@@ -16,7 +16,8 @@ import javax.inject.Inject
 internal class PersistenceSource @Inject constructor(
     ctx: Context
 ) : Repository() {
-    // region Functions
+
+    //region Functions
 
     private val launchesDatabase = LaunchesDatabase.getInstance(ctx)
 
@@ -45,5 +46,5 @@ internal class PersistenceSource @Inject constructor(
     internal suspend fun saveLaunch(launch: LaunchEntity) {
         launchesDatabase.launchesDao.saveLaunch(launch)
     }
-    // endregion
+    //endregion
 }

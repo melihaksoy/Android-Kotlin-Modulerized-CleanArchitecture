@@ -15,10 +15,10 @@ import kotlinx.coroutines.launch
  */
 abstract class BaseViewModel<T> : ViewModel() {
 
-    // region Abstractions
+    //region Abstractions
 
     abstract suspend fun loadData()
-    // endregion
+    //endregion
 
     init {
         viewModelScope.launch {
@@ -26,7 +26,7 @@ abstract class BaseViewModel<T> : ViewModel() {
         }
     }
 
-    // region Properties
+    //region Properties
 
     private val _successData = MutableLiveData<T>()
     private val _stateData = MutableLiveData<State>()
@@ -49,9 +49,9 @@ abstract class BaseViewModel<T> : ViewModel() {
      */
     val errorData: LiveData<Reason>
         get() = _errorData
-    // endregion
+    //endregion
 
-    // region Functions
+    //region Functions
 
     /**
      * Default success handler which assigns given [data] to [successData]
@@ -97,5 +97,5 @@ abstract class BaseViewModel<T> : ViewModel() {
             loadData()
         }
     }
-    // endregion
+    //endregion
 }

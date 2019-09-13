@@ -4,7 +4,6 @@ apply plugin: 'kotlin-kapt'
 
 apply from: "$rootProject.projectDir/scripts/default_android_config.gradle"
 apply from: "$rootProject.projectDir/scripts/sources.gradle"
-apply from: "$rootProject.projectDir/scripts/flavors.gradle"
 
 android {
     dataBinding {
@@ -23,6 +22,7 @@ dependencies {
     implementation libraries.liveDataKTX
     implementation libraries.navigation
     implementation libraries.picasso
+    implementation libraries.material
 
     testImplementation testLibraries.jUnitApi
     testImplementation testLibraries.mockk

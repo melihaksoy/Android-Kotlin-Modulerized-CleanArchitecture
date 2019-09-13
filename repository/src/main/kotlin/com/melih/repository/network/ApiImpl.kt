@@ -16,7 +16,7 @@ internal const val TIMEOUT_DURATION = 7L
 
 internal class ApiImpl @Inject constructor() : Api {
 
-    // region Properties
+    //region Properties
 
     private val service by lazy {
         val moshi = Moshi.Builder()
@@ -39,7 +39,9 @@ internal class ApiImpl @Inject constructor() : Api {
             .build()
             .create(Api::class.java)
     }
-    // endregion
+    //endregion
+
+    //region Functions
 
     override suspend fun getNextLaunches(
         count: Int,
@@ -51,4 +53,5 @@ internal class ApiImpl @Inject constructor() : Api {
         id: Long
     ): Response<LaunchEntity> =
         service.getLaunchById(id)
+    //endregion
 }

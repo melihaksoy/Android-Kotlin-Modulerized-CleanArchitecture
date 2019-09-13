@@ -3,21 +3,20 @@ package com.melih.detail.ui
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
+import androidx.fragment.app.viewModels
 import com.melih.core.base.lifecycle.BaseDaggerFragment
-import com.melih.core.extensions.createFor
 import com.melih.core.extensions.observe
 import com.melih.detail.R
 import com.melih.detail.databinding.DetailBinding
 
 class DetailFragment : BaseDaggerFragment<DetailBinding>() {
 
-    // region Properties
+    //region Properties
 
-    private val viewModel: DetailViewModel
-        get() = viewModelFactory.createFor(this)
-    // endregion
+    private val viewModel by viewModels<DetailViewModel> { viewModelFactory }
+    //endregion
 
-    // region Functions
+    //region Functions
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,5 +33,5 @@ class DetailFragment : BaseDaggerFragment<DetailBinding>() {
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_detail
-    // endregion
+    //endregion
 }

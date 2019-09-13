@@ -14,7 +14,7 @@ import javax.inject.Inject
  * Parent of fragments which has injections. Aim is to seperate [BaseFragment] functionality for fragments which
  * won't need any injection.
  *
- * Note that fragments that extends from [BaseDaggerFragment] should contribute android injector.
+ * Note that fragments that extends from [BaseDaggerFragment] should contribute their injector.
  *
  * This class provides [viewModelFactory] which serves as factory for view models
  * in the project. It's injected by map of view models that this app is serving. Check [ViewModelFactory]
@@ -22,16 +22,16 @@ import javax.inject.Inject
  */
 abstract class BaseDaggerFragment<T : ViewDataBinding> : BaseFragment<T>(), HasAndroidInjector {
 
-    // region Properties
+    //region Properties
 
     @get:Inject
     internal var androidInjector: DispatchingAndroidInjector<Any>? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-    // endregion
+    //endregion
 
-    // region Functions
+    //region Functions
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -39,5 +39,5 @@ abstract class BaseDaggerFragment<T : ViewDataBinding> : BaseFragment<T>(), HasA
     }
 
     override fun androidInjector(): AndroidInjector<Any>? = androidInjector
-    // endregion
+    //endregion
 }

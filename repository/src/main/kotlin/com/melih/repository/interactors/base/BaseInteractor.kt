@@ -13,12 +13,12 @@ import kotlinx.coroutines.flow.flowOn
 @UseExperimental(ExperimentalCoroutinesApi::class)
 abstract class BaseInteractor<T, in P : InteractorParameters> {
 
-    // region Abstractions
+    //region Abstractions
 
     protected abstract suspend fun FlowCollector<Result<T>>.run(params: P)
-    // endregion
+    //endregion
 
-    // region Functions
+    //region Functions
 
     operator fun invoke(params: P) =
         flow<Result<T>> {
@@ -26,7 +26,7 @@ abstract class BaseInteractor<T, in P : InteractorParameters> {
             run(params)
             emit(State.Loaded())
         }.flowOn(Dispatchers.IO)
-    // endregion
+    //endregion
 }
 
 /**

@@ -1,12 +1,12 @@
-# Rocket Science
+# Android-Kotlin-Modulerized-CleanArchitecture
 
 [![Actions](https://github.com/melihaksoy/Android-Kotlin-Modulerized-CleanArchitecture/workflows/Android%20CI/badge.svg)](https://github.com/melihaksoy/Android-Kotlin-Modulerized-CleanArchitecture/actions) [![CircleCI](https://circleci.com/gh/melihaksoy/Android-Kotlin-Modulerized-CleanArchitecture/tree/master.svg?style=svg)](https://circleci.com/gh/melihaksoy/Android-Kotlin-Modulerized-CleanArchitecture/tree/master) [![codebeat badge](https://codebeat.co/badges/542fb08a-b3cc-4ff8-b1bb-35a66932f12f)](https://codebeat.co/projects/github-com-melihaksoy-rocketscience-master) [![codecov](https://codecov.io/gh/melihaksoy/RocketScience/branch/master/graph/badge.svg?token=pXPKpV5dz6)](https://codecov.io/gh/melihaksoy/RocketScience) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
-RocketScience is a prototype application tries to serve an example for modularization & clean architecture in Android.
+This is a prototype application tries to serve an example for modularization & clean architecture in Android.
 
 While there are many blogs about good practices, it's hard to come by a complete example that merges these different popular topics & approaches.
 
-RocketScience takes popular approaches and libraries to create an example on how to actually bind these components with each other.
+This project takes popular approaches and libraries to create an example on how to actually bind these components with each other.
 
 I'll soon be writing small series about roadmap, challanges, alternatives and try - fails I've encountered during development in [Medium](https://medium.com/@aksoymelihcan).
 

@@ -16,20 +16,20 @@ import androidx.paging.DataSource
  */
 abstract class BasePagingFactory<T> : DataSource.Factory<Int, T>() {
 
-    // region Abstractions
+    //region Abstractions
 
     abstract fun createSource(): BasePagingDataSource<T>
-    // endregion
+    //endregion
 
-    // region Properties
+    //region Properties
 
     private val _currentSource = MutableLiveData<BasePagingDataSource<T>>()
 
     val currentSource: LiveData<BasePagingDataSource<T>>
         get() = _currentSource
-    // endregion
+    //endregion
 
-    // region Functions
+    //region Functions
 
     override fun create(): DataSource<Int, T> = createSource().apply { _currentSource.postValue(this) }
 
@@ -38,5 +38,5 @@ abstract class BasePagingFactory<T> : DataSource.Factory<Int, T>() {
      * by calling [BasePagingDataSource.invalidate]
      */
     fun invalidateDataSource() = currentSource.value?.invalidate()
-    // endregion
+    //endregion
 }

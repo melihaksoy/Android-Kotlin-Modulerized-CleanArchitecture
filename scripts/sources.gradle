@@ -14,4 +14,21 @@ android {
         jvmTarget = '1.8'
         freeCompilerArgs += "-Xuse-experimental=kotlin.Experimental"
     }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            testCoverageEnabled = true
+        }
+
+        dev {
+            initWith debug
+        }
+    }
 }

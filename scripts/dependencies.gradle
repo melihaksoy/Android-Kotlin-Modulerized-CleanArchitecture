@@ -1,77 +1,80 @@
 ext {
 
     versions = [
-            minSdkVersion         : 21,
-            compileSdkVersion     : 28,
-            targetSdkVersion      : 28,
-            buildToolsVersion     : "28.0.3",
-            supportLibraryVersion : "28.0.0",
-            appCompatVersion      : "1.1.0-rc01",
-            lifecycleVersion      : "2.2.0-alpha03",
-            fragmentVersion       : "1.2.0-alpha02",
-            workManagerVersion    : "2.2.0-rc01",
-            constraintLayoutVesion: "2.0.0-beta1",
-            cardViewVersion       : "1.0.0",
-            recyclerViewVersion   : "1.1.0-beta02",
-            pagingVersion         : "2.1.0",
-            viewPagerVersion      : "1.0.0-beta03",
-            collectionVersion     : "1.1.0",
-            roomVersion           : "2.2.0-alpha02",
-            daggerVersion         : "2.24",
-            okHttpVersion         : "4.0.1",
-            retrofitVersion       : "2.6.1",
-            picassoVersion        : "2.71828",
-            moshiVersion          : "1.8.0",
-            coroutinesVersion     : "1.3.0-RC2",
-            leakCanaryVersion     : "2.0-beta-2",
-            timberVersion         : "4.7.1",
-            jUnitVersion          : "5.5.1",
-            espressoVersion       : "3.2.0",
-            mockkVersion          : "1.9.3",
-            kluentVersion         : "1.53",
+            minSdkVersion            : 21,
+            compileSdkVersion        : 29,
+            targetSdkVersion         : 29,
+            buildToolsVersion        : "29.0.2",
+            appCompatVersion         : "1.1.0-rc01",
+            lifecycleVersion         : "2.2.0-alpha03",
+            fragmentVersion          : "1.2.0-alpha02",
+            workManagerVersion       : "2.3.0-alpha01",
+            constraintLayoutVesion   : "2.0.0-beta2",
+            cardViewVersion          : "1.0.0",
+            recyclerViewVersion      : "1.1.0-beta03",
+            pagingVersion            : "2.1.0",
+            viewPagerVersion         : "1.0.0-beta03",
+            materialVersion          : "1.1.0-alpha09",
+            swipeRefreshLayoutVersion: "1.1.0-alpha02",
+            collectionVersion        : "1.1.0",
+            roomVersion              : "2.2.0-rc01",
+            daggerVersion            : "2.24",
+            okHttpVersion            : "4.0.1",
+            retrofitVersion          : "2.6.1",
+            picassoVersion           : "2.71828",
+            moshiVersion             : "1.8.0",
+            coroutinesVersion        : "1.3.0-RC2",
+            leakCanaryVersion        : "2.0-beta-2",
+            timberVersion            : "4.7.1",
+            jUnitVersion             : "5.5.1",
+            espressoVersion          : "3.2.0",
+            mockkVersion             : "1.9.3",
+            kluentVersion            : "1.53",
     ]
 
     libraries = [
             /**
              * Android libraries
              */
-            appCompat       : "androidx.appcompat:appcompat:${versions.appCompatVersion}",
-            recyclerView    : "androidx.recyclerview:recyclerview:${versions.recyclerViewVersion}",
-            cardView        : "androidx.cardview:cardview:${versions.cardViewVersion}",
-            constraintLayout: "androidx.constraintlayout:constraintlayout:${versions.constraintLayoutVesion}",
-            multixDex       : "androidx.multidex:multidex:2.0.1",
-            fragment        : "androidx.fragment:fragment-ktx:${versions.fragmentVersion}",
+            appCompat         : "androidx.appcompat:appcompat:${versions.appCompatVersion}",
+            recyclerView      : "androidx.recyclerview:recyclerview:${versions.recyclerViewVersion}",
+            cardView          : "androidx.cardview:cardview:${versions.cardViewVersion}",
+            constraintLayout  : "androidx.constraintlayout:constraintlayout:${versions.constraintLayoutVesion}",
+            multixDex         : "androidx.multidex:multidex:2.0.1",
+            fragment          : "androidx.fragment:fragment-ktx:${versions.fragmentVersion}",
+            material          : "com.google.android.material:material:${versions.materialVersion}",
 
             /**
              * Jetpack
              */
-            navigation      : [
+            navigation        : [
                     "androidx.navigation:navigation-fragment-ktx:$nav_version",
                     "androidx.navigation:navigation-ui-ktx:$nav_version"
             ],
 
-            room            : [
+            room              : [
                     "androidx.room:room-runtime:${versions.roomVersion}",
                     "androidx.room:room-ktx:${versions.roomVersion}"
             ],
 
-            lifecycle       : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycleVersion}",
-            liveDataKTX     : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycleVersion}",
-            workManager     : "androidx.work:work-runtime-ktx:${versions.workManagerVersion}",
-            paging          : "androidx.paging:paging-runtime-ktx:${versions.pagingVersion}",
-            viewPager       : "androidx.viewpager2:viewpager2:${versions.viewPagerVersion}",
-            collection      : "androidx.collection:collection-ktx:${versions.collectionVersion}",
+            lifecycle         : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycleVersion}",
+            liveDataKTX       : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycleVersion}",
+            workManager       : "androidx.work:work-runtime-ktx:${versions.workManagerVersion}",
+            paging            : "androidx.paging:paging-runtime-ktx:${versions.pagingVersion}",
+            viewPager         : "androidx.viewpager2:viewpager2:${versions.viewPagerVersion}",
+            collection        : "androidx.collection:collection-ktx:${versions.collectionVersion}",
+            swipeRefreshLayout: "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swipeRefreshLayoutVersion}",
 
             /**
              * Kotlin
              */
-            kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
-            coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutinesVersion}",
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
+            coroutines        : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutinesVersion}",
 
             /**
              * Dagger
              */
-            dagger          : [
+            dagger            : [
                     "com.google.dagger:dagger:${versions.daggerVersion}",
                     "com.google.dagger:dagger-android:${versions.daggerVersion}",
                     "com.google.dagger:dagger-android-support:${versions.daggerVersion}"
@@ -80,17 +83,17 @@ ext {
             /**
              * OkHttp
              */
-            okHttp          : [
+            okHttp            : [
                     "com.squareup.okhttp3:okhttp:${versions.okHttpVersion}",
                     "com.squareup.okhttp3:logging-interceptor:${versions.okHttpVersion}"
             ],
 
-            okHttpLogger    : "com.squareup.okhttp3:logging-interceptor:${versions.okHttpVersion}",
+            okHttpLogger      : "com.squareup.okhttp3:logging-interceptor:${versions.okHttpVersion}",
 
             /**
              * Retrofit
              */
-            retrofit        : [
+            retrofit          : [
                     "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}",
                     "com.squareup.retrofit2:converter-moshi:${versions.retrofitVersion}"
             ],
@@ -98,27 +101,27 @@ ext {
             /**
              * Moshi
              */
-            moshi           : [
+            moshi             : [
                     "com.squareup.moshi:moshi:${versions.moshiVersion}",
                     "com.squareup.moshi:moshi-kotlin:${versions.moshiVersion}"
             ],
 
-            moshiKotlin     : "com.squareup.moshi:moshi-kotlin:${versions.moshiVersion}",
+            moshiKotlin       : "com.squareup.moshi:moshi-kotlin:${versions.moshiVersion}",
 
             /**
              * Picasso for image loading
              */
-            picasso         : "com.squareup.picasso:picasso:${versions.picassoVersion}",
+            picasso           : "com.squareup.picasso:picasso:${versions.picassoVersion}",
 
             /**
              * LeakCanary
              */
-            leakCanary      : "com.squareup.leakcanary:leakcanary-android:${versions.leakCanaryVersion}",
+            leakCanary        : "com.squareup.leakcanary:leakcanary-android:${versions.leakCanaryVersion}",
 
             /**
              * Timber
              */
-            timber          : "com.jakewharton.timber:timber:${versions.timberVersion}"
+            timber            : "com.jakewharton.timber:timber:${versions.timberVersion}"
     ]
 
     annotationProcessors = [

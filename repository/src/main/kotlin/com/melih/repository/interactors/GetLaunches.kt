@@ -19,11 +19,16 @@ const val DEFAULT_LAUNCHES_AMOUNT = 15
 @UseExperimental(ExperimentalCoroutinesApi::class)
 class GetLaunches @Inject constructor() : BaseInteractor<List<LaunchEntity>, GetLaunches.Params>() {
 
+    //region Properties
+
     @field:Inject
     internal lateinit var networkSource: NetworkSource
 
     @field:Inject
     internal lateinit var persistenceSource: PersistenceSource
+    //endregion
+
+    //region Functions
 
     override suspend fun FlowCollector<Result<List<LaunchEntity>>>.run(params: Params) {
 
@@ -40,6 +45,7 @@ class GetLaunches @Inject constructor() : BaseInteractor<List<LaunchEntity>, Get
                 }
             }
     }
+    //endregion
 
     data class Params(
         val count: Int = DEFAULT_LAUNCHES_AMOUNT,

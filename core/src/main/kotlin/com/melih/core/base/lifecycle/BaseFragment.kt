@@ -20,12 +20,18 @@ import com.melih.repository.interactors.base.Reason
  */
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
-    // region Properties
+    //region Abstractions
+
+    @LayoutRes
+    abstract fun getLayoutId(): Int
+    //endregion
+
+    //region Properties
 
     protected lateinit var binding: T
-    // endregion
+    //endregion
 
-    // region Functions
+    //region Functions
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,8 +52,5 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
             block()
         }.show()
     }
-
-    @LayoutRes
-    abstract fun getLayoutId(): Int
-    // endregion
+    //endregion
 }

@@ -2,6 +2,7 @@ apply from: "$rootProject.projectDir/scripts/default_dependencies.gradle"
 
 android {
     compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildToolsVersion
 
     defaultConfig {
         minSdkVersion versions.minSdkVersion

@@ -10,5 +10,8 @@ class LaunchesPagingSourceFactory @Inject constructor(
     private val sourceProvider: Provider<LaunchesPagingSource>
 ) : BasePagingFactory<LaunchEntity>() {
 
+    //region Functions
+
     override fun createSource(): BasePagingDataSource<LaunchEntity> = sourceProvider.get()
+    //endregion
 }
