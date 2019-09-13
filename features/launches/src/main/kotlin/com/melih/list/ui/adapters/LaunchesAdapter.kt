@@ -4,25 +4,29 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.melih.core.base.recycler.BasePagingListAdapter
 import com.melih.core.base.recycler.BaseViewHolder
-import com.melih.core.extensions.getDiffCallbackForType
+import com.melih.core.extensions.createDiffCallback
 import com.melih.list.databinding.LaunchRowBinding
 import com.melih.repository.entities.LaunchEntity
 
 class LaunchesAdapter(itemClickListener: (LaunchEntity) -> Unit) : BasePagingListAdapter<LaunchEntity>(
-    getDiffCallbackForType { oldItem, newItem -> oldItem.id == newItem.id },
+    createDiffCallback { oldItem, newItem -> oldItem.id == newItem.id },
     itemClickListener
 ) {
+
+    //region Functions
+
     override fun createViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
     ): BaseViewHolder<LaunchEntity> =
         LaunchesViewHolder(LaunchRowBinding.inflate(inflater, parent, false))
-
-
+    //endregion
 }
 
 class LaunchesViewHolder(private val binding: LaunchRowBinding) : BaseViewHolder<LaunchEntity>(binding) {
+
+    //region Functions
 
     override fun bind(item: LaunchEntity) {
         binding.entity = item
@@ -32,4 +36,5 @@ class LaunchesViewHolder(private val binding: LaunchRowBinding) : BaseViewHolder
 
         binding.executePendingBindings()
     }
+    //endregion
 }

@@ -18,8 +18,8 @@
 		android:layout_marginLeft="@dimen/padding_standard"
 		android:layout_marginTop="@dimen/padding_standard"
 		android:layout_marginEnd="@dimen/padding_standard"
-		android:background="@null"
 		android:layout_marginRight="@dimen/padding_standard"
+		android:background="@null"
 		app:cardElevation="10dp">
 
 		<androidx.constraintlayout.widget.ConstraintLayout
@@ -41,13 +41,12 @@
 
 			<com.google.android.material.textview.MaterialTextView
 				android:id="@+id/tvTitle"
-				style="@style/TitleTextStyle"
+				style="@style/AppTheme.TextViewStyle.Title"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="@dimen/padding_standard"
 				android:layout_marginEnd="@dimen/padding_large"
 				android:text="@{entity.name}"
-				android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toEndOf="@+id/imgRocket"
 				app:layout_constraintTop_toTopOf="@+id/imgRocket"
@@ -55,12 +54,11 @@
 
 			<com.google.android.material.textview.MaterialTextView
 				android:id="@+id/tvDescription"
-				style="@style/ShortDescriptionTextStyle"
+				style="@style/AppTheme.TextViewStyle.Description"
 				android:layout_width="0dp"
 				android:layout_height="0dp"
 				android:layout_marginStart="@dimen/padding_standard"
 				android:layout_marginEnd="@dimen/padding_large"
-				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
 				app:layout_constraintBottom_toBottomOf="@+id/imgRocket"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toEndOf="@+id/imgRocket"

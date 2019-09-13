@@ -12,12 +12,12 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class DetailContributor {
 
-    // region Contributes
+    //region Contributes
 
     @ContributesAndroidInjector(
         modules = [DetailFragmentModule::class]
     )
     @DetailFragmentScope
     abstract fun detailFragment(): DetailFragment
-    // endregion
+    //endregion
 }

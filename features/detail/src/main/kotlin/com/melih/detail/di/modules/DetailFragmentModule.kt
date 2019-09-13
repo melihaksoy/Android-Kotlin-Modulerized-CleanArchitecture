@@ -15,13 +15,13 @@ import dagger.multibindings.IntoMap
 @Module
 abstract class DetailFragmentModule {
 
-    // region ViewModels
+    //region ViewModels
 
     @Binds
     @IntoMap
     @ViewModelKey(DetailViewModel::class)
     abstract fun detailViewModel(detailViewModel: DetailViewModel): ViewModel
-    // endregion
+    //endregion
 
     @Module
     companion object {

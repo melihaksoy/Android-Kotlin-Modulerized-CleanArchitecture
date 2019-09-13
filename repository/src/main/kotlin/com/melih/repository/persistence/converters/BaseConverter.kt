@@ -10,13 +10,19 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
  */
 abstract class BaseConverter<T> {
 
+    //region Abstractions
+
+    abstract fun getAdapter(moshi: Moshi): JsonAdapter<T>
+    //endregion
+
+    //region Properties
+
     private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
+    //endregion
 
-    abstract fun getAdapter(moshi: Moshi): JsonAdapter<T>
-
-    // region Functions
+    //region Functions
 
     @TypeConverter
     fun convertFrom(item: T) =
@@ -25,5 +31,5 @@ abstract class BaseConverter<T> {
     @TypeConverter
     fun convertTo(string: String) =
         getAdapter(moshi).fromJson(string)
-    // endregion
+    //endregion
 }

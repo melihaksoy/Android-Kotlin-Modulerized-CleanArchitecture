@@ -9,6 +9,7 @@ import com.squareup.moshi.Moshi
  * Converts [rocket][RocketEntity]
  */
 class RocketConverter : BaseConverter<RocketEntity>() {
+
     override fun getAdapter(moshi: Moshi): JsonAdapter<RocketEntity> =
-            RocketEntityJsonAdapter(moshi)
+        RocketEntityJsonAdapter(moshi)
 }

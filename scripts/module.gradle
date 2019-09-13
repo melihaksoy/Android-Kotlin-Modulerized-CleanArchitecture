@@ -1,3 +1,2 @@
 apply from: "$rootProject.projectDir/scripts/default_android_config.gradle"
 apply from: "$rootProject.projectDir/scripts/sources.gradle"
-apply from: "$rootProject.projectDir/scripts/flavors.gradle"

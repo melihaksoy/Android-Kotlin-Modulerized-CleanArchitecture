@@ -1,6 +1,6 @@
 package com.melih.detail.ui
 
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.Transformations.map
 import com.melih.core.base.viewmodel.BaseViewModel
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.GetLaunchDetails
@@ -13,13 +13,13 @@ class DetailViewModel @Inject constructor(
     private val getLaunchDetailsParams: GetLaunchDetails.Params
 ) : BaseViewModel<LaunchEntity>() {
 
-    // region Properties
+    //region Properties
 
-    val rocketName = Transformations.map(successData) {
+    val rocketName = map(successData) {
         it.rocket.name
     }
 
-    val description = Transformations.map(successData) {
+    val description = map(successData) {
         if (it.missions.isEmpty()) {
             ""
         } else {
@@ -27,12 +27,12 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    val imageUrl = Transformations.map(successData) {
+    val imageUrl = map(successData) {
         it.rocket.imageURL
     }
-    // endregion
+    //endregion
 
-    // region Functions
+    //region Functions
 
     /**
      * Triggering interactor in view model scope
@@ -42,5 +42,5 @@ class DetailViewModel @Inject constructor(
             it.handle(::handleState, ::handleFailure, ::handleSuccess)
         }
     }
-    // endregion
+    //endregion
 }

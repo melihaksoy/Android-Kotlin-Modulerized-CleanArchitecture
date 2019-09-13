@@ -1,7 +1,6 @@
 package com.melih.repository.sources
 
 import android.net.NetworkInfo
-import com.melih.repository.DEFAULT_IMAGE_SIZE
 import com.melih.repository.Repository
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.DEFAULT_LAUNCHES_AMOUNT
@@ -19,6 +18,8 @@ import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Provider
 
+private const val DEFAULT_IMAGE_SIZE = 480
+
 /**
  * NetworkSource for fetching results using api and wrapping them as contracted in [repository][Repository],
  * returning either [failure][Failure] with proper [reason][Reason] or [success][Success] with data
@@ -27,16 +28,17 @@ internal class NetworkSource @Inject constructor(
     private val apiImpl: ApiImpl,
     private val networkInfoProvider: Provider<NetworkInfo>
 ) : Repository() {
-    // region Properties
+
+    //region Properties
 
     private val isNetworkConnected: Boolean
         get() {
             val networkInfo = networkInfoProvider.get()
             return networkInfo != null && networkInfo.isConnected
         }
-    // endregion
+    //endregion
 
-    // region Functions
+    //region Functions
 
     override suspend fun getNextLaunches(count: Int, page: Int): Result<List<LaunchEntity>> =
         safeExecute({
@@ -73,8 +75,8 @@ internal class NetworkSource @Inject constructor(
             }
         }
 
-    private suspend inline fun <T, R> safeExecute(
-        block: suspend () -> Response<T>,
+    private inline fun <T, R> safeExecute(
+        block: () -> Response<T>,
         transform: (T) -> R
     ) =
         if (isNetworkConnected) {
@@ -112,5 +114,5 @@ internal class NetworkSource @Inject constructor(
         } catch (e: Exception) {
             imageUrl
         }
-    // endregion
+    //endregion
 }

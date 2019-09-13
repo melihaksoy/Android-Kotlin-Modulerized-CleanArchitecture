@@ -18,11 +18,16 @@ import javax.inject.Inject
 @UseExperimental(ExperimentalCoroutinesApi::class)
 class GetLaunchDetails @Inject constructor() : BaseInteractor<LaunchEntity, GetLaunchDetails.Params>() {
 
+    //region Properties
+
     @field:Inject
     internal lateinit var networkSource: NetworkSource
 
     @field:Inject
     internal lateinit var persistenceSource: PersistenceSource
+    //endregion
+
+    //region Functions
 
     override suspend fun FlowCollector<Result<LaunchEntity>>.run(params: Params) {
         val result = persistenceSource.getLaunchById(params.id)
@@ -42,6 +47,7 @@ class GetLaunchDetails @Inject constructor() : BaseInteractor<LaunchEntity, GetL
             emit(result)
         }
     }
+    //endregion
 
     data class Params(
         val id: Long

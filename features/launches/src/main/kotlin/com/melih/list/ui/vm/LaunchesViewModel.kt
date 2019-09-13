@@ -12,12 +12,12 @@ class LaunchesViewModel @Inject constructor(
     private val launchesPagingConfig: PagedList.Config
 ) : BasePagingViewModel<LaunchEntity>() {
 
-    // region Properties
+    //region Properties
 
     override val factory: BasePagingFactory<LaunchEntity>
         get() = launchesPagingSourceFactory
 
     override val config: PagedList.Config
         get() = launchesPagingConfig
-    // endregion
+    //endregion
 }

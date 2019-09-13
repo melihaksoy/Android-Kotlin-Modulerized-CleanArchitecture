@@ -34,7 +34,7 @@
 
 		<com.google.android.material.textview.MaterialTextView
 			android:id="@+id/tvTitle"
-			style="@style/TitleTextStyle"
+			style="@style/AppTheme.TextViewStyle.Title"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="@dimen/padding_standard"
@@ -43,7 +43,6 @@
 			android:layout_marginEnd="@dimen/padding_standard"
 			android:layout_marginRight="@dimen/padding_standard"
 			android:text="@{viewModel.rocketName}"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/imgRocket"

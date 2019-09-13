@@ -15,6 +15,8 @@ abstract class BasePagingListAdapter<T>(
     private val clickListener: (T) -> Unit
 ) : PagedListAdapter<T, BaseViewHolder<T>>(callback) {
 
+    //region Abstractions
+
     /**
      * This method will be called to create view holder to obfuscate layout inflation creation / process
      *
@@ -27,6 +29,9 @@ abstract class BasePagingListAdapter<T>(
         parent: ViewGroup,
         viewType: Int
     ): BaseViewHolder<T>
+    //endregion
+
+    //region Functions
 
     /**
      * [createViewHolder] will provide holders, no need to override this
@@ -51,12 +56,15 @@ abstract class BasePagingListAdapter<T>(
             holder.bind(item)
         }
     }
+    //endregion
 }
 
 /**
  * Base view holder takes view data binding
  */
 abstract class BaseViewHolder<T>(binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    //region Functions
 
     /**
      * Items are delivered to [bind] via [BaseListAdapter.onBindViewHolder]
@@ -65,4 +73,5 @@ abstract class BaseViewHolder<T>(binding: ViewDataBinding) : RecyclerView.ViewHo
      * @param position position from adapter
      */
     abstract fun bind(item: T)
+    //endregion
 }

@@ -28,6 +28,8 @@ const val DB_NAME = "LaunchesDB"
 )
 internal abstract class LaunchesDatabase : RoomDatabase() {
 
+    //region Companion
+
     companion object {
 
         private lateinit var instance: LaunchesDatabase
@@ -42,6 +44,10 @@ internal abstract class LaunchesDatabase : RoomDatabase() {
         }
 
     }
+    //endregion
+
+    //region Abstractions
 
     internal abstract val launchesDao: LaunchesDao
+    //endregion
 }

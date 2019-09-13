@@ -11,12 +11,12 @@ import com.melih.detail.databinding.DetailBinding
 
 class DetailFragment : BaseDaggerFragment<DetailBinding>() {
 
-    // region Properties
+    //region Properties
 
     private val viewModel by viewModels<DetailViewModel> { viewModelFactory }
-    // endregion
+    //endregion
 
-    // region Functions
+    //region Functions
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,5 +33,5 @@ class DetailFragment : BaseDaggerFragment<DetailBinding>() {
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_detail
-    // endregion
+    //endregion
 }

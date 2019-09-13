@@ -1,7 +1,7 @@
 package com.melih.core.base.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.Transformations.switchMap
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
@@ -20,19 +20,19 @@ import com.melih.repository.interactors.base.State
  */
 abstract class BasePagingViewModel<T> : ViewModel() {
 
-    // region Abstractions
+    //region Abstractions
 
     abstract val factory: BasePagingFactory<T>
     abstract val config: PagedList.Config
-    // endregion
+    //endregion
 
-    // region Properties
+    //region Properties
 
     /**
      * Observe [stateData] to get notified of state of data
      */
     val stateData: LiveData<State> by lazy {
-        Transformations.switchMap(factory.currentSource) {
+        switchMap(factory.currentSource) {
             it.stateData
         }
     }
@@ -41,7 +41,7 @@ abstract class BasePagingViewModel<T> : ViewModel() {
      * Observe [errorData] to get notified if an error occurs
      */
     val errorData: LiveData<Reason> by lazy {
-        Transformations.switchMap(factory.currentSource) {
+        switchMap(factory.currentSource) {
             it.reasonData
         }
     }
@@ -52,9 +52,9 @@ abstract class BasePagingViewModel<T> : ViewModel() {
     val pagedList: LiveData<PagedList<T>> by lazy {
         factory.toLiveData(config)
     }
-    // endregion
+    //endregion
 
-    // region Functions
+    //region Functions
 
     fun refresh() {
         factory.currentSource.value?.invalidate()
@@ -66,5 +66,5 @@ abstract class BasePagingViewModel<T> : ViewModel() {
     fun retry() {
         factory.currentSource.value?.invalidate()
     }
-    // endregion
+    //endregion
 }

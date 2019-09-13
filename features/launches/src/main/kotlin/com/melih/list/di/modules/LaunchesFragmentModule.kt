@@ -14,13 +14,13 @@ import dagger.multibindings.IntoMap
 @Module
 abstract class LaunchesFragmentModule {
 
-    // region ViewModels
+    //region ViewModels
 
     @Binds
     @IntoMap
     @ViewModelKey(LaunchesViewModel::class)
     abstract fun listViewModel(listViewModel: LaunchesViewModel): ViewModel
-    // endregion
+    //endregion
 
     @Module
     companion object {
