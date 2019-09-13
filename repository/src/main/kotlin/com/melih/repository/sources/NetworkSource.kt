@@ -1,5 +1,6 @@
 package com.melih.repository.sources
 
+import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.melih.repository.Repository
 import com.melih.repository.entities.LaunchEntity
@@ -26,7 +27,7 @@ private const val DEFAULT_IMAGE_SIZE = 480
  */
 internal class NetworkSource @Inject constructor(
     private val apiImpl: ApiImpl,
-    private val networkInfoProvider: Provider<NetworkInfo>
+    private val networkInfoProvider: Provider<ConnectivityManager>
 ) : Repository() {
 
     //region Properties
@@ -34,7 +35,7 @@ internal class NetworkSource @Inject constructor(
     private val isNetworkConnected: Boolean
         get() {
             val networkInfo = networkInfoProvider.get()
-            return networkInfo != null && networkInfo.isConnected
+            return networkInfo.activeNetworkInfo != null && networkInfo.activeNetworkInfo.isConnected
         }
     //endregion
 
