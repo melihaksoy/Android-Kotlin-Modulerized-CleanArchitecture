@@ -3,6 +3,7 @@ package com.melih.core.di
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import dagger.Module
 import dagger.Provides
 
@@ -13,7 +14,10 @@ class CoreModule {
     fun proivdeAppContext(app: Application): Context = app.applicationContext
 
     @Provides
-    fun provideConnectivityManager(app: Application): ConnectivityManager? =
-        app.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun provideNetworkInfo(app: Application): NetworkInfo? {
+        val connectivityManager =
+            app.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return connectivityManager.activeNetworkInfo
+    }
 
 }

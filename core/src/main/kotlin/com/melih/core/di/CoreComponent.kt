@@ -2,7 +2,7 @@ package com.melih.core.di
 
 import android.app.Application
 import android.content.Context
-import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -13,7 +13,7 @@ interface CoreComponent {
 
     fun getAppContext(): Context
 
-    fun getConnectivityManagerInfo(): ConnectivityManager?
+    fun getNetworkInfo(): NetworkInfo?
 
     @Component.Factory
     interface Factory {
