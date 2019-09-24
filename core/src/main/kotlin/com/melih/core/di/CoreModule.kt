@@ -14,6 +14,10 @@ class CoreModule {
     fun proivdeAppContext(app: Application): Context = app.applicationContext
 
     @Provides
-    fun provideNetworkInfo(app: Application): NetworkInfo? =
-        (app.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo
+    fun provideNetworkInfo(app: Application): NetworkInfo? {
+        val connectivityManager =
+            app.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return connectivityManager.activeNetworkInfo
+    }
+
 }
