@@ -1,4 +1,4 @@
-package com.melih.list.ui
+package com.melih.launches.ui
 
 import android.os.Bundle
 import android.view.View
@@ -7,10 +7,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.melih.core.actions.openDetail
 import com.melih.core.base.lifecycle.BaseDaggerFragment
 import com.melih.core.extensions.observe
-import com.melih.list.R
-import com.melih.list.databinding.ListBinding
-import com.melih.list.ui.adapters.LaunchesAdapter
-import com.melih.list.ui.vm.LaunchesViewModel
+import com.melih.launches.R
+import com.melih.launches.databinding.ListBinding
+import com.melih.launches.ui.adapters.LaunchesAdapter
+import com.melih.launches.ui.vm.LaunchesViewModel
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.base.PersistenceEmpty
 import com.melih.repository.interactors.base.State
@@ -48,6 +48,11 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
 
         // Workaround for SwipeRefreshLayout leak -> https://issuetracker.google.com/issues/136153683
         binding.swipeRefreshLayout.isEnabled = false
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.rocketList.adapter = null
     }
     //endregion
 

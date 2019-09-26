@@ -32,6 +32,7 @@ dependencies {
     androidTestImplementation testLibraries.espresso
 
     // These libraries required by dagger to create dependency graph, but not by app
+    compileOnly project(':repository')
     compileOnly libraries.retrofit
     compileOnly libraries.room
     compileOnly libraries.paging

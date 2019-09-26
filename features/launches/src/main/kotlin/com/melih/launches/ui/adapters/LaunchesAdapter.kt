@@ -1,11 +1,11 @@
-package com.melih.list.ui.adapters
+package com.melih.launches.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.melih.core.base.recycler.BasePagingListAdapter
 import com.melih.core.base.recycler.BaseViewHolder
 import com.melih.core.extensions.createDiffCallback
-import com.melih.list.databinding.LaunchRowBinding
+import com.melih.launches.databinding.LaunchRowBinding
 import com.melih.repository.entities.LaunchEntity
 
 class LaunchesAdapter(itemClickListener: (LaunchEntity) -> Unit) : BasePagingListAdapter<LaunchEntity>(

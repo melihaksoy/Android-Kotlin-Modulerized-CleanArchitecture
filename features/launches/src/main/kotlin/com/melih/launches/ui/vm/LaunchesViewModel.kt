@@ -1,9 +1,9 @@
-package com.melih.list.ui.vm
+package com.melih.launches.ui.vm
 
 import androidx.paging.PagedList
 import com.melih.core.base.paging.BasePagingFactory
 import com.melih.core.base.viewmodel.BasePagingViewModel
-import com.melih.list.ui.paging.LaunchesPagingSourceFactory
+import com.melih.launches.ui.paging.LaunchesPagingSourceFactory
 import com.melih.repository.entities.LaunchEntity
 import javax.inject.Inject
 

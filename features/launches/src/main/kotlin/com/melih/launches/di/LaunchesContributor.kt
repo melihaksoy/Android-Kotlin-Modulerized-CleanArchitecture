@@ -1,8 +1,8 @@
-package com.melih.list.di
+package com.melih.launches.di
 
-import com.melih.list.di.modules.LaunchesFragmentModule
-import com.melih.list.di.scopes.LaunchesFragmentScope
-import com.melih.list.ui.LaunchesFragment
+import com.melih.launches.di.modules.LaunchesFragmentModule
+import com.melih.launches.di.scopes.LaunchesFragmentScope
+import com.melih.launches.ui.LaunchesFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

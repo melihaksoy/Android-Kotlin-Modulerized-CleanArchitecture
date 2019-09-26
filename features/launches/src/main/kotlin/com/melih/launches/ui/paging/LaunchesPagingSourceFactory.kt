@@ -1,4 +1,4 @@
-package com.melih.list.ui.paging
+package com.melih.launches.ui.paging
 
 import com.melih.core.base.paging.BasePagingDataSource
 import com.melih.core.base.paging.BasePagingFactory

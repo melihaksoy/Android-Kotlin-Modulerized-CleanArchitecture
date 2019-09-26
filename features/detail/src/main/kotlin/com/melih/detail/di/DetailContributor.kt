@@ -1,8 +1,8 @@
 package com.melih.detail.di
 
 import com.melih.detail.di.modules.DetailFragmentModule
+import com.melih.detail.di.scopes.DetailFragmentScope
 import com.melih.detail.ui.DetailFragment
-import com.melih.list.di.scopes.DetailFragmentScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
