@@ -1,4 +1,4 @@
-package com.melih.list.di.scopes
+package com.melih.detail.di.scopes
 
 import javax.inject.Scope
 
