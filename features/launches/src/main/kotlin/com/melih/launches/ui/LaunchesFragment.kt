@@ -49,6 +49,11 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
         // Workaround for SwipeRefreshLayout leak -> https://issuetracker.google.com/issues/136153683
         binding.swipeRefreshLayout.isEnabled = false
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.rocketList.adapter = null
+    }
     //endregion
 
     //region Functions
