@@ -14,5 +14,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(':repository')
+
     testImplementation testLibraries.coroutinesTest
 }
