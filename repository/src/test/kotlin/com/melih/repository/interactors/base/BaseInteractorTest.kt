@@ -1,5 +1,8 @@
 package com.melih.repository.interactors.base
 
+import com.melih.abstractions.deliverable.Result
+import com.melih.abstractions.deliverable.State
+import com.melih.abstractions.deliverable.Success
 import io.mockk.coVerify
 import io.mockk.spyk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -10,7 +13,7 @@ import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldBeInstanceOf
 import org.amshove.kluent.shouldEqualTo
 import org.junit.jupiter.api.Test
-import java.util.*
+import java.util.ArrayDeque
 
 @UseExperimental(ExperimentalCoroutinesApi::class)
 class BaseInteractorTest {

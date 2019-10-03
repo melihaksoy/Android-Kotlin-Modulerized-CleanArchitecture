@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 apply from: "$rootProject.projectDir/scripts/module.gradle"
+apply from: "$rootProject.projectDir/scripts/default_dependencies.gradle"
 
 android {
     defaultConfig {
@@ -16,6 +17,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':core')
 
     implementation libraries.coroutines
     implementation libraries.liveDataKTX

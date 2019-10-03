@@ -1,5 +1,7 @@
 package com.melih.repository.interactors.base
 
+import com.melih.abstractions.deliverable.Result
+import com.melih.abstractions.deliverable.State
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

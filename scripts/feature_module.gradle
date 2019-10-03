@@ -1,5 +1,7 @@
 apply plugin: "androidx.navigation.safeargs"
+
 apply from: "$rootProject.projectDir/scripts/module.gradle"
+apply from: "$rootProject.projectDir/scripts/default_dependencies.gradle"
 
 android {
     dataBinding {

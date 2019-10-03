@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.melih.repository.interactors.base.Reason
-import com.melih.repository.interactors.base.State
+import com.melih.abstractions.deliverable.Reason
+import com.melih.abstractions.deliverable.State
 import kotlinx.coroutines.launch
 
 /**

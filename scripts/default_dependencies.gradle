@@ -6,6 +6,8 @@ apply from: "$rootProject.projectDir/scripts/dokka.gradle"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(':abstractions')
+
     implementation libraries.kotlin
     implementation libraries.dagger
     implementation libraries.timber

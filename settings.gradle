@@ -1,2 +1,2 @@
-include ':app', ':repository', ':core', ':features:launches', ':features:detail'
+include ':app', ':repository', ':core', ':features:launches', ':features:detail', ':abstractions'
 rootProject.name = 'Rocket Science'

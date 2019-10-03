@@ -3,14 +3,15 @@
 package com.melih.core.paging
 
 import androidx.paging.PageKeyedDataSource
+import com.melih.abstractions.data.ViewEntity
+import com.melih.abstractions.deliverable.Failure
+import com.melih.abstractions.deliverable.Reason
+import com.melih.abstractions.deliverable.Result
+import com.melih.abstractions.deliverable.State
+import com.melih.abstractions.deliverable.Success
 import com.melih.core.BaseTestWithMainThread
 import com.melih.core.base.paging.BasePagingDataSource
 import com.melih.core.testObserve
-import com.melih.repository.interactors.base.Failure
-import com.melih.repository.interactors.base.GenericError
-import com.melih.repository.interactors.base.Result
-import com.melih.repository.interactors.base.State
-import com.melih.repository.interactors.base.Success
 import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verify
@@ -28,7 +29,7 @@ class BasePagingDataSourceTest : BaseTestWithMainThread() {
     val failureSource = spyk(TestFailureSource())
 
     val data = 10
-    val errorMessage = "Generic Error"
+    val errorMessageResId = 1313
 
     @Nested
     inner class BasePagingSource {
@@ -37,10 +38,9 @@ class BasePagingDataSourceTest : BaseTestWithMainThread() {
         inner class LoadInitial {
 
             @Test
-
             fun `should update state accordingly`() {
                 val params = mockk<PageKeyedDataSource.LoadInitialParams<Int>>(relaxed = true)
-                val callback = mockk<PageKeyedDataSource.LoadInitialCallback<Int, Int>>(relaxed = true)
+                val callback = mockk<PageKeyedDataSource.LoadInitialCallback<Int, TestViewEntity>>(relaxed = true)
 
                 runBlocking {
 
@@ -54,10 +54,9 @@ class BasePagingDataSourceTest : BaseTestWithMainThread() {
             }
 
             @Test
-
             fun `should update error Error accordingly`() {
                 val params = PageKeyedDataSource.LoadInitialParams<Int>(10, false)
-                val callback = mockk<PageKeyedDataSource.LoadInitialCallback<Int, Int>>(relaxed = true)
+                val callback = mockk<PageKeyedDataSource.LoadInitialCallback<Int, TestViewEntity>>(relaxed = true)
 
                 runBlocking {
 
@@ -65,7 +64,7 @@ class BasePagingDataSourceTest : BaseTestWithMainThread() {
                     failureSource.loadInitial(params, callback)
 
                     failureSource.reasonData.testObserve {
-                        it shouldBeInstanceOf GenericError::class
+                        it shouldBeInstanceOf TestFailureReason::class
                     }
                 }
             }
@@ -75,10 +74,9 @@ class BasePagingDataSourceTest : BaseTestWithMainThread() {
         inner class LoadAfter {
 
             @Test
-
             fun `should update state accordingly`() {
                 val params = PageKeyedDataSource.LoadParams(2, 10)
-                val callback = mockk<PageKeyedDataSource.LoadCallback<Int, Int>>(relaxed = true)
+                val callback = mockk<PageKeyedDataSource.LoadCallback<Int, TestViewEntity>>(relaxed = true)
 
                 runBlocking {
 
@@ -92,10 +90,9 @@ class BasePagingDataSourceTest : BaseTestWithMainThread() {
             }
 
             @Test
-
             fun `should update error Error accordingly`() {
                 val params = PageKeyedDataSource.LoadParams(2, 10)
-                val callback = mockk<PageKeyedDataSource.LoadCallback<Int, Int>>(relaxed = true)
+                val callback = mockk<PageKeyedDataSource.LoadCallback<Int, TestViewEntity>>(relaxed = true)
 
                 runBlocking {
 
@@ -103,17 +100,16 @@ class BasePagingDataSourceTest : BaseTestWithMainThread() {
                     failureSource.loadAfter(params, callback)
 
                     failureSource.reasonData.testObserve {
-                        it shouldBeInstanceOf GenericError::class
+                        it shouldBeInstanceOf TestFailureReason::class
                     }
                 }
             }
         }
 
         @Test
-
         fun `should use loadDataForPage in loadInitial and transform emmited value`() {
             val params = mockk<PageKeyedDataSource.LoadInitialParams<Int>>(relaxed = true)
-            val callback = mockk<PageKeyedDataSource.LoadInitialCallback<Int, Int>>(relaxed = true)
+            val callback = mockk<PageKeyedDataSource.LoadInitialCallback<Int, TestViewEntity>>(relaxed = true)
 
             // Fake loading
             source.loadInitial(params, callback)
@@ -126,10 +122,9 @@ class BasePagingDataSourceTest : BaseTestWithMainThread() {
         }
 
         @Test
-
         fun `should use loadDataForPage in loadAfter and transform emmited value`() {
             val params = PageKeyedDataSource.LoadParams(2, 10)
-            val callback = mockk<PageKeyedDataSource.LoadCallback<Int, Int>>(relaxed = true)
+            val callback = mockk<PageKeyedDataSource.LoadCallback<Int, TestViewEntity>>(relaxed = true)
 
             // Fake loading
             source.loadAfter(params, callback)
@@ -142,25 +137,27 @@ class BasePagingDataSourceTest : BaseTestWithMainThread() {
         }
     }
 
-    inner class TestSource : BasePagingDataSource<Int>() {
-
-
-        val result = flow {
-            emit(State.Loading())
-            emit(Success(listOf(data)))
-        }
-
-
-        override fun loadDataForPage(page: Int): Flow<Result<List<Int>>> = result
-    }
-
-    inner class TestFailureSource : BasePagingDataSource<Int>() {
+    inner class TestSource : BasePagingDataSource<TestViewEntity>() {
 
         val result = flow {
             emit(State.Loading())
-            emit(Failure(GenericError()))
+            emit(Success(listOf(TestViewEntity(data))))
         }
 
-        override fun loadDataForPage(page: Int): Flow<Result<List<Int>>> = result
+        override fun loadDataForPage(page: Int): Flow<Result<List<TestViewEntity>>> = result
     }
+
+    inner class TestFailureSource : BasePagingDataSource<TestViewEntity>() {
+
+        val result = flow {
+            emit(State.Loading())
+            emit(Failure(TestFailureReason(errorMessageResId)))
+        }
+
+        override fun loadDataForPage(page: Int): Flow<Result<List<TestViewEntity>>> = result
+    }
+
+    inner class TestViewEntity(data: Int) : ViewEntity
+
+    inner class TestFailureReason(override val messageRes: Int) : Reason()
 }

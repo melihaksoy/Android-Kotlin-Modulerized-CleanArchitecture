@@ -1,5 +1,6 @@
 package com.melih.repository.entities
 
+import com.melih.abstractions.data.DataEntity
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -9,4 +10,4 @@ data class LaunchesEntity(
     val total: Int = 0,
     val offset: Int = 0,
     val count: Int = 0
-)
+) : DataEntity

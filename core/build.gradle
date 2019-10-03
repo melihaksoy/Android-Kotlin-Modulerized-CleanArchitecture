@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 apply from: "$rootProject.projectDir/scripts/default_android_config.gradle"
+apply from: "$rootProject.projectDir/scripts/default_dependencies.gradle"
 apply from: "$rootProject.projectDir/scripts/sources.gradle"
 
 android {
@@ -14,8 +15,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':repository')
-
+    implementation libraries.coroutines
     implementation libraries.fragment
     implementation libraries.paging
     implementation libraries.lifecycle

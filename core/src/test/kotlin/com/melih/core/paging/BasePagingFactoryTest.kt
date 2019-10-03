@@ -1,5 +1,6 @@
 package com.melih.core.paging
 
+import com.melih.abstractions.data.ViewEntity
 import com.melih.core.BaseTestWithMainThread
 import com.melih.core.base.paging.BasePagingDataSource
 import com.melih.core.base.paging.BasePagingFactory
@@ -25,9 +26,10 @@ class BasePagingFactoryTest : BaseTestWithMainThread() {
         }
     }
 
-    inner class TestFactory : BasePagingFactory<String>() {
+    inner class TestFactory : BasePagingFactory<TestViewEntity>() {
 
-        override fun createSource(): BasePagingDataSource<String> = mockk(relaxed = true)
-
+        override fun createSource(): BasePagingDataSource<TestViewEntity> = mockk(relaxed = true)
     }
+
+    inner class TestViewEntity : ViewEntity
 }

@@ -2,6 +2,7 @@ package com.melih.repository.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.melih.abstractions.data.DataEntity
 import com.melih.repository.DEFAULT_NAME
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -16,4 +17,4 @@ data class LaunchEntity(
     val location: LocationEntity = LocationEntity(),
     val rocket: RocketEntity = RocketEntity(),
     val missions: List<MissionEntity> = listOf(MissionEntity())
-)
+) : DataEntity

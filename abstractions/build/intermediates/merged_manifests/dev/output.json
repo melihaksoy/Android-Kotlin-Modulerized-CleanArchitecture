@@ -1,0 +1,1 @@
+[{"outputType":{"type":"MERGED_MANIFESTS"},"apkData":{"type":"MAIN","splits":[],"versionCode":1,"versionName":"1.0","enabled":true,"outputFile":"abstractions-dev.aar","fullName":"dev","baseName":"dev"},"path":"../../library_manifest/dev/AndroidManifest.xml","properties":{"packageId":"com.melih.abstractions","split":""}}]

@@ -5,9 +5,10 @@ import androidx.lifecycle.Transformations.switchMap
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
+import com.melih.abstractions.data.ViewEntity
+import com.melih.abstractions.deliverable.Reason
+import com.melih.abstractions.deliverable.State
 import com.melih.core.base.paging.BasePagingFactory
-import com.melih.repository.interactors.base.Reason
-import com.melih.repository.interactors.base.State
 
 /**
  * Base [ViewModel] for view models that will use [PagedList].
@@ -18,7 +19,7 @@ import com.melih.repository.interactors.base.State
  *
  * If paging won't be used, use [BaseViewModel] instead.
  */
-abstract class BasePagingViewModel<T> : ViewModel() {
+abstract class BasePagingViewModel<T : ViewEntity> : ViewModel() {
 
     //region Abstractions
 
