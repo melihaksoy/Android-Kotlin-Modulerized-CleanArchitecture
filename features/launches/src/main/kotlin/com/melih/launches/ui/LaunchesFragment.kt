@@ -13,7 +13,7 @@ import com.melih.launches.data.LaunchItem
 import com.melih.launches.databinding.ListBinding
 import com.melih.launches.ui.adapters.LaunchesAdapter
 import com.melih.launches.ui.vm.LaunchesViewModel
-import com.melih.repository.interactors.base.PersistenceEmpty
+import com.melih.repository.interactors.base.PersistenceError
 
 class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.OnRefreshListener {
 
@@ -67,7 +67,7 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
 
         // Observing error to show toast with retry action
         observe(viewModel.errorData) {
-            if (it !is PersistenceEmpty) {
+            if (it !is PersistenceError) {
                 showSnackbarWithAction(it) {
                     viewModel.retry()
                 }

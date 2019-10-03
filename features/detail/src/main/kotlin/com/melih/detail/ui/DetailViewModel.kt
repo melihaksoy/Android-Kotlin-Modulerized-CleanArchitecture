@@ -3,32 +3,28 @@ package com.melih.detail.ui
 import androidx.lifecycle.Transformations.map
 import com.melih.abstractions.deliverable.handle
 import com.melih.core.base.viewmodel.BaseViewModel
-import com.melih.repository.entities.LaunchEntity
+import com.melih.launches.data.LaunchDetailItem
 import com.melih.repository.interactors.GetLaunchDetails
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(
-    private val getLaunchDetails: GetLaunchDetails,
+    private val getLaunchDetails: GetLaunchDetails<LaunchDetailItem>,
     private val getLaunchDetailsParams: GetLaunchDetails.Params
-) : BaseViewModel<LaunchEntity>() {
+) : BaseViewModel<LaunchDetailItem>() {
 
     //region Properties
 
     val rocketName = map(successData) {
-        it.rocket.name
+        it.rocketName
     }
 
     val description = map(successData) {
-        if (it.missions.isEmpty()) {
-            ""
-        } else {
-            it.missions[0].description
-        }
+        it.missionDescription
     }
 
     val imageUrl = map(successData) {
-        it.rocket.imageURL
+        it.imageUrl
     }
     //endregion
 

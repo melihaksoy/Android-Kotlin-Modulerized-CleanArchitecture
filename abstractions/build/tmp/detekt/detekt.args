@@ -1,0 +1,10 @@
+--input
+/Users/m.aksoy/Documents/Projects/Libraries/Android-Kotlin-Modulerized-CleanArchitecture/abstractions/src/main/kotlin/com/melih/abstractions/deliverable/Result.kt,/Users/m.aksoy/Documents/Projects/Libraries/Android-Kotlin-Modulerized-CleanArchitecture/abstractions/src/main/kotlin/com/melih/abstractions/deliverable/Reason.kt,/Users/m.aksoy/Documents/Projects/Libraries/Android-Kotlin-Modulerized-CleanArchitecture/abstractions/src/main/kotlin/com/melih/abstractions/mapper/Mapper.kt,/Users/m.aksoy/Documents/Projects/Libraries/Android-Kotlin-Modulerized-CleanArchitecture/abstractions/src/main/kotlin/com/melih/abstractions/data/ViewEntity.kt
+--config
+/Users/m.aksoy/Documents/Projects/Libraries/Android-Kotlin-Modulerized-CleanArchitecture/default-detekt-config.yml
+--report
+xml:/Users/m.aksoy/Documents/Projects/Libraries/Android-Kotlin-Modulerized-CleanArchitecture/abstractions/build/reports/detekt/detekt.xml
+--report
+html:/Users/m.aksoy/Documents/Projects/Libraries/Android-Kotlin-Modulerized-CleanArchitecture/reports/detekt/abstractions-report.html
+--report
+txt:/Users/m.aksoy/Documents/Projects/Libraries/Android-Kotlin-Modulerized-CleanArchitecture/abstractions/build/reports/detekt/detekt.txt

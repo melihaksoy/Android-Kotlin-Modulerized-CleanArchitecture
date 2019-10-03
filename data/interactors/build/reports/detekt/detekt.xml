@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="4.3">
+<file name="/Users/m.aksoy/Documents/Projects/Libraries/Android-Kotlin-Modulerized-CleanArchitecture/data/interactors/src/main/kotlin/com/melih/interactors/error/InteractionErrorReason.kt">
+	<error line="17" column="82" severity="warning" message="The file InteractionErrorReason.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+</checkstyle>

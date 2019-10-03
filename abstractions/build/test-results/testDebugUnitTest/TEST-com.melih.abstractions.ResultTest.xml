@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.melih.abstractions.ResultTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-10-03T09:36:22" hostname="Melihs-MBP.ws2.tem.nl" time="1.891">
-  <properties/>
-  <testcase name="State should only invoke stateBlock with correct state()" classname="com.melih.abstractions.ResultTest" time="1.754"/>
-  <testcase name="Success should only invoke successBlock with correct data()" classname="com.melih.abstractions.ResultTest" time="0.049"/>
-  <testcase name="Failure should only invoke failureBlock with correct error()" classname="com.melih.abstractions.ResultTest" time="0.084"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

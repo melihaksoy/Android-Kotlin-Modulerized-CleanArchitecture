@@ -7,8 +7,6 @@ apply from: "$rootProject.projectDir/scripts/feature_module.gradle"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':repository')
-
     implementation libraries.paging
     implementation libraries.swipeRefreshLayout
 

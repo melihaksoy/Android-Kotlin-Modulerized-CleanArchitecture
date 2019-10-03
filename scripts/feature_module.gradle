@@ -11,6 +11,8 @@ android {
 
 dependencies {
     implementation project(':core')
+    implementation project(':data:interactors')
+    implementation project(':data:definitions')
 
     implementation libraries.fragment
     implementation libraries.lifecycle
