@@ -1,1 +1,0 @@
-NewLineAtEndOfFile - [InteractionErrorReason.kt] at /Users/m.aksoy/Documents/Projects/Libraries/Android-Kotlin-Modulerized-CleanArchitecture/data/interactors/src/main/kotlin/com/melih/interactors/error/InteractionErrorReason.kt:17:82 - Signature=InteractionErrorReason.kt$com.melih.repository.interactors.base.InteractionErrorReason.kt

@@ -10,12 +10,12 @@ import com.melih.core.base.lifecycle.BaseDaggerFragment
 import com.melih.core.extensions.observe
 import com.melih.launches.R
 import com.melih.launches.data.LaunchItem
-import com.melih.launches.databinding.ListBinding
+import com.melih.launches.databinding.LaunchesBinding
 import com.melih.launches.ui.adapters.LaunchesAdapter
 import com.melih.launches.ui.vm.LaunchesViewModel
 import com.melih.repository.interactors.base.PersistenceError
 
-class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.OnRefreshListener {
+class LaunchesFragment : BaseDaggerFragment<LaunchesBinding>(), SwipeRefreshLayout.OnRefreshListener {
 
     //region Properties
 
