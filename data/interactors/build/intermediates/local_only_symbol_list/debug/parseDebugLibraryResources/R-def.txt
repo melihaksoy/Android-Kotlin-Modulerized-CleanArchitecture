@@ -1,8 +1,0 @@
-R_DEF: Internal format may change without notice
-local
-string reason_empty_body
-string reason_generic
-string reason_network
-string reason_persistance_empty
-string reason_response
-string reason_timeout
