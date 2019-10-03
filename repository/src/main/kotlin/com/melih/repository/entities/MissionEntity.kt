@@ -1,7 +1,6 @@
 package com.melih.repository.entities
 
 import androidx.room.ColumnInfo
-import com.melih.abstractions.data.DataEntity
 import com.melih.repository.DEFAULT_NAME
 import com.melih.repository.EMPTY_STRING
 import com.squareup.moshi.JsonClass
@@ -12,4 +11,4 @@ data class MissionEntity(
     @ColumnInfo(name = "name_mission") val name: String = DEFAULT_NAME,
     val description: String = EMPTY_STRING,
     val typeName: String = EMPTY_STRING
-) : DataEntity
+)
