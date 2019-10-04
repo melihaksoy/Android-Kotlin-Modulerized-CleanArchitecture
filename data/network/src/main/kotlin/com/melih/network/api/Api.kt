@@ -1,7 +1,7 @@
-package com.melih.repository.network
+package com.melih.network
 
-import com.melih.repository.entities.LaunchEntity
-import com.melih.repository.entities.LaunchesEntity
+import com.melih.definitions.entities.LaunchEntity
+import com.melih.definitions.entities.LaunchesEntity
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

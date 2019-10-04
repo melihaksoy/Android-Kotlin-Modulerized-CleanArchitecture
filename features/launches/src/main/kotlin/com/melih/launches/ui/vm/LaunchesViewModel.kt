@@ -5,7 +5,6 @@ import com.melih.core.base.paging.BasePagingFactory
 import com.melih.core.base.viewmodel.BasePagingViewModel
 import com.melih.launches.data.LaunchItem
 import com.melih.launches.ui.paging.LaunchesPagingSourceFactory
-import com.melih.repository.entities.LaunchEntity
 import javax.inject.Inject
 
 class LaunchesViewModel @Inject constructor(

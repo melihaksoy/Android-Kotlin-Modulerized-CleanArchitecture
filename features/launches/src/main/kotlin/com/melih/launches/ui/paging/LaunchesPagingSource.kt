@@ -1,8 +1,8 @@
 package com.melih.launches.ui.paging
 
 import com.melih.core.base.paging.BasePagingDataSource
+import com.melih.interactors.GetLaunches
 import com.melih.launches.data.LaunchItem
-import com.melih.repository.interactors.GetLaunches
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 

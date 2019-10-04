@@ -1,4 +1,4 @@
-package com.melih.repository.interactors.base
+package com.melih.interactors.error
 
 import androidx.annotation.StringRes
 import com.melih.abstractions.deliverable.Reason

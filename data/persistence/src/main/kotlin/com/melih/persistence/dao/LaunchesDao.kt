@@ -1,10 +1,10 @@
-package com.melih.repository.persistence.dao
+package com.melih.persistence.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.melih.repository.entities.LaunchEntity
+import com.melih.definitions.entities.LaunchEntity
 
 /**
  * DAO for list of [launches][LaunchEntity]

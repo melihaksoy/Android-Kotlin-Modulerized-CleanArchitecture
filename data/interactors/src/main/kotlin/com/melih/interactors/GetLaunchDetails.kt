@@ -1,12 +1,12 @@
-package com.melih.repository.interactors
+package com.melih.interactors
 
 import com.melih.abstractions.data.ViewEntity
 import com.melih.abstractions.deliverable.Result
 import com.melih.abstractions.mapper.Mapper
+import com.melih.definitions.entities.LaunchEntity
+import com.melih.interactors.base.BaseInteractor
+import com.melih.interactors.base.InteractorParameters
 import com.melih.interactors.sources.LaunchesSource
-import com.melih.repository.entities.LaunchEntity
-import com.melih.repository.interactors.base.BaseInteractor
-import com.melih.repository.interactors.base.InteractorParameters
 import kotlinx.coroutines.flow.FlowCollector
 import javax.inject.Inject
 

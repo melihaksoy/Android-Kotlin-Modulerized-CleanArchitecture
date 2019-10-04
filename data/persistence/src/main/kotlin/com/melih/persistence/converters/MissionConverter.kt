@@ -1,6 +1,6 @@
-package com.melih.repository.persistence.converters
+package com.melih.persistence.converters
 
-import com.melih.repository.entities.MissionEntity
+import com.melih.definitions.entities.MissionEntity
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types

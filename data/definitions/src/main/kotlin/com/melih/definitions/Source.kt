@@ -3,7 +3,7 @@ package com.melih.definitions
 import com.melih.abstractions.data.ViewEntity
 import com.melih.abstractions.deliverable.Result
 import com.melih.abstractions.mapper.Mapper
-import com.melih.repository.entities.LaunchEntity
+import com.melih.definitions.entities.LaunchEntity
 
 /**
  * Contract for sources to seperate business logic from build and return type

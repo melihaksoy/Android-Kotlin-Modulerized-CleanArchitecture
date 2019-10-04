@@ -58,29 +58,29 @@ jobs:
     - name: Test Abstractions
       run: |
         fastlane test_abstractions
-        ./gradlew repository:jacocoTestReport
+        ./gradlew abstractions:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
 
     - name: Test Definitions
       run: |
         fastlane test_definitions
-        ./gradlew repository:jacocoTestReport
+        ./gradlew data:definitions:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
 
     - name: Test Interactors
       run: |
         fastlane test_interactors
-        ./gradlew repository:jacocoTestReport
+        ./gradlew data:interactors:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
 
     - name: Test Network
       run: |
         fastlane test_network
-        ./gradlew repository:jacocoTestReport
+        ./gradlew data:network:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
 
     - name: Test Persistence
       run: |
         fastlane test_persistence
-        ./gradlew repository:jacocoTestReport
+        ./gradlew data:persistence:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)

@@ -1,7 +1,7 @@
-package com.melih.repository.network
+package com.melih.network
 
-import com.melih.repository.entities.LaunchEntity
-import com.melih.repository.entities.LaunchesEntity
+import com.melih.definitions.entities.LaunchEntity
+import com.melih.definitions.entities.LaunchesEntity
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient

@@ -4,12 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.Config
 import com.melih.abstractions.mapper.Mapper
 import com.melih.core.di.keys.ViewModelKey
+import com.melih.definitions.entities.LaunchEntity
+import com.melih.interactors.DEFAULT_LAUNCHES_AMOUNT
+import com.melih.interactors.GetLaunches
 import com.melih.launches.data.LaunchItem
 import com.melih.launches.data.LaunchMapper
 import com.melih.launches.ui.vm.LaunchesViewModel
-import com.melih.repository.entities.LaunchEntity
-import com.melih.repository.interactors.DEFAULT_LAUNCHES_AMOUNT
-import com.melih.repository.interactors.GetLaunches
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

@@ -1,15 +1,15 @@
-package com.melih.repository.persistence
+package com.melih.persistence
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.melih.repository.entities.LaunchEntity
-import com.melih.repository.persistence.converters.LocationConverter
-import com.melih.repository.persistence.converters.MissionConverter
-import com.melih.repository.persistence.converters.RocketConverter
-import com.melih.repository.persistence.dao.LaunchesDao
+import com.melih.definitions.entities.LaunchEntity
+import com.melih.persistence.converters.LocationConverter
+import com.melih.persistence.converters.MissionConverter
+import com.melih.persistence.converters.RocketConverter
+import com.melih.persistence.dao.LaunchesDao
 
 const val DB_NAME = "LaunchesDB"
 

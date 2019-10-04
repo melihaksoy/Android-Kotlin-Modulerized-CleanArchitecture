@@ -1,8 +1,8 @@
 package com.melih.detail
 
 import com.melih.detail.ui.DetailViewModel
+import com.melih.interactors.GetLaunchDetails
 import com.melih.launches.data.LaunchDetailItem
-import com.melih.repository.interactors.GetLaunchDetails
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.spyk

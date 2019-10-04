@@ -1,4 +1,4 @@
-package com.melih.repository.entities
+package com.melih.definitions.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

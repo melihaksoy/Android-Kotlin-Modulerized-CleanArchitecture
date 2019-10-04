@@ -3,8 +3,8 @@ package com.melih.detail.ui
 import androidx.lifecycle.Transformations.map
 import com.melih.abstractions.deliverable.handle
 import com.melih.core.base.viewmodel.BaseViewModel
+import com.melih.interactors.GetLaunchDetails
 import com.melih.launches.data.LaunchDetailItem
-import com.melih.repository.interactors.GetLaunchDetails
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.melih.repository.entities
+package com.melih.definitions.entities
 
 import androidx.room.ColumnInfo
 import com.melih.definitions.DEFAULT_NAME

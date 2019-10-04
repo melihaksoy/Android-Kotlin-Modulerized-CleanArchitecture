@@ -1,4 +1,4 @@
-package com.melih.repository.interactors.base
+package com.melih.interactors.base
 
 import com.melih.abstractions.deliverable.Result
 import com.melih.abstractions.deliverable.State

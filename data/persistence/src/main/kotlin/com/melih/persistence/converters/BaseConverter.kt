@@ -1,4 +1,4 @@
-package com.melih.repository.persistence.converters
+package com.melih.persistence.converters
 
 import androidx.room.TypeConverter
 import com.squareup.moshi.JsonAdapter

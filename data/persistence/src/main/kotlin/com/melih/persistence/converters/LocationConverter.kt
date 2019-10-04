@@ -1,7 +1,7 @@
-package com.melih.repository.persistence.converters
+package com.melih.persistence.converters
 
-import com.melih.repository.entities.LocationEntity
-import com.melih.repository.entities.LocationEntityJsonAdapter
+import com.melih.definitions.entities.LocationEntity
+import com.melih.definitions.entities.LocationEntityJsonAdapter
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 

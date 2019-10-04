@@ -1,7 +1,7 @@
 package com.melih.launches.data
 
 import com.melih.abstractions.mapper.Mapper
-import com.melih.repository.entities.LaunchEntity
+import com.melih.definitions.entities.LaunchEntity
 import javax.inject.Inject
 
 class LaunchMapper @Inject constructor() : Mapper<LaunchEntity, LaunchItem>() {

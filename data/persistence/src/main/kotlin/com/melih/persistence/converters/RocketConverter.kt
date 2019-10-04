@@ -1,7 +1,7 @@
-package com.melih.repository.persistence.converters
+package com.melih.persistence.converters
 
-import com.melih.repository.entities.RocketEntity
-import com.melih.repository.entities.RocketEntityJsonAdapter
+import com.melih.definitions.entities.RocketEntity
+import com.melih.definitions.entities.RocketEntityJsonAdapter
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 
