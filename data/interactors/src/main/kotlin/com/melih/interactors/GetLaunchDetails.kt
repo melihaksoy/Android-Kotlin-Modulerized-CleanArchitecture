@@ -1,5 +1,6 @@
 package com.melih.repository.interactors
 
+import com.melih.abstractions.data.ViewEntity
 import com.melih.abstractions.deliverable.Result
 import com.melih.abstractions.mapper.Mapper
 import com.melih.interactors.sources.LaunchesSource
@@ -12,7 +13,7 @@ import javax.inject.Inject
 /**
  * Gets next given number of launches
  */
-class GetLaunchDetails<T> @Inject constructor(
+class GetLaunchDetails<T : ViewEntity> @Inject constructor(
     private val mapper: @JvmSuppressWildcards Mapper<LaunchEntity, T>
 ) : BaseInteractor<T, GetLaunchDetails.Params>() {
 

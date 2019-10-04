@@ -2,17 +2,18 @@ package com.melih.interactors.sources
 
 import android.content.Context
 import android.net.NetworkInfo
+import com.melih.abstractions.data.ViewEntity
 import com.melih.abstractions.deliverable.Failure
 import com.melih.abstractions.deliverable.Result
 import com.melih.abstractions.deliverable.Success
 import com.melih.abstractions.mapper.Mapper
-import com.melih.definitions.Repository
+import com.melih.definitions.Source
 import com.melih.repository.entities.LaunchEntity
 import com.melih.repository.interactors.DEFAULT_LAUNCHES_AMOUNT
 import com.melih.repository.interactors.base.ConnectionError
 import com.melih.repository.interactors.base.EmptyResultError
 import com.melih.repository.interactors.base.NetworkError
-import com.melih.repository.interactors.base.PersistenceError
+import com.melih.repository.interactors.base.PersistenceEmptyError
 import com.melih.repository.interactors.base.ResponseError
 import com.melih.repository.interactors.base.TimeoutError
 import com.melih.repository.network.ApiImpl
@@ -28,7 +29,7 @@ internal class LaunchesSource @Inject constructor(
     ctx: Context,
     private val apiImpl: ApiImpl,
     private val networkInfoProvider: Provider<NetworkInfo>
-) : Repository {
+) : Source {
 
     //region Properties
 
@@ -43,49 +44,33 @@ internal class LaunchesSource @Inject constructor(
 
     //region Functions
 
-    override suspend fun <T> getNextLaunches(
+    override suspend fun <T : ViewEntity> getNextLaunches(
         count: Int,
-        page: Int,
-        mapper: Mapper<LaunchEntity, T>
+        page: Int, mapper: Mapper<LaunchEntity, T>
     ): Result<List<T>> {
-        return try {
-            safeExecute({
-                apiImpl.getNextLaunches(count, page * DEFAULT_LAUNCHES_AMOUNT)
-            }) { entity ->
-                entity.launches
-                    .map { launch ->
-                        if (!launch.rocket.imageURL.isNotBlank()) {
-                            launch.copy(
-                                rocket = launch.rocket.copy(
-                                    imageURL = transformImageUrl(
-                                        launch.rocket.imageURL,
-                                        launch.rocket.imageSizes
-                                    )
-                                )
-                            )
-                        } else {
-                            launch
-                        }
-                    }
-                    .saveLaunches()
-                    .map { mapper.convert(it) }
-            }
-        } catch (e: NetworkError) {
+        val networkResponse = safeExecute({
+            apiImpl.getNextLaunches(count, page * DEFAULT_LAUNCHES_AMOUNT)
+        }) { entity ->
+            entity.launches
+                .map(::transformRocketImageUrl)
+                .saveLaunches()
+                .map(mapper::convert)
+        }
+
+        return if (networkResponse is NetworkError) {
             launchesDatabase
                 .launchesDao
                 .getLaunches(count, page)
                 .takeUnless { it.isNullOrEmpty() }
                 ?.run {
-                    Success(
-                        map {
-                            mapper.convert(it)
-                        }
-                    )
-                } ?: Failure(PersistenceError())
+                    Success(map(mapper::convert))
+                } ?: Failure(PersistenceEmptyError())
+        } else {
+            networkResponse
         }
     }
 
-    override suspend fun <T> getLaunchById(
+    override suspend fun <T : ViewEntity> getLaunchById(
         id: Long,
         mapper: Mapper<LaunchEntity, T>
     ): Result<T> {
@@ -98,7 +83,7 @@ internal class LaunchesSource @Inject constructor(
             } ?: loadLaunchFromNetwork(id, mapper)
     }
 
-    private suspend fun <T> loadLaunchFromNetwork(
+    private suspend fun <T : ViewEntity> loadLaunchFromNetwork(
         id: Long,
         mapper: Mapper<LaunchEntity, T>
     ): Result<T> =
@@ -106,15 +91,8 @@ internal class LaunchesSource @Inject constructor(
             apiImpl.getLaunchById(id)
         }) {
             mapper.convert(
-                if (!it.rocket.imageURL.isNotBlank()) {
-                    it.copy(
-                        rocket = it.rocket.copy(
-                            imageURL = transformImageUrl(it.rocket.imageURL, it.rocket.imageSizes)
-                        )
-                    )
-                } else {
-                    it
-                }.saveLaunch()
+                transformRocketImageUrl(it)
+                    .saveLaunch()
             )
         }
 
@@ -149,6 +127,20 @@ internal class LaunchesSource @Inject constructor(
             } ?: Failure(EmptyResultError())
         } else {
             Failure(ResponseError())
+        }
+
+    private fun transformRocketImageUrl(launch: LaunchEntity) =
+        if (!launch.rocket.imageURL.isNotBlank()) {
+            launch.copy(
+                rocket = launch.rocket.copy(
+                    imageURL = transformImageUrl(
+                        launch.rocket.imageURL,
+                        launch.rocket.imageSizes
+                    )
+                )
+            )
+        } else {
+            launch
         }
 
     private fun transformImageUrl(imageUrl: String, supportedSizes: IntArray) =
