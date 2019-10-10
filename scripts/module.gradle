@@ -1,5 +1,2 @@
 apply from: "$rootProject.projectDir/scripts/default_android_config.gradle"
 apply from: "$rootProject.projectDir/scripts/sources.gradle"
-apply from: "$rootProject.projectDir/scripts/detekt.gradle"
-apply from: "$rootProject.projectDir/scripts/dokka.gradle"
-apply from: "$rootProject.projectDir/scripts/jacoco.gradle"
