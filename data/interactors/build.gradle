@@ -8,7 +8,6 @@ apply from: "$rootProject.projectDir/scripts/default_dependencies.gradle"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':core')
     implementation project(':data:definitions')
     implementation project(':data:network')
     implementation project(':data:persistence')
