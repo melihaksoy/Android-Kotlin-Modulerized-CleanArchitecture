@@ -21,7 +21,7 @@ class GetLaunches<T : ViewEntity> @Inject constructor(
 
     //region Properties
 
-    @field:Inject
+    @Inject
     internal lateinit var launchesSource: LaunchesSource
     //endregion
 

@@ -5,6 +5,7 @@ import com.melih.abstractions.deliverable.handle
 import com.melih.core.base.viewmodel.BaseViewModel
 import com.melih.interactors.GetLaunchDetails
 import com.melih.launches.data.LaunchDetailItem
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
