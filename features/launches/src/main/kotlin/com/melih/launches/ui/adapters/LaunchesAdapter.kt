@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import com.melih.core.base.recycler.BasePagingListAdapter
 import com.melih.core.base.recycler.BaseViewHolder
 import com.melih.core.extensions.createDiffCallback
+import com.melih.launches.data.LaunchItem
 import com.melih.launches.databinding.LaunchRowBinding
-import com.melih.repository.entities.LaunchEntity
 
-class LaunchesAdapter(itemClickListener: (LaunchEntity) -> Unit) : BasePagingListAdapter<LaunchEntity>(
+class LaunchesAdapter(itemClickListener: (LaunchItem) -> Unit) : BasePagingListAdapter<LaunchItem>(
     createDiffCallback { oldItem, newItem -> oldItem.id == newItem.id },
     itemClickListener
 ) {
@@ -19,21 +19,18 @@ class LaunchesAdapter(itemClickListener: (LaunchEntity) -> Unit) : BasePagingLis
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder<LaunchEntity> =
+    ): BaseViewHolder<LaunchItem> =
         LaunchesViewHolder(LaunchRowBinding.inflate(inflater, parent, false))
     //endregion
 }
 
-class LaunchesViewHolder(private val binding: LaunchRowBinding) : BaseViewHolder<LaunchEntity>(binding) {
+class LaunchesViewHolder(private val binding: LaunchRowBinding) :
+    BaseViewHolder<LaunchItem>(binding) {
 
     //region Functions
 
-    override fun bind(item: LaunchEntity) {
+    override fun bind(item: LaunchItem) {
         binding.entity = item
-
-        val missions = item.missions
-        binding.tvDescription.text = if (!missions.isNullOrEmpty()) missions[0].description else ""
-
         binding.executePendingBindings()
     }
     //endregion

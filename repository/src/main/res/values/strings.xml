@@ -1,9 +1,0 @@
-<resources>
-    <string name="reason_network">Network error</string>
-    <string name="reason_empty_body">Response is empty</string>
-    <string name="reason_generic">Something went wrong</string>
-    <string name="reason_response">Woops, seems we got a server error</string>
-    <string name="reason_timeout">Server timed out</string>
-    <string name="reason_persistance_empty">There are no saved launches</string>
-    <string name="reason_no_network_persistance_empty">Seems there are no data and network</string>
-</resources>

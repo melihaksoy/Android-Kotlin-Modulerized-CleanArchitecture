@@ -76,12 +76,60 @@ jobs:
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: features/detail/build/test-results
 
-      ## Repository
+      ## Abstractions
       - run:
-          name: Test Repository
+          name: Test Abstractions
           command: |
-            fastlane test_repository
-            ./gradlew repository:jacocoTestReport
+            fastlane test_abstractions
+            ./gradlew abstractions:jacocoTestReport
+            bash <(curl -s https://codecov.io/bash)
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: repository/build/reports/tests
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: repository/build/test-results
+
+      ## Definitions
+      - run:
+          name: Test Definitions
+          command: |
+            fastlane test_definitions
+            ./gradlew data:definitions:jacocoTestReport
+            bash <(curl -s https://codecov.io/bash)
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: repository/build/reports/tests
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: repository/build/test-results
+
+      ## Interactors
+      - run:
+          name: Test Interactors
+          command: |
+            fastlane test_interactors
+            ./gradlew data:interactors:jacocoTestReport
+            bash <(curl -s https://codecov.io/bash)
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: repository/build/reports/tests
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: repository/build/test-results
+
+      ## Network
+      - run:
+          name: Test Network
+          command: |
+            fastlane test_network
+            ./gradlew data:network:jacocoTestReport
+            bash <(curl -s https://codecov.io/bash)
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: repository/build/reports/tests
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: repository/build/test-results
+
+      ## Persistence
+      - run:
+          name: Test Persistence
+          command: |
+            fastlane test_persistence
+            ./gradlew data:persistence:jacocoTestReport
             bash <(curl -s https://codecov.io/bash)
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: repository/build/reports/tests

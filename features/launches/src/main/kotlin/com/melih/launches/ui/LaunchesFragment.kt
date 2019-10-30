@@ -4,18 +4,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.melih.abstractions.deliverable.State
 import com.melih.core.actions.openDetail
 import com.melih.core.base.lifecycle.BaseDaggerFragment
 import com.melih.core.extensions.observe
+import com.melih.interactors.error.PersistenceEmptyError
 import com.melih.launches.R
-import com.melih.launches.databinding.ListBinding
+import com.melih.launches.data.LaunchItem
+import com.melih.launches.databinding.LaunchesBinding
 import com.melih.launches.ui.adapters.LaunchesAdapter
 import com.melih.launches.ui.vm.LaunchesViewModel
-import com.melih.repository.entities.LaunchEntity
-import com.melih.repository.interactors.base.PersistenceEmpty
-import com.melih.repository.interactors.base.State
 
-class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.OnRefreshListener {
+class LaunchesFragment : BaseDaggerFragment<LaunchesBinding>(), SwipeRefreshLayout.OnRefreshListener {
 
     //region Properties
 
@@ -67,7 +67,7 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
 
         // Observing error to show toast with retry action
         observe(viewModel.errorData) {
-            if (it !is PersistenceEmpty) {
+            if (it !is PersistenceEmptyError) {
                 showSnackbarWithAction(it) {
                     viewModel.retry()
                 }
@@ -79,7 +79,7 @@ class LaunchesFragment : BaseDaggerFragment<ListBinding>(), SwipeRefreshLayout.O
         }
     }
 
-    private fun onItemSelected(item: LaunchEntity) {
+    private fun onItemSelected(item: LaunchItem) {
         openDetail(item.id)
     }
 

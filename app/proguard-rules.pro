@@ -21,8 +21,5 @@
     @com.squareup.moshi.ToJson <methods>;
 }
 
--keepnames @kotlin.Metadata class com.myapp.packagename.model.**
--keep class com.myapp.packagnename.model.** { *; }
-
 # Keeping entities intact
--keep class com.melih.repository.entities.** { *; }
+-keep class com.melih.definitions.entities.** { *; }

@@ -4,12 +4,13 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.melih.repository.interactors.base.Reason
-import com.melih.repository.interactors.base.Result
-import com.melih.repository.interactors.base.State
-import com.melih.repository.interactors.base.onFailure
-import com.melih.repository.interactors.base.onState
-import com.melih.repository.interactors.base.onSuccess
+import com.melih.abstractions.data.ViewEntity
+import com.melih.abstractions.deliverable.Reason
+import com.melih.abstractions.deliverable.Result
+import com.melih.abstractions.deliverable.State
+import com.melih.abstractions.deliverable.onFailure
+import com.melih.abstractions.deliverable.onState
+import com.melih.abstractions.deliverable.onSuccess
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -35,11 +36,11 @@ const val INITIAL_PAGE = 0
  */
 
 @UseExperimental(ExperimentalCoroutinesApi::class)
-abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
+abstract class BasePagingDataSource<R : ViewEntity> : PageKeyedDataSource<Int, R>() {
 
     //region Abstractions
 
-    abstract fun loadDataForPage(page: Int): Flow<Result<List<T>>> // Load next page(s)
+    abstract fun loadDataForPage(page: Int): Flow<Result<List<R>>> // Load next page(s)
     //endregion
 
     //region Properties
@@ -63,7 +64,10 @@ abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
 
     //region Functions
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, T>) {
+    override fun loadInitial(
+        params: LoadInitialParams<Int>,
+        callback: LoadInitialCallback<Int, R>
+    ) {
         // Looping through channel as we'll receive any state, error or data here
         loadDataForPage(INITIAL_PAGE)
             .onEach { result ->
@@ -81,7 +85,7 @@ abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
             .launchIn(coroutineScope)
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, R>) {
         // Key for which page to load is in params
         val page = params.key
 
@@ -104,7 +108,7 @@ abstract class BasePagingDataSource<T> : PageKeyedDataSource<Int, T>() {
     /**
      * This loads previous pages, we don't have a use for it yet, so it's a no-op override
      */
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, R>) {
         // no-op
     }
 

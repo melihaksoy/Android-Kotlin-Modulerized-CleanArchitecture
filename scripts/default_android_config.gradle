@@ -1,4 +1,6 @@
-apply from: "$rootProject.projectDir/scripts/default_dependencies.gradle"
+apply from: "$rootProject.projectDir/scripts/cq/detekt.gradle"
+apply from: "$rootProject.projectDir/scripts/cq/dokka.gradle"
+apply from: "$rootProject.projectDir/scripts/cq/jacoco.gradle"
 
 android {
     compileSdkVersion versions.compileSdkVersion

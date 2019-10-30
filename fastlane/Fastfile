@@ -50,9 +50,29 @@ platform :android do
     run_detail_tests()
   end
 
-  desc "Runs tests in repository module"
-  lane :test_repository do
-    run_repository_tests()
+  desc "Runs tests in abstraction module"
+  lane :test_abstractions do
+    run_abstractions_tests()
+  end
+
+  desc "Runs tests in definitions module"
+  lane :test_definitions do
+    run_definitions_tests()
+  end
+
+  desc "Runs tests in interactors module"
+  lane :test_interactors do
+    run_interactors_tests()
+  end
+
+  desc "Runs tests in network module"
+  lane :test_network do
+    run_network_tests()
+  end
+
+  desc "Runs tests in persistence module"
+  lane :test_persistence do
+    run_persistence_tests()
   end
 
 # ================ Gradle tasks ================
@@ -81,7 +101,23 @@ platform :android do
     gradle(task: "features:detail:test --continue")
   end
 
-  def run_repository_tests
-    gradle(task: "repository:test --continue")
+  def run_abstractions_tests
+    gradle(task: "abstractions:test --continue")
+  end
+
+  def run_definitions_tests
+      gradle(task: "data:definitions:test --continue")
+  end
+
+  def run_interactors_tests
+      gradle(task: "data:interactors:test --continue")
+  end
+
+  def run_network_tests
+      gradle(task: "data:network:test --continue")
+  end
+
+  def run_persistence_tests
+      gradle(task: "data:persistence:test --continue")
   end
 end

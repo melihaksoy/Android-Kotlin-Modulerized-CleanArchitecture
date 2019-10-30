@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply from: "$rootProject.projectDir/scripts/module.gradle"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':abstractions')
+
+    implementation libraries.room
+    implementation libraries.moshiKotlin
+
+    kapt annotationProcessors.roomCompiler
+    kapt annotationProcessors.moshi
+}

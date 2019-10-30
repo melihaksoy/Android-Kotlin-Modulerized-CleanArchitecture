@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: "de.mannodermaus.android-junit5"
+
+apply from: "$rootProject.projectDir/scripts/module.gradle"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation libraries.kotlin
+
+    testImplementation testLibraries.jUnitApi
+    testImplementation testLibraries.mockk
+    testImplementation testLibraries.kluent
+
+    testRuntimeOnly testLibraries.jUnitEngine
+}

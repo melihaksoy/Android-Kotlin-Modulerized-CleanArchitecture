@@ -9,8 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.melih.abstractions.deliverable.Reason
 import com.melih.core.R
-import com.melih.repository.interactors.base.Reason
 
 /**
  * Parent of all fragments.

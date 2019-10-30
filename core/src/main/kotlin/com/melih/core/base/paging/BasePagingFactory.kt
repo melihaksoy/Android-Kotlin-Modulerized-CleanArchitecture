@@ -3,6 +3,7 @@ package com.melih.core.base.paging
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
+import com.melih.abstractions.data.ViewEntity
 
 /**
  * Base [factory][DataSource.Factory] class for any [dataSource][DataSource]s in project.
@@ -14,7 +15,7 @@ import androidx.paging.DataSource
  *
  * Purpose of this transmission is to encapuslate [basePagingDataSource][BasePagingDataSource].
  */
-abstract class BasePagingFactory<T> : DataSource.Factory<Int, T>() {
+abstract class BasePagingFactory<T : ViewEntity> : DataSource.Factory<Int, T>() {
 
     //region Abstractions
 

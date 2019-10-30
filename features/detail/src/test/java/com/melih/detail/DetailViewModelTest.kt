@@ -1,7 +1,8 @@
 package com.melih.detail
 
 import com.melih.detail.ui.DetailViewModel
-import com.melih.repository.interactors.GetLaunchDetails
+import com.melih.interactors.GetLaunchDetails
+import com.melih.launches.data.LaunchDetailItem
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.spyk
@@ -19,7 +20,7 @@ import org.junit.jupiter.api.Test
 @UseExperimental(ExperimentalCoroutinesApi::class)
 class DetailViewModelTest : BaseTestWithMainThread() {
 
-    private val getLaunchDetails: GetLaunchDetails = mockk(relaxed = true)
+    private val getLaunchDetails: GetLaunchDetails<LaunchDetailItem> = mockk(relaxed = true)
     private val getLaunchDetailsParams = GetLaunchDetails.Params(1013)
 
     private val viewModel = spyk(DetailViewModel(getLaunchDetails, getLaunchDetailsParams))
