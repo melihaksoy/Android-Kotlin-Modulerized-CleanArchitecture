@@ -27,7 +27,7 @@ class DetailFragment : BaseDaggerFragment<DetailBinding>() {
         // Observing error to show toast with retry action
         observe(viewModel.errorData) {
             showSnackbarWithAction(it) {
-                viewModel.retry()
+                viewModel.loadData()
             }
         }
     }

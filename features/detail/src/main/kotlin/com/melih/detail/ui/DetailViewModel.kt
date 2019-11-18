@@ -1,12 +1,13 @@
 package com.melih.detail.ui
 
 import androidx.lifecycle.Transformations.map
+import androidx.lifecycle.viewModelScope
 import com.melih.abstractions.deliverable.handle
 import com.melih.core.base.viewmodel.BaseViewModel
 import com.melih.interactors.GetLaunchDetails
 import com.melih.launches.data.LaunchDetailItem
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(
@@ -29,14 +30,20 @@ class DetailViewModel @Inject constructor(
     }
     //endregion
 
+    init {
+        loadData()
+    }
+
     //region Functions
 
     /**
      * Triggering interactor in view model scope
      */
-    override suspend fun loadData() {
-        getLaunchDetails(getLaunchDetailsParams).collect {
-            it.handle(::handleState, ::handleFailure, ::handleSuccess)
+    fun loadData() {
+        viewModelScope.launch {
+            getLaunchDetails(getLaunchDetailsParams).collect {
+                it.handle(::handleState, ::handleFailure, ::handleSuccess)
+            }
         }
     }
     //endregion

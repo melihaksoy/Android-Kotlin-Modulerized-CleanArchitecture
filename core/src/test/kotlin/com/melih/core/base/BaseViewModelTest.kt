@@ -11,7 +11,7 @@ class BaseViewModelTest : BaseTestWithMainThread() {
     @Test
     fun `refresh should invoke loadData`() {
         val baseVm = spyk(TestViewModel())
-        baseVm.refresh()
+        baseVm.loadData()
 
         coVerify(exactly = 1) { baseVm.loadData() }
     }
@@ -19,14 +19,14 @@ class BaseViewModelTest : BaseTestWithMainThread() {
     @Test
     fun `retry should invoke loadData`() {
         val baseVm = spyk(TestViewModel())
-        baseVm.retry()
+        baseVm.loadData()
 
         coVerify(exactly = 1) { baseVm.loadData() }
     }
 }
 
 class TestViewModel : BaseViewModel<Unit>() {
-    override suspend fun loadData() {
-        // no - op
+    fun loadData() {
+
     }
 }
