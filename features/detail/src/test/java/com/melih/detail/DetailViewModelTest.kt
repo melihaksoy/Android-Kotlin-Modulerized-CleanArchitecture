@@ -1,13 +1,18 @@
 package com.melih.detail
 
+import androidx.lifecycle.viewModelScope
 import com.melih.detail.ui.DetailViewModel
 import com.melih.interactors.GetLaunchDetails
 import com.melih.launches.data.LaunchDetailItem
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.spyk
 import io.mockk.verify
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest
 import org.amshove.kluent.shouldEqualTo
 import org.junit.jupiter.api.Test
@@ -34,7 +39,9 @@ class DetailViewModelTest : BaseTestWithMainThread() {
             viewModel.loadData()
 
             // init should have called it already due to creation above
-            verify(exactly = 1) { getLaunchDetails(capture(paramsSlot)) }
+            verify(exactly = 1, timeout = 5000) {
+                getLaunchDetails(capture(paramsSlot))
+            }
             paramsSlot.captured.id shouldEqualTo 1013
         }
     }
