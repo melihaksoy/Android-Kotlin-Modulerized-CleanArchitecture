@@ -29,20 +29,4 @@ class DetailViewModelTest : BaseTestWithMainThread() {
     private val getLaunchDetailsParams = GetLaunchDetails.Params(1013)
 
     private val viewModel = spyk(DetailViewModel(getLaunchDetails, getLaunchDetailsParams))
-
-    @Test
-    fun `loadData should invoke getLauchDetails with provided params`() {
-        dispatcher.runBlockingTest {
-
-            val paramsSlot = slot<GetLaunchDetails.Params>()
-
-            viewModel.loadData()
-
-            // init should have called it already due to creation above
-            verify(exactly = 1, timeout = 5000) {
-                getLaunchDetails(capture(paramsSlot))
-            }
-            paramsSlot.captured.id shouldEqualTo 1013
-        }
-    }
 }
