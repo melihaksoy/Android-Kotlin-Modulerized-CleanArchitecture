@@ -33,54 +33,54 @@ jobs:
     
     - name: Test App
       run: |
-        fastlane test_app
+        bundle exec fastlane test_app
         ./gradlew app:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
         
     - name: Test Core
       run: |
-        fastlane test_core
+        bundle exec fastlane test_core
         ./gradlew core:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
         
     - name: Test Launches
       run: |
-        fastlane test_launches
+        bundle exec fastlane test_launches
         ./gradlew features:launches:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
 
     - name: Test Detail
       run: |
-        fastlane test_detail
+        bundle exec fastlane test_detail
         ./gradlew features:detail:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
         
     - name: Test Abstractions
       run: |
-        fastlane test_abstractions
+        bundle exec fastlane test_abstractions
         ./gradlew abstractions:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
 
     - name: Test Definitions
       run: |
-        fastlane test_definitions
+        bundle exec fastlane test_definitions
         ./gradlew data:definitions:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
 
     - name: Test Interactors
       run: |
-        fastlane test_interactors
+        bundle exec fastlane test_interactors
         ./gradlew data:interactors:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
 
     - name: Test Network
       run: |
-        fastlane test_network
+        bundle exec fastlane test_network
         ./gradlew data:network:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
 
     - name: Test Persistence
       run: |
-        fastlane test_persistence
+        bundle exec fastlane test_persistence
         ./gradlew data:persistence:jacocoTestReport
         bash <(curl -s https://codecov.io/bash)
