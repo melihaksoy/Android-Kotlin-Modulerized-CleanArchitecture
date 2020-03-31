@@ -17,4 +17,14 @@ android {
     testOptions.unitTests.all {
         jvmArgs "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap"
     }
+
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "dagger.experimentalDaggerErrorMessages": "enabled"
+                ]
+            }
+        }
+    }
 }
