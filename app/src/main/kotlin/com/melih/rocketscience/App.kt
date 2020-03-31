@@ -16,9 +16,6 @@ class App : DaggerApplication() {
                     .create(this)
             )
 
-    @Inject
-    lateinit var item: LaunchDetailItem
-
     override fun onCreate() {
         super.onCreate()
 

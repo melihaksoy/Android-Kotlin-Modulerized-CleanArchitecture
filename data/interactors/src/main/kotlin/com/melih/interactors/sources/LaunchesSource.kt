@@ -143,21 +143,18 @@ internal class LaunchesSource @Inject constructor(
             launch
         }
 
-    private fun transformImageUrl(imageUrl: String, supportedSizes: IntArray) =
-        try {
-            val urlSplit = imageUrl.split("_")
-            val url = urlSplit[0]
-            val format = urlSplit[1].split(".")[1]
+    private fun transformImageUrl(imageUrl: String, supportedSizes: IntArray): String {
+        val urlSplit = imageUrl.split("_")
+        val url = urlSplit[0]
+        val format = urlSplit[1].split(".")[1]
 
-            val requestedSize = if (!supportedSizes.contains(DEFAULT_IMAGE_SIZE)) {
-                supportedSizes.last { it < DEFAULT_IMAGE_SIZE }
-            } else {
-                DEFAULT_IMAGE_SIZE
-            }
-
-            "${url}_$requestedSize.$format"
-        } catch (e: Exception) {
-            imageUrl
+        val requestedSize = if (!supportedSizes.contains(DEFAULT_IMAGE_SIZE)) {
+            supportedSizes.last { it < DEFAULT_IMAGE_SIZE }
+        } else {
+            DEFAULT_IMAGE_SIZE
         }
+
+        return "${url}_$requestedSize.$format"
+    }
     //endregion
 }

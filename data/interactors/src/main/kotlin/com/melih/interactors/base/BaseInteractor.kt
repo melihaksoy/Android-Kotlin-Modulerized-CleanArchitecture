@@ -39,4 +39,4 @@ interface InteractorParameters
 /**
  * Symbolizes absence of parameters for an [interactor][BaseInteractor]
  */
-class None : Any(), InteractorParameters
+class None : InteractorParameters

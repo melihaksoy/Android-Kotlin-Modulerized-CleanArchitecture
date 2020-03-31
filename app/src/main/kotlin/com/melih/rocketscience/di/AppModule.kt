@@ -18,12 +18,4 @@ abstract class AppModule {
             DetailContributor::class]
     )
     abstract fun mainActivity(): MainActivity
-
-    @Module
-    companion object {
-
-        @JvmStatic
-        @Provides
-        fun provdeSomeObject() = LaunchDetailItem(10, "", "Rocket", "Desc")
-    }
 }

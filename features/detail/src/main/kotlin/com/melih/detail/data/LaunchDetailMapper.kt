@@ -4,7 +4,7 @@ import com.melih.abstractions.mapper.Mapper
 import com.melih.definitions.entities.LaunchEntity
 import javax.inject.Inject
 
-class LaunchDetailMapper @Inject constructor() : Mapper<LaunchEntity, LaunchDetailItem>() {
+class LaunchDetailMapper @Inject constructor() : Mapper<LaunchEntity, LaunchDetailItem> {
 
     override fun convert(launchEntity: LaunchEntity) =
         with(launchEntity) {

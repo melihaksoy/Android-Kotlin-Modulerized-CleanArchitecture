@@ -7,8 +7,9 @@ apply from: "$rootProject.projectDir/scripts/default_dependencies.gradle"
 apply from: "$rootProject.projectDir/scripts/sources.gradle"
 
 android {
-    dataBinding {
-        enabled = true
+
+    buildFeatures{
+        dataBinding = true
     }
 }
 
