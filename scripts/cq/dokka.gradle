@@ -1,10 +1,13 @@
-apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: 'org.jetbrains.dokka'
 
 dokka {
     outputFormat = "html"
     outputDirectory = "$rootProject.projectDir/reports/javadoc"
-    jdkVersion = 8
 
-    reportUndocumented = true
-    skipEmptyPackages = true
+    configuration {
+        jdkVersion = 8
+
+        reportUndocumented = true
+        skipEmptyPackages = true
+    }
 }

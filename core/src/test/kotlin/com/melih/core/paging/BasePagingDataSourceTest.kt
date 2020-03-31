@@ -1,5 +1,3 @@
-@file:UseExperimental(ExperimentalCoroutinesApi::class)
-
 package com.melih.core.paging
 
 import androidx.paging.PageKeyedDataSource

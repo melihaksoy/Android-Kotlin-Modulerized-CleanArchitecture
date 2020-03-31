@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Test
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-@UseExperimental(ExperimentalCoroutinesApi::class)
 class DetailViewModelTest : BaseTestWithMainThread() {
 
     private val getLaunchDetails: GetLaunchDetails<LaunchDetailItem> = mockk(relaxed = true)

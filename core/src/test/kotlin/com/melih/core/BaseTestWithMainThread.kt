@@ -13,7 +13,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import kotlin.coroutines.suspendCoroutine
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 abstract class BaseTestWithMainThread {
 
     private val dispatcher = TestCoroutineDispatcher()

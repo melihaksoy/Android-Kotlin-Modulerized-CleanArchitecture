@@ -8,6 +8,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 
 /**
@@ -24,11 +25,11 @@ abstract class BaseDaggerFragment<T : ViewDataBinding> : BaseFragment<T>(), HasA
 
     //region Properties
 
-    @get:Inject
-    internal var androidInjector: DispatchingAndroidInjector<Any>? = null
+    @Inject
+    protected lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    protected lateinit var viewModelFactory: ViewModelFactory
     //endregion
 
     //region Functions
@@ -38,6 +39,6 @@ abstract class BaseDaggerFragment<T : ViewDataBinding> : BaseFragment<T>(), HasA
         super.onAttach(context)
     }
 
-    override fun androidInjector(): AndroidInjector<Any>? = androidInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
     //endregion
 }

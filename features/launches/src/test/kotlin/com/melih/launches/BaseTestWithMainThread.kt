@@ -1,5 +1,3 @@
-@file:UseExperimental(ExperimentalCoroutinesApi::class)
-
 package com.melih.launches
 
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +8,7 @@ import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 abstract class BaseTestWithMainThread {
 
     protected val dispatcher = TestCoroutineDispatcher()

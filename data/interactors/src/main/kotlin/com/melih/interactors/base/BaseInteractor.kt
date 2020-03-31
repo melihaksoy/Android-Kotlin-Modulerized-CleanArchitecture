@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flowOn
 /**
  * Base use case that wraps [suspending][suspend] [run] function with [flow][Flow] and returns it for later usage.
  */
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 abstract class BaseInteractor<T, in P : InteractorParameters> {
 
     //region Abstractions

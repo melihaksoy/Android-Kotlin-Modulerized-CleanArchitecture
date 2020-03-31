@@ -20,6 +20,10 @@ class DetailViewModel @Inject constructor(
     val rocketName = map(successData) {
         it.rocketName
     }
+        get() {
+            loadData()
+            return field
+        }
 
     val description = map(successData) {
         it.missionDescription
@@ -29,10 +33,6 @@ class DetailViewModel @Inject constructor(
         it.imageUrl
     }
     //endregion
-
-    init {
-        loadData()
-    }
 
     //region Functions
 

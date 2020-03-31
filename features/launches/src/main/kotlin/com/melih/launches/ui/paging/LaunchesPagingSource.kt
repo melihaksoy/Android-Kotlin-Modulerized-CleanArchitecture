@@ -16,7 +16,6 @@ class LaunchesPagingSource @Inject constructor(
 
     //region Functions
 
-    @UseExperimental(ExperimentalCoroutinesApi::class)
     override fun loadDataForPage(page: Int) =
         getLaunches(
             getLaunchesParams.copy(

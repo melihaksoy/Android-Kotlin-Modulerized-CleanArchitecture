@@ -15,7 +15,6 @@ import org.amshove.kluent.shouldEqualTo
 import org.junit.jupiter.api.Test
 import java.util.ArrayDeque
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
 class BaseInteractorTest {
 
     val testInteractor = spyk(TestInteractor())

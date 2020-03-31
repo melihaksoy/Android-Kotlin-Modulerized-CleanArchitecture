@@ -14,6 +14,7 @@ import com.melih.launches.data.LaunchItem
 import com.melih.launches.databinding.LaunchesBinding
 import com.melih.launches.ui.adapters.LaunchesAdapter
 import com.melih.launches.ui.vm.LaunchesViewModel
+import javax.inject.Inject
 
 class LaunchesFragment : BaseDaggerFragment<LaunchesBinding>(), SwipeRefreshLayout.OnRefreshListener {
 

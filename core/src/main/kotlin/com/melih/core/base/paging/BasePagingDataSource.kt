@@ -35,7 +35,7 @@ const val INITIAL_PAGE = 0
  * It's cancelled automatically when source factory [invalidates][invalidate] the source.
  */
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 abstract class BasePagingDataSource<R : ViewEntity> : PageKeyedDataSource<Int, R>() {
 
     //region Abstractions
