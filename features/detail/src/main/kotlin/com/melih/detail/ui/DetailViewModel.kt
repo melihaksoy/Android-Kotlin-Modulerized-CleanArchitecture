@@ -17,13 +17,15 @@ class DetailViewModel @Inject constructor(
 
     //region Properties
 
-    val rocketName = map(successData) {
-        it.rocketName
-    }
-        get() {
-            loadData()
-            return field
+    val rocketName by lazy {
+        val nameData = map(successData) {
+            it.rocketName
         }
+
+        loadData()
+
+        nameData
+    }
 
     val description = map(successData) {
         it.missionDescription
